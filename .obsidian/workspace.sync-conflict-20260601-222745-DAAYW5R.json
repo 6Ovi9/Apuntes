@@ -1,0 +1,240 @@
+{
+  "main": {
+    "id": "ef6691bf65beef5a",
+    "type": "split",
+    "children": [
+      {
+        "id": "1a908da3bb2a9ae5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7823974b778e2c5a",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Analisis de Circuitos/PDFs/Problemas/PEIs/PEI1_19_marzo_2024.pdf",
+                "page": 2,
+                "left": -91,
+                "top": 845,
+                "zoom": 1.5
+              },
+              "icon": "lucide-file-text",
+              "title": "PEI1_19_marzo_2024"
+            }
+          },
+          {
+            "id": "edb26c1eb6be9c1c",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Analisis de Circuitos/PDFs/Teoria/Tema 1/transitorio_alumnos.pdf",
+                "page": 26,
+                "left": -27,
+                "top": 231,
+                "zoom": 2.8
+              },
+              "icon": "lucide-file-text",
+              "title": "transitorio_alumnos"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "1d253fe36c364485",
+    "type": "split",
+    "children": [
+      {
+        "id": "e2952c9f8a29d377",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a1a2dc0624502eff",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "17a78a21a14467df",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "d9ddf3930d20d072",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "83a6ecc2031635a6",
+    "type": "split",
+    "children": [
+      {
+        "id": "b355a8e3dc858bfb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a370e0265abede1d",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Calculo II/PDFs/Problemas/Ficha 1/Práctica 1_2025-26.pdf",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Práctica 1_2025-26"
+            }
+          },
+          {
+            "id": "1f995329e2732ab3",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Calculo II/PDFs/Problemas/Ficha 1/Práctica 1_2025-26.pdf",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Práctica 1_2025-26"
+            }
+          },
+          {
+            "id": "9c9bdea3f8b504f7",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "3d97f1ca7dbfd0ba",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "bd3630cb6c22e716",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Calculo II/PDFs/Problemas/Ficha 1/Práctica 1_2025-26.pdf",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Práctica 1_2025-26"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "obsidian-git:Open Git source control": false,
+      "obsidian-importer:Open Importer": false,
+      "omnisearch:Omnisearch": false,
+      "pdf-plus:PDF++: Toggle auto-copy": false,
+      "pdf-plus:PDF++: Toggle auto-focus": false,
+      "pdf-plus:PDF++: Toggle auto-paste": false
+    }
+  },
+  "active": "edb26c1eb6be9c1c",
+  "lastOpenFiles": [
+    "Analisis de Circuitos/PDFs/Problemas/PEIs/PEI1_19_marzo_2024.pdf",
+    "Analisis de Circuitos/PDFs/Teoria/Tema 1/transitorio_alumnos.pdf",
+    "Analisis de Circuitos/PDFs/Problemas/PEIs/parcial1_17_03_25_R.pdf",
+    "Analisis de Circuitos/PDFs/Problemas/PEIs/PEI1_27_mayo_2024_Recuperación.pdf",
+    "Calculo II/PDFs/Problemas/Ficha 2/Práctica 2_2025-26.pdf",
+    "Calculo II/PDFs/Teoria/Tema 3/CII_L5y6_25-26.pdf",
+    "Calculo II/PDFs/Teoria/Tema 2/Untitled.md",
+    "Calculo II/Apuntes/Todo.md",
+    "Calculo II/PDFs/Teoria/Tema 2/CII_L3y4_25-26.pdf",
+    "Analisis de Circuitos/PDFs/Problemas/Ficha 2/Problemas_Bloque_2.pdf",
+    "Analisis de Circuitos/PDFs/Problemas/Ficha 1/Problemas_bloque_1-2.pdf",
+    "Analisis de Circuitos/PDFs/Problemas/Ficha 1/Untitled.md",
+    "Analisis de Circuitos/PDFs/Problemas/Problemas_Bloque_2.pdf",
+    "Fundamentos Fisicos I/PDFs/Problemas/Ficha 1/P01.pdf",
+    "Fundamentos Fisicos I/Apuntes/Todo.md",
+    "Analisis de Circuitos/PDFs/Ejercicios/Ficha 1/Untitled.md",
+    "Analisis de Circuitos/Ejercicios/Ficha 1/Untitled.md",
+    "Excalidraw/Ejercicios.excalidraw.md",
+    "Calculo II/Welcome.md",
+    "Calculo II/Untitled 1.md",
+    "Pasted Image 20260305115250_096.png",
+    "amortiguamiento.md",
+    "Analisis de Circuitos/Ejercicios/Ficha 1/1.md",
+    "Fundamentos Fisicos I/PDFs/Problemas/Problemas Gemini.md",
+    "Topología y Representación.md"
+  ]
+}

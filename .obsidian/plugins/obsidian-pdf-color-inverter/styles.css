@@ -1,0 +1,25 @@
+/* styles to apply to elements with .inverted-pdf class or '.invert.pdf' source */
+.workspace-leaf-content.inverted-pdf[data-type=pdf] .pdf-viewer .canvasWrapper,
+.markdown-source-view .internal-embed.pdf-embed.is-loaded[src$=".invert.pdf"] .pdf-container {
+    filter: invert(1) hue-rotate(180deg);
+    mix-blend-mode: screen;
+}
+
+
+/* fixing flash, animation delay is smallest possible time where white flash is gone */
+.markdown-source-view .internal-embed.pdf-embed .pdf-container {
+    opacity: 0;
+    animation: fadeIn 0.1s ease-in;
+    animation-delay: 0.15s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

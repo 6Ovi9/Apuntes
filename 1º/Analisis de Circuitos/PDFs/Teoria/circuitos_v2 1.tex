@@ -1,0 +1,460 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage[explicit]{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+\geometry{margin=2.2cm, top=2.5cm, bottom=2.5cm, headheight=15pt}
+
+% Colors
+\definecolor{mainblue}{RGB}{25, 75, 140}
+\definecolor{lightblue}{RGB}{220, 235, 252}
+\definecolor{accentgray}{RGB}{245,246,248}
+\definecolor{rulegray}{RGB}{180,190,210}
+\definecolor{warnorange}{RGB}{255,243,224}
+\definecolor{warnorangeline}{RGB}{210,120,0}
+
+% Title formatting
+\titleformat{\section}[block]
+  {\Large\bfseries\color{mainblue}}
+  {}
+  {0em}
+  {\colorbox{lightblue}{\parbox{\dimexpr\linewidth-2\fboxsep}{\thesection\quad #1}}}
+  [\vspace{2pt}\color{rulegray}\hrule height 0.5pt\vspace{4pt}]
+
+\titleformat{\subsection}[hang]
+  {\normalsize\bfseries\color{mainblue}}
+  {\thesubsection.}
+  {0.5em}
+  {}
+
+\titlespacing*{\section}{0pt}{14pt}{6pt}
+\titlespacing*{\subsection}{0pt}{10pt}{4pt}
+
+% Box for key formulas
+\newmdenv[
+  backgroundcolor=accentgray,
+  linecolor=mainblue,
+  linewidth=1pt,
+  topline=true, bottomline=true, leftline=true, rightline=false,
+  innerleftmargin=10pt, innerrightmargin=10pt,
+  innertopmargin=6pt, innerbottommargin=6pt,
+  leftmargin=0pt, rightmargin=0pt,
+  skipabove=6pt, skipbelow=6pt
+]{formulabox}
+
+% Box for warnings / important notes
+\newmdenv[
+  backgroundcolor=warnorange,
+  linecolor=warnorangeline,
+  linewidth=1.2pt,
+  topline=true, bottomline=true, leftline=true, rightline=false,
+  innerleftmargin=10pt, innerrightmargin=10pt,
+  innertopmargin=6pt, innerbottommargin=6pt,
+  leftmargin=0pt, rightmargin=0pt,
+  skipabove=6pt, skipbelow=6pt
+]{warnbox}
+
+% Header/footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{mainblue}\textbf{Apuntes de Circuitos Eléctricos}}
+\fancyhead[R]{\small\color{mainblue}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\color{rulegray}\hrule width\headwidth height\headrulewidth}
+
+\hypersetup{colorlinks=true, linkcolor=mainblue, urlcolor=mainblue}
+
+\begin{document}
+
+% Title
+\begin{center}
+  {\huge\bfseries\color{mainblue} Apuntes de Circuitos Eléctricos}\\[0.4em]
+  {\large\color{gray} Temas 1, 3 y 4}\\[0.3em]
+  \color{rulegray}\rule{0.6\linewidth}{1pt}
+\end{center}
+\vspace{1em}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Régimen Transitorio en Circuitos}
+
+\textbf{Objetivo:} Analizar la respuesta de los circuitos en cualquier instante de tiempo,
+especialmente durante el período transitorio (desde el cambio hasta el régimen permanente).
+
+% ── 1.1 ──────────────────────────────────────────────────────────────────────
+\subsection{Conceptos Clave}
+
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
+
+  \item \textbf{Respuesta completa:}
+  \[
+    y(t) = y_h(t) + y_p(t)
+  \]
+  donde $y_h(t)$ es la respuesta homogénea (transitorio) y $y_p(t)$ la respuesta
+  particular (régimen permanente).
+
+  \item \textbf{Condiciones iniciales:} $v_C$ e $i_L$ no pueden variar bruscamente:
+  \[
+    v_C(0^+) = v_C(0^-), \qquad i_L(0^+) = i_L(0^-)
+  \]
+
+  \item \textbf{Transformada de Laplace (unilateral):}
+  \[
+    F(s) = \mathcal{L}[f(t)] = \int_0^\infty f(t)\,e^{-st}\,dt
+  \]
+  Propiedades útiles:
+  \begin{align*}
+    \mathcal{L}[f'(t)] &= sF(s) - f(0)\\
+    \mathcal{L}\!\left[\int_{-\infty}^t f(\tau)\,d\tau\right] &= \frac{F(s)}{s}
+      + \frac{f^{-1}(0)}{s}
+  \end{align*}
+\end{itemize}
+
+% ── 1.2 ──────────────────────────────────────────────────────────────────────
+\subsection{Circuito de Primer Orden — Algoritmo Universal}
+
+En cualquier circuito de primer orden (un solo elemento reactivo) la variable $x(t)$
+(tensión o corriente) sigue siempre:
+
+\begin{formulabox}
+\[
+  \boxed{x(t) = X_\infty + \bigl(X_{0^+} - X_\infty\bigr)\,e^{-t/\tau}}
+\]
+\end{formulabox}
+
+Los tres ingredientes se calculan \textbf{en este orden}:
+
+\begin{enumerate}[leftmargin=2em, itemsep=6pt]
+
+  \item \textbf{Condición inicial} $X_{0^+}$: resolver el circuito en $t = 0^-$
+  (régimen CC previo al cambio) usando las equivalencias de CC:
+  \begin{formulabox}
+    \textbf{En CC} ($t = 0^-$ o $t \to \infty$):\\[4pt]
+    \quad Condensador $\longrightarrow$ \textbf{circuito abierto} \quad
+    (no pasa corriente, acumula tensión)\\
+    \quad Bobina $\longrightarrow$ \textbf{cortocircuito} \quad
+    (no cae tensión, acumula corriente)\\[4pt]
+    La tensión/corriente obtenida en $t = 0^-$ es el valor inicial del elemento reactivo
+    en $t = 0^+$ (la condición no cambia bruscamente).
+  \end{formulabox}
+
+  \item \textbf{Valor final} $X_\infty$: resolver el circuito en $t \to \infty$
+  (nuevo régimen CC tras el cambio) con las mismas equivalencias del punto anterior.
+
+  \item \textbf{Constante de tiempo} $\tau$: apagar todas las \emph{fuentes independientes}
+  (tensión $\to$ cortocircuito, corriente $\to$ circuito abierto) y calcular la resistencia
+  equivalente $R_{eq}$ vista desde los bornes del elemento reactivo:
+  \[
+    \tau = R_{eq}\,C \quad \text{(RC)} \qquad \tau = \frac{L}{R_{eq}} \quad \text{(RL)}
+  \]
+\end{enumerate}
+
+% ── 1.3 ──────────────────────────────────────────────────────────────────────
+\subsection{Circuito de Segundo Orden — Ecuación Característica}
+
+La ecuación diferencial de un circuito de segundo orden tiene siempre la forma:
+\[
+  s^2 + 2\xi\omega_n\,s + \omega_n^2 = 0
+\]
+
+\begin{warnbox}
+\textbf{\color{warnorangeline}Atención:} $\xi$ y $\omega_n$ \textbf{no} se leen
+directamente del circuito con una fórmula fija. El procedimiento correcto es:
+\begin{enumerate}[leftmargin=1.5em, itemsep=3pt]
+  \item Obtener la función de transferencia $H(s)$ o la impedancia en el dominio de
+        Laplace (con condiciones iniciales nulas).
+  \item Identificar el polinomio característico en el denominador.
+  \item Igualar coeficientes con la forma estándar para extraer $\xi$ y $\omega_n$.
+\end{enumerate}
+La expresión $\xi = \tfrac{R}{2}\sqrt{C/L}$ \textbf{solo vale para el RLC serie básico}.
+En circuitos mixtos siempre hay que hacer el paso 1--3.
+\end{warnbox}
+
+\medskip
+\textbf{Tipos de respuesta según $\xi$:}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{llll}
+\toprule
+\textbf{Condición} & \textbf{Tipo} & \textbf{Raíces} & \textbf{Comportamiento}\\
+\midrule
+$0 < \xi < 1$ & Subamortiguado    & Complejas conjugadas & Oscilatoria amortiguada\\
+$\xi = 1$     & Amortiguamiento crítico & Reales e iguales & Más rápida sin oscilación\\
+$\xi > 1$     & Sobreamortiguado  & Reales y distintas   & Lenta sin oscilación\\
+$\xi = 0$     & No amortiguado    & Imaginarias puras    & Oscilación permanente\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Para el caso subamortiguado ($0 < \xi < 1$):
+\[
+  s_{1,2} = -\omega_n\xi \pm j\,\omega_d, \qquad \omega_d = \omega_n\sqrt{1-\xi^2}
+\]
+
+\textbf{Nota geométrica:} En el plano $s$, la distancia del polo al origen es
+$|s_{1,2}| = \omega_n$ (no $\omega_d$). Útil para no confundir $\omega_n$ con $\omega_d$
+en circuitos subamortiguados.
+
+% ── 1.4 ──────────────────────────────────────────────────────────────────────
+\subsection{Equivalentes en el Dominio de Laplace (condiciones iniciales no nulas)}
+
+\begin{formulabox}
+\[
+  V_R(s) = R\cdot I_R(s)
+\]
+\[
+  V_C(s) = \frac{1}{sC}\,I_C(s) + \frac{v_C(0^-)}{s}
+\]
+\[
+  V_L(s) = sL\cdot I_L(s) - L\cdot i_L(0^-)
+\]
+\end{formulabox}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Transferencia de Potencia y Adaptación de Impedancias}
+
+\textbf{Objetivo:} Determinar las condiciones para máxima transferencia de potencia
+de un generador a una carga, y estudiar el efecto de redes intermedias.
+
+% ── 2.1 ──────────────────────────────────────────────────────────────────────
+\subsection{Conceptos Clave}
+
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
+  \item \textbf{Adaptación de impedancias:} condición en la que la máxima potencia
+        se transfiere de una fuente a una carga.
+
+  \item \textbf{Teorema de Everitt:} si entre generador y carga se intercala una red
+        \emph{LC pura} (sin pérdidas) y existe adaptación en un punto, existe adaptación
+        en todos los puntos de la red y la potencia máxima se transfiere íntegramente
+        hasta la carga. Corolario útil en examen: si hay adaptación a la entrada de
+        la red LC, la hay también a la salida, y por tanto $\alpha_I = 0\,\text{dB}$.
+        Una red \emph{RLC} (disipativa) \textbf{rompe} esta condición.
+
+  \item \textbf{Pérdidas de inserción ($\alpha_I$):} medida logarítmica de la potencia
+        que se pierde al insertar una red entre generador y carga.
+\end{itemize}
+
+% ── 2.2 ──────────────────────────────────────────────────────────────────────
+\subsection{Cálculo de $Z_{Th}$ — Paso Previo Imprescindible}
+
+\begin{warnbox}
+\textbf{\color{warnorangeline}Regla de oro:} para calcular la impedancia de Thévenin
+$Z_{Th}$ vista desde la carga, \textbf{apagar todas las fuentes independientes}
+(fuentes de tensión $\to$ cortocircuito; fuentes de corriente $\to$ circuito abierto)
+y calcular la impedancia entre los bornes de la carga.\\[4pt]
+\textbf{Con fuentes dependientes:} no se puede simplificar directamente. Hay que aplicar
+el \emph{método de la fuente de prueba}: conectar $V_{test}$ (o $I_{test}$) en los
+bornes con las fuentes independientes apagadas y calcular
+$Z_{Th} = V_{test}/I_{test}$.
+\end{warnbox}
+
+% ── 2.3 ──────────────────────────────────────────────────────────────────────
+\subsection{Máxima Transferencia de Potencia}
+
+Dado un equivalente Thévenin $\bigl(E_{Th},\;Z_{Th} = a + jb\bigr)$ y una carga
+$Z_L = x + jy$:
+
+\begin{formulabox}
+\textbf{Condición general (carga compleja):}
+\[
+  Z_L = Z_{Th}^* = a - jb
+\]
+\textbf{Potencia máxima:}
+\[
+  P_{L,\max} = \frac{|E_{Th}|^2}{8\,\Re\{Z_{Th}\}} = \frac{|E_{Th}|^2}{8a}
+\]
+\textbf{Caso particular (carga resistiva pura, $Z_L = R_L$):}
+\[
+  R_L = |Z_{Th}| = \sqrt{a^2 + b^2}
+  \qquad\text{(potencia máxima menor que el caso general)}
+\]
+\end{formulabox}
+
+% ── 2.4 ──────────────────────────────────────────────────────────────────────
+\subsection{Unidades de Transmisión y Pérdidas de Inserción}
+
+\begin{itemize}[leftmargin=1.5em, itemsep=6pt]
+
+  \item \textbf{Decibelio (dB):}
+  \[
+    X\,[\text{dB}] = 10\log_{10}\!\frac{P_1}{P_2}
+    = 20\log_{10}\!\frac{V_1}{V_2} = 20\log_{10}\!\frac{I_1}{I_2}
+  \]
+
+  \item \textbf{Neper (Np):}
+  \[
+    Y\,[\text{Np}] = \frac{1}{2}\ln\frac{P_1}{P_2},
+    \qquad 1\,\text{Np} = 20\log_{10}(e) \approx 8{,}69\,\text{dB}
+  \]
+
+  \item \textbf{Pérdidas de inserción:}
+  \[
+    \alpha_I\,[\text{dB}]
+    = 10\log\frac{P_{20}}{P_2}
+    = 20\log\frac{|V_{20}|}{|V_2|}
+    = 20\log\frac{|I_{20}|}{|I_2|}
+  \]
+
+  \begin{warnbox}
+  \textbf{\color{warnorangeline}Definición exacta de $P_{20}$ y $P_2$}
+  (confusión frecuente en examen):\\[4pt]
+  \quad $P_{20}$: potencia entregada a la carga cuando está conectada
+  \textbf{directamente} al generador, \emph{sin} ninguna red intermedia.\\
+  \quad $P_2$: potencia entregada a la misma carga \textbf{con} la red intermedia
+  conectada.\\[4pt]
+  Si la red es LC pura y hay adaptación (Teorema de Everitt): $P_2 = P_{20}$,
+  luego $\alpha_I = 0\,\text{dB}$. Útil para verificar resultados.
+  \end{warnbox}
+
+\end{itemize}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Respuesta en Frecuencia. Filtrado}
+
+\textbf{Objetivo:} Analizar cómo varía el comportamiento de un circuito (amplitud
+y fase) con la frecuencia; aplicarlo al diseño e identificación de filtros.
+
+% ── 3.1 ──────────────────────────────────────────────────────────────────────
+\subsection{Función de Transferencia y Respuesta en Frecuencia}
+
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
+  \item $H(s) = Y(s)/X(s)$ con condiciones iniciales nulas.
+  \item \textbf{Polos:} valores de $s$ con $H(s)\to\infty$ (denominador $= 0$).
+        Se representan con \textbf{cruces (×)} en el plano $s$.
+  \item \textbf{Ceros:} valores de $s$ con $H(s) = 0$ (numerador $= 0$).
+        Se representan con \textbf{círculos (○)} en el plano $s$.
+  \item \textbf{Respuesta en frecuencia:} $H(j\omega) = H(s)\big|_{s=j\omega}$.
+        El módulo $|H(j\omega)|$ da la ganancia; la fase $\angle H(j\omega)$, el desfase.
+  \item \textbf{Resonancia:} las reactancias de bobina y condensador se cancelan.
+  \[
+    \omega_0 = \frac{1}{\sqrt{LC}}, \qquad Q = \frac{\omega_0}{B}
+    \quad\text{(ancho de banda a 3\,dB)}
+  \]
+\end{itemize}
+
+% ── 3.2 ──────────────────────────────────────────────────────────────────────
+\subsection{Identificación de Filtros por Análisis Asintótico}
+
+Antes de calcular $H(s)$, se puede razonar el tipo de filtro evaluando los casos
+límite directamente sobre el \emph{circuito} con estas equivalencias:
+
+\begin{formulabox}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{lll}
+\toprule
+\textbf{Elemento} & $\omega \to 0$ \;(CC) & $\omega \to \infty$\\
+\midrule
+Condensador & Circuito \textbf{abierto} & Cortocircuito\\
+Bobina      & Cortocircuito             & Circuito \textbf{abierto}\\
+\bottomrule
+\end{tabular}\\[8pt]
+Si la señal \textbf{llega} a la salida en $\omega\to 0$ pero \textbf{no} en
+$\omega\to\infty$ $\Rightarrow$ \textbf{Paso Bajo}.\\
+Si \textbf{no llega} en $\omega\to 0$ pero \textbf{sí} en
+$\omega\to\infty$ $\Rightarrow$ \textbf{Paso Alto}.\\
+Si \textbf{no llega} en ninguno de los dos extremos $\Rightarrow$ \textbf{Paso Banda}.\\
+Si \textbf{llega} en ambos extremos $\Rightarrow$ \textbf{Banda Eliminada}.
+\end{formulabox}
+
+% ── 3.3 ──────────────────────────────────────────────────────────────────────
+\subsection{Diagrama de Polos y Ceros — Reglas de Identificación}
+
+\begin{formulabox}
+\textbf{Ceros en el origen} ($s = 0$): $H(0) = 0$ $\Rightarrow$ la señal \textbf{no
+pasa} a CC $\Rightarrow$ Filtro \textbf{PA o PBo}.\\[4pt]
+\textbf{Sin ceros finitos} (o ceros en $s\to\infty$): $H(0) \neq 0$ $\Rightarrow$
+la señal \textbf{pasa} en CC $\Rightarrow$ Filtro \textbf{PB}.\\[4pt]
+\textbf{Ceros en el eje imaginario} ($s = \pm j\omega_0$, no en el origen):
+$H(j\omega_0) = 0$ $\Rightarrow$ atenuación total a $\omega_0$ $\Rightarrow$
+Filtro \textbf{BE}.\\[4pt]
+\textbf{Pendiente asintótica} en alta frecuencia: cada polo en exceso sobre los ceros
+contribuye con $-20\,\text{dB/dec}$. Útil para trazos de Bode aproximados.
+\end{formulabox}
+
+\medskip
+\textbf{Relación entre polos y parámetros del sistema (caso subamortiguado):}
+Si el polo es $s = -\sigma \pm j\omega_d$, entonces
+\[
+  \omega_n = \sqrt{\sigma^2 + \omega_d^2}
+  \qquad\text{(distancia del polo al origen)}
+\]
+No confundir $\omega_n$ (pulsación natural) con $\omega_d$ (pulsación amortiguada).
+
+% ── 3.4 ──────────────────────────────────────────────────────────────────────
+\subsection{Filtros de Primer Orden}
+
+\begin{formulabox}
+\[
+  H_{PB}(s) = k\cdot\frac{\omega_c}{s+\omega_c}, \qquad
+  H_{PA}(s) = k\cdot\frac{s}{s+\omega_c}
+\]
+Pulsación de corte a $-3\,\text{dB}$:
+$\displaystyle|H(\omega_c)| = \frac{|H_{\max}|}{\sqrt{2}}$
+\[
+  \text{RC: }\omega_c = \frac{1}{RC} \qquad \text{RL: }\omega_c = \frac{R}{L}
+\]
+\end{formulabox}
+
+% ── 3.5 ──────────────────────────────────────────────────────────────────────
+\subsection{Filtros de Segundo Orden}
+
+Denominador estándar:
+$\displaystyle s^2 + \frac{\omega_0}{Q}\,s + \omega_0^2$,\quad
+con $\displaystyle Q = \frac{1}{2\xi} = \frac{\omega_0}{B}$,\quad
+$\displaystyle\omega_0 = \frac{1}{\sqrt{LC}}$
+
+\begin{formulabox}
+\textbf{Paso Bajo (PB):}
+\[
+  H_{PB}(s) = k\cdot
+  \frac{\omega_0^2}{s^2 + \dfrac{\omega_0}{Q}\,s + \omega_0^2}
+\]
+\textbf{Paso Alto (PA):}
+\[
+  H_{PA}(s) = k\cdot
+  \frac{s^2}{s^2 + \dfrac{\omega_0}{Q}\,s + \omega_0^2}
+\]
+\textbf{Paso Banda (PBo):}
+\[
+  H_{PBo}(s) = k\cdot
+  \frac{\dfrac{\omega_0}{Q}\,s}{s^2 + \dfrac{\omega_0}{Q}\,s + \omega_0^2},
+  \qquad B = \frac{\omega_0}{Q}
+\]
+\textbf{Banda Eliminada (BE):}
+\[
+  H_{BE}(s) = k\cdot
+  \frac{s^2 + \omega_0^2}{s^2 + \dfrac{\omega_0}{Q}\,s + \omega_0^2}
+\]
+\end{formulabox}
+
+% ── 3.6 ──────────────────────────────────────────────────────────────────────
+\subsection{Resonancia Serie y Paralelo}
+
+\textbf{Condición de resonancia:} parte imaginaria de la impedancia (serie) o
+admitancia (paralelo) igual a cero, con $\omega_0 = 1/\!\sqrt{LC}$.
+
+\begin{formulabox}
+\textbf{Resonancia Serie} (RLC con fuente de tensión):
+\[
+  I_{\max} = \frac{V_g}{R_T},\qquad
+  Q_s = \frac{\omega_0 L}{R_T} = \frac{1}{\omega_0 C R_T},\qquad
+  |V_L| = |V_C| = Q\cdot|V_g|
+\]
+\textbf{Resonancia Paralelo} (ideal con fuente de corriente):
+\[
+  V_{\max} = I_g\cdot R_T,\qquad
+  Q_p = \frac{R_T}{\omega_0 L} = \omega_0 C R_T,\qquad
+  |I_L| = |I_C| = Q\cdot|I_g|
+\]
+\end{formulabox}
+
+\end{document}

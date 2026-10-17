@@ -1,0 +1,254 @@
+{
+  "main": {
+    "id": "1d02725bbffc121b",
+    "type": "split",
+    "children": [
+      {
+        "id": "acd68b224b449838",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "540e928c71c07144",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "2º/Electrónica basica/Teoria/EB_T2_Teoría_curso_2526.pdf",
+                "page": 30,
+                "left": -4,
+                "top": 218,
+                "zoom": 0.98
+              },
+              "icon": "lucide-file-text",
+              "title": "EB_T2_Teoría_curso_2526"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "7df388c9c063849e",
+    "type": "split",
+    "children": [
+      {
+        "id": "fb77e77f1224509e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1b3e5fadd22ef548",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "28801928fe922048",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "52eebcd395f29126",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "43222f80bedd0445",
+    "type": "split",
+    "children": [
+      {
+        "id": "b3950a185c4d815c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0e8d525813d924ca",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "2º/Electrónica basica/Problemas/evaluacion-intermedia-2015-preguntas-y-respuestas-en-electronica-basica.pdf",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for evaluacion-intermedia-2015-preguntas-y-respuestas-en-electronica-basica"
+            }
+          },
+          {
+            "id": "694ceac0d7784fa3",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "2º/Electrónica basica/Problemas/evaluacion-intermedia-2015-preguntas-y-respuestas-en-electronica-basica.pdf",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from evaluacion-intermedia-2015-preguntas-y-respuestas-en-electronica-basica"
+            }
+          },
+          {
+            "id": "4a6a7ee85a58ba0c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "c34076e1b00be081",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "174b2a740bc1bef7",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "2º/Electrónica basica/Problemas/evaluacion-intermedia-2015-preguntas-y-respuestas-en-electronica-basica.pdf",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of evaluacion-intermedia-2015-preguntas-y-respuestas-en-electronica-basica"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "pdf-toggle-dark-mode:PDF appearance: Dark (click for Light)": false,
+      "obsidian-importer:Import notes": false,
+      "obsidian-git:Open Git source control": false,
+      "omnisearch:Omnisearch": false,
+      "pdf-plus:PDF++: Toggle auto-copy": false,
+      "pdf-plus:PDF++: Toggle auto-focus": false,
+      "pdf-plus:PDF++: Toggle auto-paste": false,
+      "obsidian42-brat:BRAT": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "540e928c71c07144",
+  "lastOpenFiles": [
+    "2º/Electrónica basica/Teoria/EB_T3_Teoría_diodos(2).pdf",
+    "2º/Electrónica basica/Teoria/EB_T6_Teoría_Polarización.pdf",
+    "2º/Electrónica basica/Teoria/EB_T5_Teoria_transistores_fet.pdf",
+    "2º/Electrónica basica/Teoria/EB_T4_teoría_Transistores bipolares(1).pdf",
+    "2º/Electrónica basica/Teoria/EB_T8-Teoría_curso_2526.pdf",
+    "2º/Electrónica basica/Teoria/EB_T7_Teoría_curso_25-26.pdf",
+    "2º/Electrónica basica/Teoria/~syncthing~EB_T6_Teoría_Polarización.pdf.tmp",
+    "2º/Electrónica basica/Teoria/~syncthing~EB_T3_Teoría_diodos(2).pdf.tmp",
+    "2º/Electrónica basica/Teoria/~syncthing~EB_T5_Teoria_transistores_fet.pdf.tmp",
+    "2º/Electrónica basica/Teoria/~syncthing~EB_T4_teoría_Transistores bipolares(1).pdf.tmp",
+    "2º/Electrónica basica/Teoria/~syncthing~EB_T7_Teoría_curso_25-26.pdf.tmp",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/01-Introducción/Arquitectura lógica de red.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/01-Introducción/Cabecera.md",
+    "2º/Arquitectura de redes 1/Apuntes/03-Figuras/Cabecera_TCP.png",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/DNS/Tipos de Consultas DNS.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/DNS/Servidor DNS autorizado.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/DNS/Símil entre DNS y llamadas telefónicas.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/DNS/Servidor DNS TLD.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/DNS/Servidor DNS raíz.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/DNS/Registros de Recurso (RR) en DNS.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/DNS/Servidor DNS local.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/DNS/Protocolo DNS.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/DNS/Nombres de dominio.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/DNS/Introducción a DNS.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/DNS/Jerarquía DNS.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/DNS/Formato mensajes DNS.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/DNS/Inserción de registros DNS.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/DNS/Entidades funcionales DNS.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/DNS/Dominio DNS.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/DNS/Ejemplo de resolución DNS.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/DNS/Consultas DNS.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/DNS/Cliente DNS.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/HTTP/Transacciones HTTP con Cookies.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/DNS/Caché DNS.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/HTTP/Respuestas HTTP.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/HTTP/Solicitudes HTTP.md",
+    "2º/Arquitectura de redes 1/Apuntes/01-Notas/02-Nivel Aplicación/HTTP/Recurso web.md",
+    "2º/Arquitectura de redes 1/Apuntes/03-Figuras/Wireshark-DNS-CNAME.png",
+    "2º/Arquitectura de redes 1/Apuntes/03-Figuras/Wireshark-DNS-A.png",
+    "2º/Arquitectura de redes 1/Apuntes/03-Figuras/Socket_TCP.png",
+    "2º/Arquitectura de redes 1/Apuntes/03-Figuras/Start-here.jpg",
+    "2º/Arquitectura de redes 1/Apuntes/03-Figuras/Screenshot-TCP-Canvas.png",
+    "2º/Arquitectura de redes 1/Apuntes/03-Figuras/Servicio-Protocolo-SAP.png",
+    "2º/Arquitectura de redes 1/Apuntes/03-Figuras/Panel-control-DNS.png",
+    "2º/Arquitectura de redes 1/Apuntes/03-Figuras/Pseudo-cabecera.png",
+    "2º/Arquitectura de redes 1/Apuntes/03-Figuras/Mensaje_DNS.png",
+    "2º/Arquitectura de redes 1/Apuntes/02-Canvas/TCP.canvas",
+    "2º/Arquitectura de redes 1/Apuntes/02-Canvas/Principal.canvas",
+    "2º/Arquitectura de redes 1/Apuntes/02-Canvas/Introduccion.canvas",
+    "2º/Arquitectura de redes 1/Apuntes/02-Canvas/HTTP.canvas",
+    "2º/Arquitectura de redes 1/Apuntes/02-Canvas/Aplicacion.canvas",
+    "2º/Arquitectura de redes 1/Apuntes/02-Canvas/DNS.canvas"
+  ]
+}

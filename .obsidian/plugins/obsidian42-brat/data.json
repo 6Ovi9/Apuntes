@@ -1,0 +1,24 @@
+{
+  "pluginList": [
+    "harttraveller/obsidian-pdf-color-inverter"
+  ],
+  "pluginSubListFrozenVersion": [
+    {
+      "repo": "harttraveller/obsidian-pdf-color-inverter",
+      "version": "latest"
+    }
+  ],
+  "themesList": [],
+  "updateAtStartup": true,
+  "updateThemesAtStartup": true,
+  "enableAfterInstall": true,
+  "loggingEnabled": false,
+  "loggingPath": "BRAT-log",
+  "loggingVerboseEnabled": false,
+  "debuggingMode": false,
+  "notificationsEnabled": true,
+  "globalTokenName": "",
+  "personalAccessToken": "",
+  "selectLatestPluginVersionByDefault": false,
+  "allowIncompatiblePlugins": false
+}

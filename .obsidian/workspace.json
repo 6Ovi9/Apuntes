@@ -1,0 +1,287 @@
+{
+  "main": {
+    "id": "1d02725bbffc121b",
+    "type": "split",
+    "children": [
+      {
+        "id": "6ece1716fd017023",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e79364d5a4962dfe",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "2º/Señales y sistemas/Problemas/T1_Prob_Resueltos.pdf",
+                "page": 8,
+                "left": -10,
+                "top": 533,
+                "zoom": 1.542857142857143
+              },
+              "icon": "lucide-file-text",
+              "title": "T1_Prob_Resueltos"
+            }
+          },
+          {
+            "id": "f64717c513190194",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "2º/Señales y sistemas/Teoria/T1_Teoria.pdf",
+                "page": 1,
+                "left": -7,
+                "top": 571,
+                "zoom": 2.122013472266078
+              },
+              "icon": "lucide-file-text",
+              "title": "T1_Teoria"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "7df388c9c063849e",
+    "type": "split",
+    "children": [
+      {
+        "id": "fb77e77f1224509e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1b3e5fadd22ef548",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "28801928fe922048",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "52eebcd395f29126",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "43222f80bedd0445",
+    "type": "split",
+    "children": [
+      {
+        "id": "b3950a185c4d815c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0e8d525813d924ca",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "2º/Electrónica basica/Problemas/evaluacion-intermedia-2015-preguntas-y-respuestas-en-electronica-basica.pdf",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for evaluacion-intermedia-2015-preguntas-y-respuestas-en-electronica-basica"
+            }
+          },
+          {
+            "id": "694ceac0d7784fa3",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "2º/Señales y sistemas/Problemas/T1_Prob_Resueltos.pdf",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "4a6a7ee85a58ba0c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "c34076e1b00be081",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "174b2a740bc1bef7",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "2º/Electrónica basica/Problemas/evaluacion-intermedia-2015-preguntas-y-respuestas-en-electronica-basica.pdf",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of evaluacion-intermedia-2015-preguntas-y-respuestas-en-electronica-basica"
+            }
+          },
+          {
+            "id": "aac6fd3fa9e5da70",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "rnote:Create new RNote note": false,
+      "pdf-toggle-dark-mode:PDF appearance: Dark (click for Light)": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "obsidian-git:Open Git source control": false,
+      "obsidian-importer:Import notes": false,
+      "omnisearch:Omnisearch": false,
+      "pdf-plus:PDF++: Toggle auto-copy": false,
+      "pdf-plus:PDF++: Toggle auto-focus": false,
+      "pdf-plus:PDF++: Toggle auto-paste": false,
+      "obsidian42-brat:BRAT": false
+    }
+  },
+  "active": "aac6fd3fa9e5da70",
+  "lastOpenFiles": [
+    "2º/Señales y sistemas/XoPP/EJS/T1.xopp~",
+    "2º/Señales y sistemas/XoPP/EJS/T1.xopp",
+    "2º/Señales y sistemas/XoPP/EJS",
+    "2º/Señales y sistemas/XoPP",
+    "2º/Señales y sistemas/Teoria/T1_Teoria.pdf",
+    "2º/Señales y sistemas/Teoria/Signals_Systems_T1_students.pdf",
+    "2º/Señales y sistemas/Problemas/T1_Prob_Resueltos.pdf",
+    "2º/Señales y sistemas/Javivi/Teoria/Tema 1.1.pdf",
+    "2º/Señales y sistemas/Javivi/Teoria/Tema 1.2.pdf",
+    "2º/Señales y sistemas/Javivi/Problemas/Tema 1.pdf",
+    "2º/Señales y sistemas/Docs/Tablas transformadas.pdf",
+    "2º/Arquitectura de redes 1/todo/Wireshark-DNS-CNAME.png",
+    "2º/Arquitectura de redes 1/todo/Wireshark-DNS-A.png",
+    "2º/Arquitectura de redes 1/todo/Start-here.jpg",
+    "2º/Arquitectura de redes 1/todo/Socket_TCP.png",
+    "2º/Arquitectura de redes 1/todo/Servicio-Protocolo-SAP.png",
+    "2º/Arquitectura de redes 1/todo/Screenshot-TCP-Canvas.png",
+    "2º/Arquitectura de redes 1/todo/Pseudo-cabecera.png",
+    "2º/Arquitectura de redes 1/todo/Panel-control-DNS.png",
+    "2º/Arquitectura de redes 1/todo/Modelo-de-capas.png",
+    "2º/Arquitectura de redes 1/todo/Mensaje_DNS.png",
+    "2º/Arquitectura de redes 1/todo/TCP.canvas",
+    "2º/Arquitectura de redes 1/todo/Principal.canvas",
+    "2º/Arquitectura de redes 1/todo/Introduccion.canvas",
+    "2º/Arquitectura de redes 1/todo/HTTP.canvas",
+    "2º/Arquitectura de redes 1/todo/DNS.canvas",
+    "2º/Arquitectura de redes 1/todo/Aplicacion.canvas",
+    "2º/Arquitectura de redes 1/todo/Pseudo-Cabecera IP.md",
+    "2º/Arquitectura de redes 1/todo/Dirección IP.md",
+    "2º/Arquitectura de redes 1/todo/La cabecera UDP.md",
+    "2º/Arquitectura de redes 1/todo/El protocolo UDP.md",
+    "2º/Arquitectura de redes 1/todo/Checksum en UDP.md",
+    "2º/Arquitectura de redes 1/todo/Ventana del emisor.md",
+    "2º/Arquitectura de redes 1/todo/Ventana de recepción en TCP.md",
+    "2º/Arquitectura de redes 1/todo/Ventana de congestión en TCP.md",
+    "2º/Arquitectura de redes 1/todo/Umbral en TCP.md",
+    "2º/Arquitectura de redes 1/todo/URG (TCP flag).md",
+    "2º/Arquitectura de redes 1/todo/Temporizadores en TCP.md",
+    "2º/Arquitectura de redes 1/todo/Temporizadores en TCP - Timeout.md",
+    "2º/Arquitectura de redes 1/todo/Temporizadores en TCP - Mensajes.md",
+    "2º/Arquitectura de redes 1/todo/Temporizadores en TCP - Cálculo.md",
+    "2º/Arquitectura de redes 1/todo/SYN (TCP flag).md",
+    "2º/Arquitectura de redes 1/todo/Retransmisión en TCP.md",
+    "2º/Arquitectura de redes 1/todo/Recuperación Rápida.md",
+    "2º/Arquitectura de redes 1/todo/Reconocimientos acumulativos.md",
+    "2º/Arquitectura de redes 1/todo/Procesamiento de ACKs.md",
+    "2º/Arquitectura de redes 1/todo/Política de generación de ACKs en TCP.md",
+    "2º/Arquitectura de redes 1/todo/PSH (TCP flag).md",
+    "2º/Arquitectura de redes 1/todo/Número de secuencia de TCP.md",
+    "2º/Arquitectura de redes 1/todo/Número de asentimiento de TCP.md",
+    "2º/Arquitectura de redes 1/todo/MSS - Maximum Segment Size.md",
+    "2º/Arquitectura de redes 1/todo/Longitud de la cabecera de TCP.md",
+    "Untitled.canvas",
+    "2º/Arquitectura de redes 1/Apuntes/02-Canvas/TCP.canvas",
+    "2º/Arquitectura de redes 1/Apuntes/02-Canvas/Principal.canvas",
+    "2º/Arquitectura de redes 1/Apuntes/02-Canvas/Introduccion.canvas"
+  ]
+}

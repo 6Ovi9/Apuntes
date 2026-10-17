@@ -1,0 +1,204 @@
+{
+  "main": {
+    "id": "ac9ea29524a8d921",
+    "type": "split",
+    "children": [
+      {
+        "id": "0291ec9012c91756",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cda1f9bf8c553417",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "2º/Electrónica basica/Examenes/PEI-_Octubre_2022_solución_def.pdf",
+                "page": 2,
+                "left": 234,
+                "top": 795,
+                "zoom": 0.82
+              },
+              "icon": "lucide-file-text",
+              "title": "PEI-_Octubre_2022_solución_def"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "bb424b171be6c4cd",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "90559b6a080d5c61",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {
+            "sortOrder": "alphabetical",
+            "autoReveal": false,
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-folder-closed",
+          "title": "Files"
+        }
+      },
+      {
+        "id": "e7b0b9d45cad010d",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
+          },
+          "icon": "lucide-search",
+          "title": "Search"
+        }
+      },
+      {
+        "id": "b291516fe6aa614b",
+        "type": "leaf",
+        "state": {
+          "type": "tag",
+          "state": {
+            "sortOrder": "frequency",
+            "useHierarchy": true,
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-tags",
+          "title": "Tags"
+        }
+      },
+      {
+        "id": "71afe8883f476e25",
+        "type": "leaf",
+        "state": {
+          "type": "all-properties",
+          "state": {
+            "sortOrder": "frequency",
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-archive",
+          "title": "All properties"
+        }
+      },
+      {
+        "id": "4ac7dc2556ce3629",
+        "type": "leaf",
+        "state": {
+          "type": "bookmarks",
+          "state": {},
+          "icon": "lucide-bookmark",
+          "title": "Bookmarks"
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "right": {
+    "id": "79fde98d5e25a5bd",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "a4d05a3b67cbaff0",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "file": "Fundamentos Fisicos I/Apuntes/Todo.md",
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": false,
+            "unlinkedCollapsed": true
+          },
+          "icon": "links-coming-in",
+          "title": "Backlinks"
+        }
+      },
+      {
+        "id": "4a92f5518cc2832f",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "file": "Calculo II/PDFs/Problemas/Ficha 1/Práctica 1_2025-26.pdf",
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          },
+          "icon": "links-going-out",
+          "title": "Outgoing links"
+        }
+      },
+      {
+        "id": "16aaf4ba7762b913",
+        "type": "leaf",
+        "state": {
+          "type": "outline",
+          "state": {
+            "file": "2º/Electrónica basica/Examenes/PEI-_Octubre_2022_solución_def.pdf",
+            "followCursor": false,
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-list",
+          "title": "Outline"
+        }
+      }
+    ],
+    "currentTab": 2
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "obsidian-git:Open Git source control": false,
+      "obsidian-importer:Import notes": false,
+      "omnisearch:Omnisearch": false,
+      "pdf-plus:PDF++: Toggle auto-copy": false,
+      "pdf-plus:PDF++: Toggle auto-focus": false,
+      "pdf-plus:PDF++: Toggle auto-paste": false,
+      "obsidian42-brat:BRAT": false,
+      "pdf-toggle-dark-mode:PDF appearance: Dark (click for Light)": false
+    }
+  },
+  "active": "cda1f9bf8c553417",
+  "lastOpenFiles": [
+    "2º/Electrónica basica/Examenes/PEI-2023-solución(1).pdf",
+    "2º/Electrónica basica/Examenes/PEI-02_Noviembre_2021-solución(1).pdf",
+    "2º/Electrónica basica/Examenes/examenes-11-noviembre-2011-preguntas-y-respuestas.pdf",
+    "2º/Electrónica basica/Problemas/EB_T2_ejercicios de clase(2).pdf",
+    "2º/Electrónica basica/Problemas/EB_T2_coleeción de problemas.pdf",
+    "2º/Electrónica basica/Problemas/EB_T1_Ejercicios_clase_2025_26.pdf",
+    "2º/Electrónica basica/Teoria/EB_T1_Teoría_curso_25-26.pdf",
+    "2º/Electrónica basica/Problemas/EB_T1_Colección_Problemas-2025_26.pdf",
+    "Analisis de Circuitos/PDFs/Teoria/Tema 1/transitorio_alumnos.pdf",
+    "Calculo II/PDFs/Teoria/Tema 1/JoseVN_L1(1).pdf",
+    "Analisis de Circuitos/PDFs/Problemas/PEIs/parcial1_17_03_25_R.pdf",
+    "Fundamentos Fisicos I/Apuntes/Todo.md",
+    "Analisis de Circuitos/Ejercicios/Ficha 1/Untitled.md",
+    "amortiguamiento.md",
+    "Fundamentos Fisicos I/PDFs/Problemas/Problemas Gemini.md",
+    "Calculo II/Apuntes/Todo.md",
+    "Calculo II/OneNote/Calculo II/Ejercicios/Clase/Ficha 1/Untitled-20260226162019.md",
+    "Topología y Representación.md"
+  ]
+}
