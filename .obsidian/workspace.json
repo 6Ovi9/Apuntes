@@ -4,39 +4,23 @@
     "type": "split",
     "children": [
       {
-        "id": "6ece1716fd017023",
+        "id": "d1f31c271676a0d0",
         "type": "tabs",
         "children": [
           {
-            "id": "e79364d5a4962dfe",
+            "id": "d9bf6f8b04cfd1c8",
             "type": "leaf",
             "state": {
               "type": "pdf",
               "state": {
-                "file": "2º/Señales y sistemas/Problemas/T1_Prob_Resueltos.pdf",
-                "page": 8,
-                "left": -10,
-                "top": 533,
-                "zoom": 1.542857142857143
+                "file": "2º/Estadistica/Examenes/PEI1-ESTADISTICA-22nov2023-SOLVED.pdf",
+                "page": 2,
+                "left": -8,
+                "top": 593,
+                "zoom": 1.9201177269031509
               },
               "icon": "lucide-file-text",
-              "title": "T1_Prob_Resueltos"
-            }
-          },
-          {
-            "id": "f64717c513190194",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "2º/Señales y sistemas/Teoria/T1_Teoria.pdf",
-                "page": 1,
-                "left": -7,
-                "top": 571,
-                "zoom": 2.122013472266078
-              },
-              "icon": "lucide-file-text",
-              "title": "T1_Teoria"
+              "title": "PEI1-ESTADISTICA-22nov2023-SOLVED"
             }
           }
         ]
@@ -101,7 +85,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "43222f80bedd0445",
@@ -225,19 +210,20 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "aac6fd3fa9e5da70",
+  "active": "d9bf6f8b04cfd1c8",
   "lastOpenFiles": [
-    "2º/Señales y sistemas/XoPP/EJS/T1.xopp~",
-    "2º/Señales y sistemas/XoPP/EJS/T1.xopp",
-    "2º/Señales y sistemas/XoPP/EJS",
-    "2º/Señales y sistemas/XoPP",
-    "2º/Señales y sistemas/Teoria/T1_Teoria.pdf",
+    "2º/Estadistica/Teoria/Lección04.pdf",
+    "2º/Estadistica/Teoria/Lección05.pdf",
+    "2º/Estadistica/Teoria/TEMA3-VECTORES ALEATORIOS.pdf",
+    "2º/Estadistica/TABLAS.pdf",
+    "2º/Estadistica/XPP/PEI1_ESTADISTICA_TICs_2025_26__soluciones_.xopp~",
+    "2º/Estadistica/Examenes/PEI1_ESTADISTICA_TICs_2025_26__soluciones_.pdf",
+    "2º/Estadistica/Examenes/PEI1-ESTADISTICA-22nov2023-SOLVED.pdf",
+    "2º/Estadistica/XPP/PEI1_ESTADISTICA_TICs_2025_26__soluciones_.xopp",
+    "2º/Estadistica/Examenes/Examen (alumnos evaluación final) de Enero.pdf",
     "2º/Señales y sistemas/Teoria/Signals_Systems_T1_students.pdf",
-    "2º/Señales y sistemas/Problemas/T1_Prob_Resueltos.pdf",
-    "2º/Señales y sistemas/Javivi/Teoria/Tema 1.1.pdf",
-    "2º/Señales y sistemas/Javivi/Teoria/Tema 1.2.pdf",
-    "2º/Señales y sistemas/Javivi/Problemas/Tema 1.pdf",
-    "2º/Señales y sistemas/Docs/Tablas transformadas.pdf",
+    "2º/Señales y sistemas/Teoria/Signals_Systems_T2_students(1).pdf",
+    "2º/Estadistica/Teoria/Alibaba.md",
     "2º/Arquitectura de redes 1/todo/Wireshark-DNS-CNAME.png",
     "2º/Arquitectura de redes 1/todo/Wireshark-DNS-A.png",
     "2º/Arquitectura de redes 1/todo/Start-here.jpg",
@@ -278,7 +264,6 @@
     "2º/Arquitectura de redes 1/todo/Número de secuencia de TCP.md",
     "2º/Arquitectura de redes 1/todo/Número de asentimiento de TCP.md",
     "2º/Arquitectura de redes 1/todo/MSS - Maximum Segment Size.md",
-    "2º/Arquitectura de redes 1/todo/Longitud de la cabecera de TCP.md",
     "Untitled.canvas",
     "2º/Arquitectura de redes 1/Apuntes/02-Canvas/TCP.canvas",
     "2º/Arquitectura de redes 1/Apuntes/02-Canvas/Principal.canvas",
