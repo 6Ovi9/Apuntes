@@ -4,23 +4,23 @@
     "type": "split",
     "children": [
       {
-        "id": "d1f31c271676a0d0",
+        "id": "b17b171678c7a829",
         "type": "tabs",
         "children": [
           {
-            "id": "d9bf6f8b04cfd1c8",
+            "id": "609d68a0548b511e",
             "type": "leaf",
             "state": {
               "type": "pdf",
               "state": {
-                "file": "2º/Estadistica/Examenes/PEI1-ESTADISTICA-22nov2023-SOLVED.pdf",
-                "page": 2,
-                "left": -8,
-                "top": 593,
-                "zoom": 1.9201177269031509
+                "file": "2º/Estadistica/Examenes/Primer Parcial PEI1-resuelto-1.pdf",
+                "page": 3,
+                "left": -10,
+                "top": 350,
+                "zoom": 1.5
               },
               "icon": "lucide-file-text",
-              "title": "PEI1-ESTADISTICA-22nov2023-SOLVED"
+              "title": "Primer Parcial PEI1-resuelto-1"
             }
           }
         ]
@@ -85,8 +85,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "43222f80bedd0445",
@@ -210,19 +209,19 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "d9bf6f8b04cfd1c8",
+  "active": "609d68a0548b511e",
   "lastOpenFiles": [
+    "2º/Estadistica/Teoria/TEMA3-VECTORES ALEATORIOS.pdf",
+    "2º/Estadistica/Examenes/Primer Parcial PEI1-resuelto-1.pdf",
+    "2º/Estadistica/XPP/Primer Parcial PEI1-resuelto-1.xopp",
+    "2º/Estadistica/Examenes/Primer Parcial PEI1-resuelto.pdf",
+    "2º/Estadistica/Examenes/PEI1-ESTADISTICA-22nov2023-SOLVED.pdf",
     "2º/Estadistica/Teoria/Lección04.pdf",
     "2º/Estadistica/Teoria/Lección05.pdf",
-    "2º/Estadistica/Teoria/TEMA3-VECTORES ALEATORIOS.pdf",
     "2º/Estadistica/TABLAS.pdf",
     "2º/Estadistica/XPP/PEI1_ESTADISTICA_TICs_2025_26__soluciones_.xopp~",
     "2º/Estadistica/Examenes/PEI1_ESTADISTICA_TICs_2025_26__soluciones_.pdf",
-    "2º/Estadistica/Examenes/PEI1-ESTADISTICA-22nov2023-SOLVED.pdf",
     "2º/Estadistica/XPP/PEI1_ESTADISTICA_TICs_2025_26__soluciones_.xopp",
-    "2º/Estadistica/Examenes/Examen (alumnos evaluación final) de Enero.pdf",
-    "2º/Señales y sistemas/Teoria/Signals_Systems_T1_students.pdf",
-    "2º/Señales y sistemas/Teoria/Signals_Systems_T2_students(1).pdf",
     "2º/Estadistica/Teoria/Alibaba.md",
     "2º/Arquitectura de redes 1/todo/Wireshark-DNS-CNAME.png",
     "2º/Arquitectura de redes 1/todo/Wireshark-DNS-A.png",
