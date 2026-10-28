@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{nopageno}
+\usepackage[margin=1.5cm]{geometry}
+
+\begin{document}
+	
+	\textbf{Cálculos teóricos (Rectificador de Precisión):}
+	
+	\begin{itemize}
+		\item \textbf{Semiciclo positivo ($v_E > 0$):}
+		\[
+		i_{R1} = \frac{v_E}{R_1} > 0 \implies v_O < 0 \implies 
+		\begin{cases} 
+			D_1 \text{ ON } (v_O = -V_\gamma) \\ 
+			D_2 \text{ OFF (corte)} \implies i_{R2} = i_{RL} = 0 \implies \mathbf{v_L = 0\text{ V}} 
+		\end{cases}
+		\]
+		
+		\item \textbf{Semiciclo negativo ($v_E < 0$):}
+		\[
+		i_{R1} < 0 \implies v_O > 0 \implies 
+		\begin{cases} 
+			D_1 \text{ OFF} \\ 
+			D_2 \text{ ON}  \\
+		\end{cases}
+		\]
+		Aplicando KCL en el nudo inversor ($V^-$):
+		\[
+		\frac{v_E - 0}{R_1} + \frac{v_L - 0}{R_2} = 0 \implies \mathbf{v_L = -\left(\frac{R_2}{R_1}\right) v_E}
+		\]
+		Sustituyendo los valores de los componentes ($R_1 = 10\text{ k}\Omega$, $R_2 = 20\text{ k}\Omega$):
+		\[
+		v_L = -\left(\frac{20\text{ k}\Omega}{10\text{ k}\Omega}\right) v_E = \mathbf{-2\,v_E}
+		\]
+		Para el pico de entrada $v_{E,\text{pico}} = -1.0\text{ V}$:
+		\[
+		v_{L,\text{max}} = -2 \cdot (-1.0\text{ V}) = \mathbf{+2.0\text{ V}} \quad 
+		\]
+	\end{itemize}
+	
+\end{document}

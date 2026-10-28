@@ -13,14 +13,14 @@
             "state": {
               "type": "pdf",
               "state": {
-                "file": "2º/Estadistica/Examenes/PEI1_ESTADISTICA_TICs_2025_26__soluciones_.pdf",
+                "file": "2º/Electrónica basica/Lab/P3/Docs/P3.pdf",
                 "page": 1,
-                "left": -8,
-                "top": 207,
-                "zoom": 1.9201177269031513
+                "left": -10,
+                "top": 846,
+                "zoom": 1.540268456375839
               },
               "icon": "lucide-file-text",
-              "title": "PEI1_ESTADISTICA_TICs_2025_26__soluciones_"
+              "title": "P3"
             }
           }
         ]
@@ -85,8 +85,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "43222f80bedd0445",
@@ -212,17 +211,17 @@
   },
   "active": "689efcfde98d77b1",
   "lastOpenFiles": [
-    "2º/Estadistica/Examenes/PEI1-RECUPERACION-ESTADISTICA-19ene2024-SOLVED.pdf",
-    "2º/Estadistica/Examenes/Recuperación-Control 1.pdf",
-    "2º/Estadistica/Examenes/Recuperación-PEP1.pdf",
-    "2º/Estadistica/XPP/PEI1-RECUPERACION-ESTADISTICA-19ene2024-SOLVED.xopp~",
-    "2º/Estadistica/XPP/PEI1-RECUPERACION-ESTADISTICA-19ene2024-SOLVED.xopp",
-    "2º/Estadistica/Examenes/PEI2-ESTADISTICA-19ene2024-SOLVED.pdf",
-    "2º/Estadistica/Examenes/PEI1-RECUPERACION-ESTADISTICA-21ene2025-SOLVED-2-3-only.pdf",
-    "2º/Arquitectura de redes 1/S31/S31.pdf",
-    "2º/Electrónica basica/Problemas/EB_T4_Colección_Problemas(1).pdf",
-    "2º/Arquitectura de redes 1/S31/GG31_23-24.pdf",
-    "2º/Arquitectura de redes 1/S31/lu14725otgd.tmp",
+    "2º/Electrónica basica/Lab/P3/Docs/Cuestiones/Cuestiones_P3.pdf",
+    "2º/Electrónica basica/Lab/P3/Docs/Practica3_2026-2027.pdf",
+    "2º/Electrónica basica/Lab/P3/Docs/Cuestiones/Cuestiones_P3.synctex.gz",
+    "2º/Electrónica basica/Lab/P3/Docs/Cuestiones/Cuestiones_P3.synctex(busy)",
+    "2º/Electrónica basica/Lab/P3/Docs/Calculos_Rect_Prec/Calculos_Rect_Precision.synctex.gz",
+    "2º/Electrónica basica/Lab/P3/Docs/Calculos_Rect_Prec/Calculos_Rect_Precision.pdf",
+    "2º/Electrónica basica/Lab/P3/Docs/Calculos_Rect_Prec/Calculos_Rect_Precision.log",
+    "2º/Electrónica basica/Lab/P3/Docs/Calculos_Rect_Prec/Calculos_Rect_Precision.aux",
+    "2º/Electrónica basica/Lab/P3/Docs/Calculos_Rect_Prec/Calculos_Rect_Precision.tex",
+    "2º/Electrónica basica/Lab/P3/Docs/Calculos_Rect_Prec",
+    "2º/Electrónica basica/Lab/P3/Docs/Cuestiones/Cuestiones_P3.log",
     "2º/Estadistica/Teoria/Alibaba.md",
     "2º/Arquitectura de redes 1/todo/Wireshark-DNS-CNAME.png",
     "2º/Arquitectura de redes 1/todo/Wireshark-DNS-A.png",
