@@ -13,34 +13,17 @@
             "state": {
               "type": "pdf",
               "state": {
-                "file": "2º/Electrónica basica/Teoria/EB_T4_teoría_Transistores bipolares(1).pdf",
-                "page": 7,
-                "left": -10,
-                "top": 546,
-                "zoom": 1.5875
+                "file": "2º/Electrónica basica/Examenes/PEI_2526_solución-3.pdf",
+                "page": 4,
+                "left": -8,
+                "top": 354,
+                "zoom": 1.9203629032258065
               },
               "icon": "lucide-file-text",
-              "title": "EB_T4_teoría_Transistores bipolares(1)"
-            }
-          },
-          {
-            "id": "13a8b5e7f9950ee2",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "2º/Electrónica basica/Problemas/EB_T4_Colección_Problemas(1).pdf",
-                "page": 3,
-                "left": -424,
-                "top": 793,
-                "zoom": 0.97
-              },
-              "icon": "lucide-file-text",
-              "title": "EB_T4_Colección_Problemas(1)"
+              "title": "PEI_2526_solución-3"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -102,8 +85,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "43222f80bedd0445",
@@ -138,7 +120,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "2º/Señales y sistemas/Problemas/T1_Prob_Resueltos.pdf",
+                "file": "2º/Electrónica basica/Examenes/PEI_2526_solución-3.pdf",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -153,7 +135,7 @@
               "type": "tag",
               "state": {
                 "sortOrder": "frequency",
-                "useHierarchy": true,
+                "useHierarchy": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
@@ -181,27 +163,17 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "2º/Electrónica basica/Problemas/evaluacion-intermedia-2015-preguntas-y-respuestas-en-electronica-basica.pdf",
+                "file": "2º/Electrónica basica/Examenes/PEI_2526_solución-3.pdf",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of evaluacion-intermedia-2015-preguntas-y-respuestas-en-electronica-basica"
-            }
-          },
-          {
-            "id": "aac6fd3fa9e5da70",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {},
-              "icon": "git-pull-request",
-              "title": "Source Control"
+              "title": "Outline"
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -225,22 +197,24 @@
       "pdf-plus:PDF++: Toggle auto-copy": false,
       "pdf-plus:PDF++: Toggle auto-focus": false,
       "pdf-plus:PDF++: Toggle auto-paste": false,
-      "obsidian42-brat:BRAT": false
+      "obsidian42-brat:BRAT": false,
+      "xournalpp:Create new Xournal++ note": false
     }
   },
-  "active": "13a8b5e7f9950ee2",
+  "active": "689efcfde98d77b1",
   "lastOpenFiles": [
-    "2º/TEST123",
-    "2º/Arquitectura de redes 1/03_Material/Ejercicios_y_problemas/Repaso_PEI1/Cursos_anteriores_PP1.pdf",
-    "2º/Electrónica basica/Teoria/EB_T5_Teoria_transistores_fet.pdf",
-    "2º/Arquitectura de redes 1/03_Material/Ejercicios_y_problemas/Repaso_PEI1/Preparacion_PP2.pdf",
-    "2º/Electrónica basica/Teoria/EB_T4_teoría_Transistores bipolares(1).pdf",
-    "2º/Electrónica basica/XPP/Tema 6.xopp~",
-    "2º/Electrónica basica/XPP/Tema 6.xopp",
-    "2º/Arquitectura de redes 1/01_Sesiones/S13/GG/GG13_2024_25.pdf",
-    "2º/Arquitectura de redes 1/01_Sesiones/S13/GG/GG13 Sesión 1.3 (2).pdf",
-    "2º/Arquitectura de redes 1/01_Sesiones/S13/GG/GG13 Sesión 1.3.pdf",
-    "2º/Arquitectura de redes 1/01_Sesiones/S12/GG/GG12 Sesión 1.2.pdf",
+    "2º/Electrónica basica/XPP/Tema 4/Tema_4.pdf.tmp",
+    "2º/Electrónica basica/XPP/Tema 4/Tema_4.xopp~",
+    "2º/Electrónica basica/XPP/Tema 3/Tema_3.pdf",
+    "2º/Electrónica basica/XPP/Tema 3/Tema_3_EJs.pdf",
+    "2º/Electrónica basica/XPP/Tema 2/Tema 2.pdf",
+    "2º/Electrónica basica/Examenes/PEI_2526_solución-3.pdf",
+    "2º/Arquitectura de redes 1/XPP/RPEI1.pdf.tmp",
+    "2º/Electrónica basica/XPP/Examenes/Extraordinaria 2026.pdf.tmp",
+    "2º/Arquitectura de redes 1/XPP/RPEI1.pdf",
+    "2º/Electrónica basica/XPP/Examenes/Extraordinaria 2026.pdf",
+    "2º/Electrónica basica/XPP/Examenes/Extraordinaria_2026.pdf",
+    "2026-11-11.md",
     "2º/Estadistica/Teoria/Alibaba.md",
     "2º/Arquitectura de redes 1/todo/Wireshark-DNS-CNAME.png",
     "2º/Arquitectura de redes 1/todo/Wireshark-DNS-A.png",
@@ -281,7 +255,6 @@
     "2º/Arquitectura de redes 1/todo/PSH (TCP flag).md",
     "2º/Arquitectura de redes 1/todo/Número de secuencia de TCP.md",
     "2º/Arquitectura de redes 1/todo/Número de asentimiento de TCP.md",
-    "2º/Arquitectura de redes 1/todo/MSS - Maximum Segment Size.md",
     "Untitled.canvas",
     "2º/Arquitectura de redes 1/Apuntes/02-Canvas/TCP.canvas",
     "2º/Arquitectura de redes 1/Apuntes/02-Canvas/Principal.canvas",

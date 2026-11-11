@@ -1,0 +1,11 @@
+{
+    "id": "xournalpp",
+    "name": "Xournalpp",
+    "version": "1.2.1",
+    "minAppVersion": "1.7.2",
+    "description": "Integration with Xournal++ for handwritten notes and annotations.",
+    "author": "Jon Jampen",
+    "authorUrl": "https://jonjampen.ch",
+    "fundingUrl": "https://ko-fi.com/jonjampen",
+    "isDesktopOnly": true
+}
