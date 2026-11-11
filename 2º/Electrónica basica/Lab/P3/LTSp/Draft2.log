@@ -1,0 +1,15 @@
+LTspice 26.0.2 for Windows
+Circuit: Z:\home\oviodi\Apuntes\2º\Electrónica basica\Lab\P3\LTSp\Draft2.net
+Start Time: Fri Nov  6 18:56:33 2026
+solver = Normal
+Maximum thread count: 8
+tnom = 27
+temp = 27
+method = trap
+Direct Newton iteration succeeded in finding operating point.
+Total elapsed time: 0.064 seconds.
+
+Files loaded:
+Z:\home\oviodi\Apuntes\2º\Electrónica basica\Lab\P3\LTSp\Draft2.net
+C:\users\oviodi\AppData\Local\LTspice\lib\sub\LM741.sub
+

@@ -13,17 +13,34 @@
             "state": {
               "type": "pdf",
               "state": {
-                "file": "2º/Electrónica basica/Lab/P3/Docs/P3.pdf",
-                "page": 1,
+                "file": "2º/Electrónica basica/Teoria/EB_T4_teoría_Transistores bipolares(1).pdf",
+                "page": 7,
                 "left": -10,
-                "top": 846,
-                "zoom": 1.540268456375839
+                "top": 546,
+                "zoom": 1.5875
               },
               "icon": "lucide-file-text",
-              "title": "P3"
+              "title": "EB_T4_teoría_Transistores bipolares(1)"
+            }
+          },
+          {
+            "id": "13a8b5e7f9950ee2",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "2º/Electrónica basica/Problemas/EB_T4_Colección_Problemas(1).pdf",
+                "page": 3,
+                "left": -12,
+                "top": 549,
+                "zoom": 1.24
+              },
+              "icon": "lucide-file-text",
+              "title": "EB_T4_Colección_Problemas(1)"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +102,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "43222f80bedd0445",
@@ -187,12 +205,13 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
-      "rnote:Create new RNote note": false,
       "pdf-toggle-dark-mode:PDF appearance: Dark (click for Light)": false,
+      "rnote:Create new RNote note": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -209,19 +228,19 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "689efcfde98d77b1",
+  "active": "13a8b5e7f9950ee2",
   "lastOpenFiles": [
-    "2º/Electrónica basica/Lab/P3/Docs/Cuestiones/Cuestiones_P3.pdf",
-    "2º/Electrónica basica/Lab/P3/Docs/Practica3_2026-2027.pdf",
-    "2º/Electrónica basica/Lab/P3/Docs/Cuestiones/Cuestiones_P3.synctex.gz",
-    "2º/Electrónica basica/Lab/P3/Docs/Cuestiones/Cuestiones_P3.synctex(busy)",
-    "2º/Electrónica basica/Lab/P3/Docs/Calculos_Rect_Prec/Calculos_Rect_Precision.synctex.gz",
-    "2º/Electrónica basica/Lab/P3/Docs/Calculos_Rect_Prec/Calculos_Rect_Precision.pdf",
-    "2º/Electrónica basica/Lab/P3/Docs/Calculos_Rect_Prec/Calculos_Rect_Precision.log",
-    "2º/Electrónica basica/Lab/P3/Docs/Calculos_Rect_Prec/Calculos_Rect_Precision.aux",
-    "2º/Electrónica basica/Lab/P3/Docs/Calculos_Rect_Prec/Calculos_Rect_Precision.tex",
-    "2º/Electrónica basica/Lab/P3/Docs/Calculos_Rect_Prec",
-    "2º/Electrónica basica/Lab/P3/Docs/Cuestiones/Cuestiones_P3.log",
+    "2º/Arquitectura de redes 1/03_Material/Ejercicios_y_problemas/Repaso_PEI1/Cursos_anteriores_PP1.pdf",
+    "2º/Electrónica basica/Teoria/EB_T5_Teoria_transistores_fet.pdf",
+    "2º/Arquitectura de redes 1/03_Material/Ejercicios_y_problemas/Repaso_PEI1/Preparacion_PP2.pdf",
+    "2º/Electrónica basica/Teoria/EB_T4_teoría_Transistores bipolares(1).pdf",
+    "2º/Electrónica basica/XPP/Tema 6.xopp~",
+    "2º/Electrónica basica/XPP/Tema 6.xopp",
+    "2º/Arquitectura de redes 1/01_Sesiones/S13/GG/GG13_2024_25.pdf",
+    "2º/Arquitectura de redes 1/01_Sesiones/S13/GG/GG13 Sesión 1.3 (2).pdf",
+    "2º/Arquitectura de redes 1/01_Sesiones/S13/GG/GG13 Sesión 1.3.pdf",
+    "2º/Arquitectura de redes 1/01_Sesiones/S12/GG/GG12 Sesión 1.2.pdf",
+    "2º/Arquitectura de redes 1/01_Sesiones/S11/GG/GG11_v1.1(1).pdf",
     "2º/Estadistica/Teoria/Alibaba.md",
     "2º/Arquitectura de redes 1/todo/Wireshark-DNS-CNAME.png",
     "2º/Arquitectura de redes 1/todo/Wireshark-DNS-A.png",
