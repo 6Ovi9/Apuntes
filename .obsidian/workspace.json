@@ -13,14 +13,14 @@
             "state": {
               "type": "pdf",
               "state": {
-                "file": "2º/Electrónica basica/Examenes/PEI_2526_solución-3.pdf",
-                "page": 4,
-                "left": -8,
-                "top": 354,
-                "zoom": 1.9203629032258065
+                "file": "2º/Electrónica basica/Apuntes/EB_T2_Teoría_curso_2526.pdf",
+                "page": 57,
+                "left": -26,
+                "top": 282,
+                "zoom": 0.5875
               },
               "icon": "lucide-file-text",
-              "title": "PEI_2526_solución-3"
+              "title": "EB_T2_Teoría_curso_2526"
             }
           }
         ]
@@ -183,7 +183,6 @@
   "left-ribbon": {
     "hiddenItems": {
       "pdf-toggle-dark-mode:PDF appearance: Dark (click for Light)": false,
-      "rnote:Create new RNote note": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -191,29 +190,26 @@
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
       "bases:Create new base": false,
-      "obsidian-git:Open Git source control": false,
-      "obsidian-importer:Import notes": false,
       "omnisearch:Omnisearch": false,
       "pdf-plus:PDF++: Toggle auto-copy": false,
       "pdf-plus:PDF++: Toggle auto-focus": false,
       "pdf-plus:PDF++: Toggle auto-paste": false,
-      "obsidian42-brat:BRAT": false,
       "xournalpp:Create new Xournal++ note": false
     }
   },
   "active": "689efcfde98d77b1",
   "lastOpenFiles": [
-    "2º/Electrónica basica/XPP/Tema 4/Tema_4.pdf.tmp",
-    "2º/Electrónica basica/XPP/Tema 4/Tema_4.xopp~",
-    "2º/Electrónica basica/XPP/Tema 3/Tema_3.pdf",
-    "2º/Electrónica basica/XPP/Tema 3/Tema_3_EJs.pdf",
-    "2º/Electrónica basica/XPP/Tema 2/Tema 2.pdf",
+    "2º/Señales y sistemas/XPP/Teoria/PEI1/Resumen_PEI_1.pdf.tmp",
+    "2º/Señales y sistemas/XPP/Teoria/PEI1/Resumen_PEI_1.xopp~",
+    "2º/Señales y sistemas/XPP/Teoria/PEI1/Resumen_PEI_1.pdf",
+    "2º/Señales y sistemas/XPP/Teoria/PEI1/Resumen_PEI_1.xopp",
+    "2º/Señales y sistemas/XPP/Teoria/PEI1",
+    "2º/Electrónica basica/Apuntes/EB_T1_Teoría_curso_25-26.pdf",
     "2º/Electrónica basica/Examenes/PEI_2526_solución-3.pdf",
-    "2º/Arquitectura de redes 1/XPP/RPEI1.pdf.tmp",
-    "2º/Electrónica basica/XPP/Examenes/Extraordinaria 2026.pdf.tmp",
-    "2º/Arquitectura de redes 1/XPP/RPEI1.pdf",
-    "2º/Electrónica basica/XPP/Examenes/Extraordinaria 2026.pdf",
-    "2º/Electrónica basica/XPP/Examenes/Extraordinaria_2026.pdf",
+    "2º/Electrónica basica/XPP/Resumen_PEI_1/Resumen_PEI_1.pdf.tmp",
+    "2º/Electrónica basica/XPP/Resumen_PEI_1/Resumen_PEI_1.xopp~",
+    "2º/Electrónica basica/XPP/Resumen_PEI_1/Resumen_PEI_1.pdf",
+    "2º/Electrónica basica/XPP/Resumen_PEI_1/Resumen_PEI_1.xopp",
     "2026-11-11.md",
     "2º/Estadistica/Teoria/Alibaba.md",
     "2º/Arquitectura de redes 1/todo/Wireshark-DNS-CNAME.png",
