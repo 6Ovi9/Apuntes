@@ -13,14 +13,14 @@
             "state": {
               "type": "pdf",
               "state": {
-                "file": "2º/Electrónica basica/Apuntes/EB_T2_Teoría_curso_2526.pdf",
-                "page": 57,
-                "left": -26,
-                "top": 282,
-                "zoom": 0.5875
+                "file": "2º/Señales y sistemas/Resumen/Resumen_Gemini/Resumen_PEI_1_V3.pdf",
+                "page": 1,
+                "left": -21,
+                "top": 845,
+                "zoom": 0.710594749326363
               },
               "icon": "lucide-file-text",
-              "title": "EB_T2_Teoría_curso_2526"
+              "title": "Resumen_PEI_1_V3"
             }
           }
         ]
@@ -199,6 +199,10 @@
   },
   "active": "689efcfde98d77b1",
   "lastOpenFiles": [
+    "2º/Electrónica basica/Apuntes/EB_T2_Teoría_curso_2526.pdf",
+    "2º/Señales y sistemas/Resumen/Resumen_Gemini/Resumen_PEI_1_V3.tex",
+    "2º/Señales y sistemas/Resumen/Resumen_Gemini/Resumen_PEI_1_V3.pdf",
+    "2º/Señales y sistemas/Resumen/Resumen_Gemini",
     "2º/Señales y sistemas/XPP/Teoria/PEI1/Resumen_PEI_1.pdf.tmp",
     "2º/Señales y sistemas/XPP/Teoria/PEI1/Resumen_PEI_1.xopp~",
     "2º/Señales y sistemas/XPP/Teoria/PEI1/Resumen_PEI_1.pdf",
@@ -206,10 +210,6 @@
     "2º/Señales y sistemas/XPP/Teoria/PEI1",
     "2º/Electrónica basica/Apuntes/EB_T1_Teoría_curso_25-26.pdf",
     "2º/Electrónica basica/Examenes/PEI_2526_solución-3.pdf",
-    "2º/Electrónica basica/XPP/Resumen_PEI_1/Resumen_PEI_1.pdf.tmp",
-    "2º/Electrónica basica/XPP/Resumen_PEI_1/Resumen_PEI_1.xopp~",
-    "2º/Electrónica basica/XPP/Resumen_PEI_1/Resumen_PEI_1.pdf",
-    "2º/Electrónica basica/XPP/Resumen_PEI_1/Resumen_PEI_1.xopp",
     "2026-11-11.md",
     "2º/Estadistica/Teoria/Alibaba.md",
     "2º/Arquitectura de redes 1/todo/Wireshark-DNS-CNAME.png",

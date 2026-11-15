@@ -1,0 +1,369 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, patterns, babel}
+\geometry{margin=1.5cm}
+
+\title{\textbf{RESCATE PEI 1: Señales y Sistemas (UAH)} \\ \large Cuaderno Maestro Completo con Intuiciones y Gráficas (Temas 1, 2 y 3)}
+\author{Edición Personalizada para Copiar a Mano}
+\date{}
+
+\begin{document}
+	\maketitle
+	
+	% ==============================================================================
+	\section*{0. ARSENAL MATEMÁTICO E INTUICIÓN VISUAL}
+	% ==============================================================================
+	
+	\subsection*{A. Euler ($e^{j\theta}$): La Aguja que Gira en el Plano Complejo}
+	\begin{itemize}
+		\item \textbf{Unidad imaginaria:} $j^2 = -1 \implies \frac{1}{j} = -j$. Para $z = a + jb$, su módulo es $|z| = \sqrt{a^2+b^2}$ y su ángulo $\theta = \arctan(b/a)$ (mirar cuadrante).
+		\item \textbf{¿Por qué $e^{j\omega_0 t}$ gira y no avanza de izquierda a derecha?} Porque $e^{j\theta} = \cos(\theta) + j\sin(\theta)$ tiene módulo $|e^{j\theta}| = \sqrt{\cos^2\theta + \sin^2\theta} = 1$. Es una flecha de radio $1$ clavada en $(0,0)$ que gira como la aguja de un reloj a velocidad angular $\omega_0$ (\textbf{frecuencia fundamental}, de ahí el subíndice $0$). Para verla avanzar horizontalmente con $t$, proyectamos su sombra: $\cos(\omega_0 t) = \frac{e^{j\omega_0 t}+e^{-j\omega_0 t}}{2}$ y $\sin(\omega_0 t) = \frac{e^{j\omega_0 t}-e^{-j\omega_0 t}}{2j}$.
+		\item \textbf{Valores rápidos:} $e^{j\pi} = -1$, \quad $e^{j\pi/2} = j$, \quad $e^{-j\pi/2} = -j$, \quad $e^{jk\pi} = (-1)^k$, \quad $e^{jk2\pi} = 1$ ($k \in \mathbb{Z}$).
+	\end{itemize}
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=1.15, >=Stealth]
+			% Ejes plano complejo
+			\draw[->] (-1.5,0) -- (1.6,0) node[right] {\small $\operatorname{Re}\{z\} = \cos(\omega_0 t)$};
+			\draw[->] (0,-1.4) -- (0,1.5) node[above] {\small $\operatorname{Im}\{z\} = \sin(\omega_0 t)$};
+			% Circulo unidad
+			\draw[blue!70!black, thick] (0,0) circle (1);
+			% Vector rotante en 40 grados
+			\draw[red!80!black, very thick, ->] (0,0) -- (40:1) node[above right, inner sep=2pt] {\small $e^{j\omega_0 t}$ (radio $=1$)};
+			\draw[dashed, gray] (40:1) -- (0.766,0) node[below] {\tiny $\cos(\omega_0 t)$};
+			\draw[dashed, gray] (40:1) -- (0,0.643) node[left] {\tiny $\sin(\omega_0 t)$};
+			\draw[->] (0.35,0) arc (0:40:0.35) node[midway, right] {\tiny $\omega_0 t$};
+			\node[below left] at (0,0) {\tiny $(0,0)$};
+			% Texto explicativo al lado
+			\node[align=left, text width=7.2cm, anchor=west] at (5.6, 0) {
+				\small \textbf{Cómo leer este dibujo:} \\
+				$\bullet$ La flecha roja \textbf{no se desplaza}; gira sobre $(0,0)$. \\
+				$\bullet$ Si el exponente tiene parte real $e^{(a+j\omega_0)t} = e^{at}e^{j\omega_0 t}$: \\
+				\quad -- Si $a < 0$: espiral que se encoge hacia $(0,0)$. \\
+				\quad -- Si $a > 0$: espiral que explota hacia $\infty$.
+			};
+		\end{tikzpicture}
+	\end{center}
+	
+	\subsection*{B. Las 4 Integrales y Sumatorios que Salen Siempre}
+	\begin{enumerate}
+		\item \textbf{Exponencial:} $\displaystyle \int e^{at}\,dt = \frac{1}{a}e^{at} + C \quad (\text{vale igual si } a \in \mathbb{C}, \text{ ej. } a = -(2+j\omega))$.
+		\item \textbf{Por partes:} $\displaystyle \int u\,dv = uv - \int v\,du$ (para $\int t e^{at}dt$: $u=t, dv=e^{at}dt \implies \frac{e^{at}}{a^2}(at-1)$).
+		\item \textbf{Serie Geométrica Finita (Convolución discreta):} $\displaystyle \sum_{k=N_1}^{N_2} r^k = \frac{r^{N_1} - r^{N_2+1}}{1 - r} \quad (r \neq 1)$.
+		\item \textbf{Serie Geométrica Infinita (Estabilidad/Energía):} $\displaystyle \sum_{k=0}^{\infty} r^k = \frac{1}{1 - r} \quad \text{si } |r| < 1$.
+	\end{enumerate}
+	\pagebreak
+	% ==============================================================================
+	\section*{1. TEMA 1: SEÑALES Y SISTEMAS EN EL DOMINIO DEL TIEMPO}
+	% ==============================================================================
+	
+	\subsection*{1.1. Notación del Tiempo: $t$, $n$, $t_0$ y $\tau$}
+	\begin{itemize}
+		\item \textbf{Paréntesis $x(t)$ vs. Corchetes $x[n]$:} $x(t)$ es tiempo \textbf{continuo} ($t \in \mathbb{R}$, fluye sin cortes). $x[n]$ es tiempo \textbf{discreto} ($n \in \mathbb{Z}$, lista de fotos tomadas en instantes enteros).
+		\item \textbf{$t$ vs. $t_0$ vs. $\tau$:} $t$ es el dominio completo (o el instante congelado que estamos mirando). $t_0$ es un número fijo concreto (ej. $t_0 = 3$). $\tau$ es el mismo eje del tiempo que $t$, pero lo llamamos $\tau$ dentro de las integrales para que sea el corredor que barre de $-\infty$ a $+\infty$ sin mezclarse con la $t$ de fuera.
+		\item \textbf{Señal vs. Sistema:} $x(t-t_0)$ escrito solo es una \textbf{señal} desplazada. Escribir $y(t) = x(t-t_0)$ ya define un \textbf{sistema} (una máquina $T$ que transforma la entrada $x$ en salida $y$).
+	\end{itemize}
+	
+	\subsection*{1.2. La Delta ($\delta$), el Escalón ($u$) y Cómo Recortar Integrales}
+	\begin{itemize}
+		\item \textbf{La Delta como "aspiradora de integrales" (Muestreo):} $\delta(t-\tau)$ es una aguja de anchura cero y \textbf{área $1$} situada exactamente en $\tau = t$ (vale $0$ en todo el resto del universo). Al multiplicar $x(\tau)\delta(t-\tau)$, en $\tau \neq t$ todo se anula por cero; en $\tau = t$, la altura es $x(t)$ pero conservamos $\delta(t-\tau)$ como la forma de aguja de área $1$ (no escribimos $\delta(0)$ porque perderíamos el área $1$). Al integrar respecto a $d\tau$, $x(t)$ sale fuera:
+		$$\int_{-\infty}^{\infty} x(\tau)\delta(t-\tau)\,d\tau = x(t)\int_{-\infty}^{\infty} \delta(t-\tau)\,d\tau = x(t) \cdot 1 = x(t)$$
+		\item \textbf{El Escalón ($u$) como tijera de límites:} Como $u(\tau) = 1$ para $\tau > 0$ y $0$ antes, borra la parte negativa de cualquier integral. Y si está reflejado $u(t-\tau)$, vale $1$ cuando $t-\tau > 0 \iff \tau < t$, recortando por arriba en $t$.
+	\end{itemize}
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=1.0, >=Stealth]
+			% Grafica 1: Muestreo Delta
+			\begin{scope}[xshift=0cm]
+				\draw[->] (-0.5,0) -- (3.8,0) node[right] {\small $\tau$};
+				\draw[->] (0,-0.2) -- (0,1.8) node[above] {\small $x(\tau)\delta(t-\tau)$};
+				\draw[gray, dashed, thick] plot[smooth] coordinates {(0,0.6) (1,1.3) (2,1.1) (3,1.5) (3.5,1.2)};
+				\node[gray] at (3.1,1.7) {\tiny $x(\tau)$};
+				\draw[red!80!black, very thick, ->] (2,0) -- (2,1.1) node[above] {\tiny área $= x(t)$};
+				\node[below] at (2,0) {\tiny $\tau = t$};
+				\node[align=center] at (1.8,-0.7) {\small \textbf{1) Delta:} recoge solo $x(t)$};
+			\end{scope}
+			% Grafica 2: Escalon u(tau)
+			\begin{scope}[xshift=5.2cm]
+				\draw[->] (-1.2,0) -- (2.5,0) node[right] {\small $\tau$};
+				\draw[->] (0,-0.2) -- (0,1.5) node[above] {\small $u(\tau)$};
+				\fill[blue!15] (0,0) rectangle (2.2,1);
+				\draw[blue!80!black, very thick] (-1.1,0) -- (0,0) -- (0,1) -- (2.2,1);
+				\node[below left] at (0,0) {\tiny $0$};
+				\node[align=center] at (0.7,-0.7) {\small \textbf{2) $u(\tau)$:} recorta $\int_{0}^{\infty}$};
+			\end{scope}
+			% Grafica 3: Escalon u(t - tau)
+			\begin{scope}[xshift=9.6cm]
+				\draw[->] (-1.2,0) -- (2.5,0) node[right] {\small $\tau$};
+				\draw[->] (0,-0.2) -- (0,1.5) node[above] {\small $u(t-\tau)$};
+				\fill[green!15] (-1.1,0) rectangle (1.3,1);
+				\draw[green!60!black, very thick] (-1.1,1) -- (1.3,1) -- (1.3,0) -- (2.2,0);
+				\node[below] at (1.3,0) {\tiny $\tau = t$};
+				\node[align=center] at (0.7,-0.7) {\small \textbf{3) $u(t-\tau)$:} recorta $\int_{-\infty}^{t}$};
+			\end{scope}
+		\end{tikzpicture}
+	\end{center}
+	
+	\subsection*{1.3. Transformaciones $y(t) = x(at - b)$ (ORDEN ESTRICTO)}
+	\begin{enumerate}
+		\item \textbf{Desplazamiento ($-b$):} Dibujar $x(t-b)$ ($b>0 \to$ derecha; $b<0 \to$ izquierda).
+		\item \textbf{Reflexión (si $a<0$):} Espejo respecto al eje vertical $t=0$.
+		\item \textbf{Escalado ($|a|$):} Dividir los instantes del eje horizontal entre $|a|$ ($|a|>1$ comprime; $|a|<1$ expande).
+	\end{enumerate}
+	
+	\subsection*{1.4. Simetría, Periodicidad, Energía y Potencia}
+	\begin{itemize}
+		\item \textbf{Par / Impar:} $x(t) = x_e(t) + x_o(t)$, con $x_e(t) = \frac{x(t)+x(-t)}{2}$ (simétrica eje Y) y $x_o(t) = \frac{x(t)-x(-t)}{2}$ ($x_o(0)=0$).
+		\item \textbf{Periodicidad:} Continuo $\cos(\omega_0 t)$ siempre periódica ($T_0 = \frac{2\pi}{|\omega_0|}$). Discreto $\cos(\Omega_0 n)$ periódica \textbf{solo si} $\frac{\Omega_0}{2\pi} = \frac{m}{N} \in \mathbb{Q}$ (fracción irreducible $\implies$ periodo $N$).
+		\item \textbf{Energía ($E$) vs. Potencia Media ($P$):}
+		$$E = \int_{-\infty}^{\infty}|x(t)|^2 dt \quad \text{ó} \quad \sum_{n=-\infty}^{\infty}|x[n]|^2, \qquad P = \lim_{T\to\infty}\frac{1}{2T}\int_{-T}^{T}|x(t)|^2 dt \quad \text{ó} \quad \frac{1}{N}\sum_{n=\langle N\rangle}|x[n]|^2$$
+		\begin{itemize}
+			\item \emph{Intuición:} $E$ es la suma total de $|x|^2$ en toda la eternidad; $P$ es \textbf{energía dividida entre el tiempo medido}.
+			\item \emph{Señal de duración finita:} Tiene energía finita ($E < \infty$), pero al dividirla entre tiempo infinito ($T \to \infty$), su potencia media da $P = 0$.
+			\item \emph{Señal periódica:} Nunca se apaga, así que acumula $E = \infty$; pero el promedio en un periodo $N$ cualquiera (eso significa $n = \langle N \rangle$, sumar $N$ muestras seguidas donde quieras porque todos los ciclos son iguales) da un número finito $0 < P < \infty$.
+		\end{itemize}
+	\end{itemize}
+	
+	\subsection*{1.5. Las 5 Propiedades de Sistemas (Pregunta fija de 3 puntos)}
+	\begin{enumerate}
+		\item \textbf{Memoria:} Sin memoria si $y(t_0)$ depende solo de $x(t_0)$. Con memoria si usa instantes distintos a $t_0$.
+		\item \textbf{Causalidad:} Causal si la salida hoy solo depende del \textbf{presente o del pasado} ($\tau \le t_0$), nunca del futuro. (\emph{Trampa típica:} $y[n]=x[2n]$ NO es causal porque para $n=1$ necesita $x[2]$, el futuro).
+		\item \textbf{Invarianza en el Tiempo (TI):} La máquina $T$ se comporta igual hoy que mañana. Dos caminos que deben dar lo mismo:
+		\begin{itemize}
+			\item \emph{Camino 1 ($y(t-t_0)$):} Sustituyo \textbf{todas} las $t$ de la ecuación por $(t-t_0)$.
+			\item \emph{Camino 2 ($T\{x(t-t_0)\}$):} Sustituyo \textbf{solo} $x(\cdot)$ por $x(\cdot - t_0)$. Si difieren $\to$ Variante (ej. coeficientes en $t$ como $t\cdot x(t)$ o escalados $x(2t)$).
+		\end{itemize}
+		\item \textbf{Linealidad:} Cumple $T\{ax_1 + bx_2\} = ay_1 + by_2$. (Si $x=0 \implies y \neq 0$, o hay $x^2, |x|$, NO es lineal).
+		\item \textbf{Estabilidad BIBO (\emph{Bounded-Input, Bounded-Output}):} Si la entrada no pasa de un techo finito ($|x(t)| \le M_x < \infty$), la salida tampoco puede explotar ($|y(t)| \le M_y < \infty$). Para demostrar que es \textbf{inestable}, basta inventar \textbf{un contraejemplo acotado} (como $x(t)=1$ o $u(t)$) cuya salida se vaya a $\infty$.
+	\end{enumerate}
+	\pagebreak
+	% ==============================================================================
+	\section*{2. TEMA 2: SISTEMAS LTI Y CONVOLUCIÓN}
+	% ==============================================================================
+	
+	\subsection*{2.1. ¿Qué es la Convolución? (Intuición + Fórmulas)}
+	Imagina dar una palmada en una cueva ($\delta$): el eco que queda es la \textbf{respuesta al impulso} $h$. Si cantas una canción ($x$), cada nota genera su propio eco y se van solapando. \textbf{¿Por qué se invierte $h$ ($h(-\tau)$ o $h[-k]$)?} Porque en el instante presente $t$, las notas más antiguas (hacia la izquierda en $\tau$) llevan más tiempo sonando, así que el eco debe apuntar hacia atrás en el tiempo para multiplicar cada nota pasada por el tramo de eco que le corresponde ahora:
+	$$y[n] = x[n] * h[n] = \sum_{k=-\infty}^{\infty} x[k]h[n-k], \qquad y(t) = x(t) * h(t) = \int_{-\infty}^{\infty} x(\tau)h(t-\tau)\,d\tau$$
+	\begin{itemize}
+		\item \textbf{Propiedades:} Conmutativa ($x*h = h*x$, mueve siempre la más fácil), Asociativa, Distributiva.
+		\item \textbf{Identidad y Desplazamiento:} $x(t) * \delta(t) = x(t)$; \quad $x(t) * \delta(t - t_0) = x(t - t_0)$.
+		\item \textbf{Regla de Duración (Infalible):} Si $x$ dura de $[T_1, T_2]$ y $h$ dura de $[T_3, T_4]$, la salida $y = x * h$ empieza en \textbf{$T_1 + T_3$} y acaba en \textbf{$T_2 + T_4$}.
+		\item \textbf{Regla de Límites de Integración en $\tau$:} Límite inferior = el \textbf{mayor} de los inicios de $x(\tau)$ y $h(t-\tau)$. Límite superior = el \textbf{menor} de los finales de $x(\tau)$ y $h(t-\tau)$.
+		\item \textbf{Respuesta al escalón ($s$):} $s[n] = \sum_{k=-\infty}^{n} h[k]$; \quad $s(t) = \int_{-\infty}^{t} h(\tau)\,d\tau \iff h(t) = \frac{ds(t)}{dt}$.
+	\end{itemize}
+	
+	\subsection*{2.2. Método Gráfico de Convolución Continua (4 Pasos)}
+	\begin{center}
+		\begin{tikzpicture}[scale=0.95, >=Stealth]
+			% Paso 1 y 2: x(tau) fija y h(t-tau) moviendose
+			\begin{scope}[xshift=0cm]
+				\draw[->] (-1.8,0) -- (3.5,0) node[right] {\small $\tau$};
+				\draw[->] (0,-0.2) -- (0,1.6) node[above] {\small Solapamiento en $\tau$};
+				% x(tau) de 0 a 2
+				\draw[blue!80!black, very thick] (0,0) -- (0,1) -- (2,1) -- (2,0);
+				\node[blue!80!black] at (1.5,1.25) {\small $x(\tau)$ fija};
+				% h(t-tau) de t-1 a t (dibujada en t=0.6, de -0.4 a 0.6)
+				\fill[orange!30] (0,0) rectangle (0.6,1);
+				\draw[red!80!black, very thick, dashed] (-0.4,0) -- (-0.4,1) -- (0.6,1) -- (0.6,0);
+				\node[red!80!black] at (-0.6,1.25) {\small $h(t-\tau)$ móvil};
+				\node[below] at (-0.4,0) {\tiny $t-1$};
+				\node[below] at (0.6,0) {\tiny $t$};
+				\node[below] at (2,0) {\tiny $2$};
+			\end{scope}
+			% Resultado y(t)
+			\begin{scope}[xshift=6.5cm]
+				\draw[->] (-0.5,0) -- (3.8,0) node[right] {\small $t$};
+				\draw[->] (0,-0.2) -- (0,1.6) node[above] {\small $y(t) = x(t)*h(t)$};
+				\draw[green!50!black, very thick] (-0.4,0) -- (0,0) -- (1,1) -- (2,1) -- (3,0) -- (3.6,0);
+				\node[below] at (0,0) {\tiny $0$};
+				\node[below] at (1,0) {\tiny $1$};
+				\node[below] at (2,0) {\tiny $2$};
+				\node[below] at (3,0) {\tiny $3$};
+				\node[left] at (0,1) {\tiny $1$};
+				\node[align=left] at (2.3,1.25) {\tiny Área = base $\times$ altura};
+			\end{scope}
+		\end{tikzpicture}
+	\end{center}
+	\textbf{Algoritmo:} 1) Fijar $x(\tau)$; 2) Reflejar $h(\tau) \to h(-\tau)$ y sumar $t \to h(t-\tau)$; 3) Deslizar $t$ de $-\infty$ a $+\infty$ viendo cuándo entra, cuándo está dentro y cuándo sale; 4) Integrar el producto en cada tramo.
+	
+	\subsection*{2.3. Ejemplo Resuelto 1: La Cueva en Tiempo Discreto}
+	\textbf{Enunciado:} Canción $x[n] = \{3, 1\}$ ($n=0,1$) y eco de la cueva $h[n] = \{1, 2\}$ ($n=0,1$). Calcular $y[n] = x[n]*h[n]$.
+	\begin{enumerate}
+		\item \textbf{Rango de salida:} Empieza en $0+0 = 0$ y acaba en $1+1 = 2$ (aunque $x$ acabe en $1$, su eco dura $1$ instante más, así que sigue sonando en $n=2$).
+		\item \textbf{Recortar sumatorio:} Como $x[k]$ solo existe en $k=0,1$: $y[n] = \sum_{k=0}^{1} x[k]h[n-k] = 3h[n] + 1h[n-1]$.
+		\item \textbf{Evaluar instante a instante:}
+		\begin{itemize}
+			\item $n=0$: $y[0] = 3h[0] + 1h[-1] = 3(1) + 1(0) = \mathbf{3}$.
+			\item $n=1$: $y[1] = 3h[1] + 1h[0] = 3(2) + 1(1) = \mathbf{7}$.
+			\item $n=2$: $y[2] = 3h[2] + 1h[1] = 3(0) + 1(2) = \mathbf{2}$.
+		\end{itemize}
+	\end{enumerate}
+	\begin{center}
+		\begin{tikzpicture}[scale=0.82, >=Stealth]
+			% Entrada x[n]
+			\begin{scope}[xshift=0cm]
+				\draw[->] (-0.6,0) -- (2.6,0) node[right] {\tiny $n$};
+				\draw[->] (0,-0.1) -- (0,1.8) node[above] {\small $x[n]$};
+				\draw[blue!80!black, very thick] (0,0) -- (0,1.2) node[above] {\tiny $3$};
+				\fill[blue!80!black] (0,1.2) circle (2pt);
+				\draw[blue!80!black, very thick] (1,0) -- (1,0.4) node[above] {\tiny $1$};
+				\fill[blue!80!black] (1,0.4) circle (2pt);
+				\node[below] at (0,0) {\tiny $0$}; \node[below] at (1,0) {\tiny $1$}; \node[below] at (2,0) {\tiny $2$};
+			\end{scope}
+			\node at (3.1,0.8) {\Large $*$};
+			% Impulso h[n]
+			\begin{scope}[xshift=4.2cm]
+				\draw[->] (-0.6,0) -- (2.6,0) node[right] {\tiny $n$};
+				\draw[->] (0,-0.1) -- (0,1.8) node[above] {\small $h[n]$};
+				\draw[red!80!black, very thick] (0,0) -- (0,0.4) node[above] {\tiny $1$};
+				\fill[red!80!black] (0,0.4) circle (2pt);
+				\draw[red!80!black, very thick] (1,0) -- (1,0.8) node[above] {\tiny $2$};
+				\fill[red!80!black] (1,0.8) circle (2pt);
+				\node[below] at (0,0) {\tiny $0$}; \node[below] at (1,0) {\tiny $1$}; \node[below] at (2,0) {\tiny $2$};
+			\end{scope}
+			\node at (7.4,0.8) {\Large $=$};
+			% Salida y[n]
+			\begin{scope}[xshift=8.6cm]
+				\draw[->] (-0.6,0) -- (3.4,0) node[right] {\tiny $n$};
+				\draw[->] (0,-0.1) -- (0,2.2) node[above] {\small $y[n] = \{3,\, 7,\, 2\}$};
+				\draw[green!50!black, very thick] (0,0) -- (0,0.75) node[above] {\tiny $3$};
+				\fill[green!50!black] (0,0.75) circle (2pt);
+				\draw[green!50!black, very thick] (1,0) -- (1,1.75) node[above] {\tiny $7$};
+				\fill[green!50!black] (1,1.75) circle (2pt);
+				\draw[green!50!black, very thick] (2,0) -- (2,0.5) node[above] {\tiny $2$};
+				\fill[green!50!black] (2,0.5) circle (2pt);
+				\node[below] at (0,0) {\tiny $0$}; \node[below] at (1,0) {\tiny $1$}; \node[below] at (2,0) {\tiny $2$}; \node[below] at (3,0) {\tiny $3$};
+			\end{scope}
+		\end{tikzpicture}
+	\end{center}
+	\pagebreak
+	\subsection*{2.4. Ejemplo Resuelto 2: La Cueva en Tiempo Continuo}
+	\textbf{Enunciado:} Nota mantenida $x(t) = 2\big(u(t) - u(t-2)\big)$ (vale $2$ en $[0,2]$) y eco $h(t) = e^{-t}u(t)$.
+	\begin{itemize}
+		\item $x(\tau)$ recorta $\tau$ al intervalo $[0, 2]$. $h(t-\tau) = e^{-(t-\tau)}u(t-\tau)$ exige $t-\tau \ge 0 \iff \tau \le t$.
+		\item \textbf{Tramo 1 ($t < 0$):} No se solapan $\implies y(t) = \mathbf{0}$.
+		\item \textbf{Tramo 2 ($0 \le t < 2$):} La pared móvil $t$ corta por arriba antes que $2$ ($\min(2,t)=t$):
+		$$y(t) = \int_{0}^{t} 2e^{-(t-\tau)}\,d\tau = 2e^{-t}\Big[e^{\tau}\Big]_{0}^{t} = 2e^{-t}(e^t - 1) = \mathbf{2(1 - e^{-t})}$$
+		\item \textbf{Tramo 3 ($t \ge 2$):} $t$ ya pasó de $2$, pero $x(\tau)$ se apagó en $2$ ($\min(2,t)=2$):
+		$$y(t) = \int_{0}^{2} 2e^{-(t-\tau)}\,d\tau = 2e^{-t}\Big[e^{\tau}\Big]_{0}^{2} = \mathbf{2(e^2 - 1)e^{-t}}$$
+	\end{itemize}
+	\begin{center}
+		\begin{tikzpicture}[scale=0.85, >=Stealth]
+			% Solapamiento en tau (Tramo 2: 0 <= t < 2)
+			\begin{scope}[xshift=0cm]
+				\draw[->] (-0.8,0) -- (3.3,0) node[right] {\tiny $\tau$};
+				\draw[->] (0,-0.1) -- (0,1.9) node[above] {\small Solapamiento ($0 \le t < 2$)};
+				% x(tau) pulso de 0 a 2, altura 2 (escalada a 1.3)
+				\draw[blue!80!black, very thick] (0,0) -- (0,1.3) -- (2,1.3) -- (2,0);
+				\node[blue!80!black] at (2.4,1.35) {\tiny $x(\tau)$};
+				% h(t-tau) creciendo hasta tau=t=1.2
+				\fill[orange!30] (0,0) -- plot[domain=0:1.2] (\x, {0.9*exp(\x - 1.2)}) -- (1.2,0) -- cycle;
+				\draw[red!80!black, very thick, dashed] (-0.7,0.13) -- plot[domain=-0.7:1.2] (\x, {0.9*exp(\x - 1.2)}) -- (1.2,0);
+				\node[red!80!black] at (0.5,0.95) {\tiny $h(t-\tau)$};
+				\node[below] at (0,0) {\tiny $0$};
+				\node[below] at (1.2,0) {\tiny $t$};
+				\node[below] at (2,0) {\tiny $2$};
+			\end{scope}
+			% Salida continua y(t)
+			\begin{scope}[xshift=5.6cm]
+				\draw[->] (-0.6,0) -- (5.2,0) node[right] {\tiny $t$};
+				\draw[->] (0,-0.1) -- (0,1.9) node[above] {\small Salida $y(t) = x(t)*h(t)$};
+				% Tramo 1: t < 0
+				\draw[green!50!black, very thick] (-0.5,0) -- (0,0);
+				% Tramo 2: 0 <= t < 2: 2(1 - e^-t) escalada por 0.75
+				\draw[green!50!black, very thick, domain=0:2, samples=40] plot (\x, {1.5*(1 - exp(-\x))});
+				% Tramo 3: t >= 2: 2(e^2 - 1)e^-t escalada por 0.75
+				\draw[green!50!black, very thick, domain=2:4.8, samples=40] plot (\x, {1.5*(exp(2) - 1)*exp(-\x)});
+				\draw[dotted, gray] (2,0) -- (2,{1.5*(1 - exp(-2))}) -- (0,{1.5*(1 - exp(-2))});
+				\node[left] at (0,{1.5*(1 - exp(-2))}) {\tiny $2(1-e^{-2})$};
+				\node[below] at (0,0) {\tiny $0$};
+				\node[below] at (2,0) {\tiny $2$};
+				\node[align=left] at (3.6,1.3) {\tiny Sube en $[0,2]$ \\ \tiny Decae para $t \ge 2$};
+			\end{scope}
+		\end{tikzpicture}
+	\end{center}
+	
+	\subsection*{2.5. Propiedades de Sistemas LTI desde $h$ e Interconexiones}
+	\begin{itemize}
+		\item \textbf{Sin memoria:} $h[n] = c\,\delta[n]$ ó $h(t) = c\,\delta(t)$. \quad \textbf{Causal:} $h[n] = 0 \ \forall n < 0$ ó $h(t) = 0 \ \forall t < 0$.
+		\item \textbf{Estable BIBO:} $\sum_{n=-\infty}^{\infty} |h[n]| < \infty$ ó $\int_{-\infty}^{\infty} |h(t)|\,dt < \infty$ (el área absoluta de $h$ es finita).
+		\item \textbf{Cascada (Serie):} $h_{\text{eq}} = h_1 * h_2$. \quad \textbf{Paralelo:} $h_{\text{eq}} = h_1 + h_2$.
+	\end{itemize}
+	\pagebreak
+	% ==============================================================================
+	\section*{3. TEMA 3: TRANSFORMADA DE LAPLACE (TIEMPO CONTINUO)}
+	% ==============================================================================
+	
+	\subsection*{3.1. Definición, Plano $s$ y Región de Convergencia (ROC)}
+	$$X(s) = \mathcal{L}\{x(t)\} = \int_{-\infty}^{\infty} x(t)e^{-st}\,dt, \qquad s = \sigma + j\omega \in \mathbb{C}$$
+	La \textbf{ROC} son los valores de $\operatorname{Re}\{s\} = \sigma$ donde la integral converge (nunca contiene polos):
+	\begin{center}
+		\begin{tikzpicture}[scale=0.85, >=Stealth]
+			% Caso 1: Causal / Derecha
+			\begin{scope}[xshift=0cm]
+				\fill[blue!12] (-0.8,-1.2) rectangle (1.6,1.2);
+				\draw[->] (-1.6,0) -- (1.8,0) node[right] {\tiny $\sigma$};
+				\draw[->] (0,-1.3) -- (0,1.4) node[above] {\tiny $j\omega$ (Estabilidad)};
+				\draw[blue!80!black, dashed, thick] (-0.8,-1.2) -- (-0.8,1.2);
+				\node[red!80!black, thick] at (-0.8,0) {$\times$};
+				\node[below left] at (-0.8,0) {\tiny $-a$};
+				\node[align=center] at (0,-1.7) {\tiny \textbf{Derecha} ($u(t)$): $\sigma > -a$ \\ \tiny Incluye $j\omega \implies$ \textbf{Estable}};
+			\end{scope}
+			% Caso 2: Anticausal / Izquierda
+			\begin{scope}[xshift=5.2cm]
+				\fill[orange!15] (-1.6,-1.2) rectangle (0.7,1.2);
+				\draw[->] (-1.8,0) -- (1.6,0) node[right] {\tiny $\sigma$};
+				\draw[->] (0,-1.3) -- (0,1.4) node[above] {\tiny $j\omega$};
+				\draw[orange!80!black, dashed, thick] (0.7,-1.2) -- (0.7,1.2);
+				\node[red!80!black, thick] at (0.7,0) {$\times$};
+				\node[below right] at (0.7,0) {\tiny $-a$};
+				\node[align=center] at (0,-1.7) {\tiny \textbf{Izquierda} ($u(-t)$): $\sigma < -a$ \\ \tiny Incluye $j\omega \implies$ \textbf{Estable}};
+			\end{scope}
+			% Caso 3: Bilateral
+			\begin{scope}[xshift=10.4cm]
+				\fill[green!15] (-0.7,-1.2) rectangle (0.8,1.2);
+				\draw[->] (-1.6,0) -- (1.6,0) node[right] {\tiny $\sigma$};
+				\draw[->] (0,-1.3) -- (0,1.4) node[above] {\tiny $j\omega$};
+				\draw[green!60!black, dashed, thick] (-0.7,-1.2) -- (-0.7,1.2);
+				\draw[green!60!black, dashed, thick] (0.8,-1.2) -- (0.8,1.2);
+				\node[red!80!black, thick] at (-0.7,0) {$\times$};
+				\node[red!80!black, thick] at (0.8,0) {$\times$};
+				\node[align=center] at (0,-1.7) {\tiny \textbf{Bilateral}: franja entre polos \\ \tiny Duración finita $\implies \text{ROC} = \mathbb{C}$};
+			\end{scope}
+		\end{tikzpicture}
+	\end{center}
+	
+	\subsection*{3.2. Tabla de Pares Básicos y Propiedades}
+	\begin{center}
+		\begin{tabular}{|l|c|c||l|c|c|}
+			\hline
+			\textbf{Señal $x(t)$} & \textbf{$X(s)$} & \textbf{ROC} & \textbf{Señal $x(t)$} & \textbf{$X(s)$} & \textbf{ROC} \\
+			\hline
+			$\delta(t)$ & $1$ & $\mathbb{C}$ & $\frac{t^{n-1}}{(n-1)!}e^{-at}u(t)$ & $\frac{1}{(s+a)^n}$ & $\operatorname{Re}\{s\} > -\operatorname{Re}\{a\}$ \\
+			$\delta(t-t_0)$ & $e^{-st_0}$ & $\mathbb{C}$ & $\cos(\omega_0 t)u(t)$ & $\frac{s}{s^2+\omega_0^2}$ & $\operatorname{Re}\{s\} > 0$ \\
+			$u(t)$ & $\frac{1}{s}$ & $\operatorname{Re}\{s\} > 0$ & $\sin(\omega_0 t)u(t)$ & $\frac{\omega_0}{s^2+\omega_0^2}$ & $\operatorname{Re}\{s\} > 0$ \\
+			$-u(-t)$ & $\frac{1}{s}$ & $\operatorname{Re}\{s\} < 0$ & $e^{-at}\cos(\omega_0 t)u(t)$ & $\frac{s+a}{(s+a)^2+\omega_0^2}$ & $\operatorname{Re}\{s\} > -\operatorname{Re}\{a\}$ \\
+			$e^{-at}u(t)$ & $\frac{1}{s+a}$ & $\operatorname{Re}\{s\} > -\operatorname{Re}\{a\}$ & $e^{-at}\sin(\omega_0 t)u(t)$ & $\frac{\omega_0}{(s+a)^2+\omega_0^2}$ & $\operatorname{Re}\{s\} > -\operatorname{Re}\{a\}$ \\
+			$-e^{-at}u(-t)$ & $\frac{1}{s+a}$ & $\operatorname{Re}\{s\} < -\operatorname{Re}\{a\}$ & \textbf{Convolución:} $x*h$ & $X(s)\cdot H(s)$ & $\supseteq \text{ROC}_X \cap \text{ROC}_H$ \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\textbf{Más propiedades:} Linealidad ($ax_1+bx_2 \leftrightarrow aX_1+bX_2$); Desplazamiento tiempo ($x(t-t_0) \leftrightarrow e^{-st_0}X(s)$); Desplazamiento en $s$ ($e^{s_0 t}x(t) \leftrightarrow X(s-s_0)$); Escalado ($x(at) \leftrightarrow \frac{1}{|a|}X(s/a)$); Derivada ($\frac{d^n y}{dt^n} \leftrightarrow s^n Y(s)$ en reposo).
+	
+	\subsection*{3.3. Inversa por Fracciones Simples y Función de Transferencia $H(s)$}
+	\begin{enumerate}
+		\item \textbf{Fracciones simples} para $X(s) = \frac{N(s)}{D(s)}$ (dividir antes si $\deg N \ge \deg D$):
+		\begin{itemize}
+			\item \emph{Polos simples:} $A_k = \left[(s-p_k)X(s)\right]_{s=p_k}$. \quad \emph{Polos múltiples $(s-p)^m$:} $C_k = \frac{1}{(m-k)!}\frac{d^{m-k}}{ds^{m-k}}\left[(s-p)^m X(s)\right]_{s=p}$.
+			\item \emph{Según la ROC de cada polo $s=-a$:} Si ROC a la \textbf{derecha} $\implies +e^{-at}u(t)$; si a la \textbf{izquierda} $\implies -e^{-at}u(-t)$.
+		\end{itemize}
+		\item \textbf{Interconexiones:} Cascada $H = H_1 H_2$; \quad Paralelo $H = H_1 + H_2$; \quad Realimentación negativa $H = \frac{H_1}{1 + H_1 H_2}$.
+		\item \textbf{Propiedades de $H(s)$:} \textbf{Causal} $\iff$ ROC a la derecha del polo más a la derecha (y $\deg N \le \deg D$). \textbf{Estable BIBO} $\iff$ ROC contiene al eje imaginario $j\omega$. \textbf{Causal y Estable} $\iff$ todos los polos en semiplano izquierdo ($\operatorname{Re}\{p_k\} < 0$).
+		\item \textbf{Respuesta en Frecuencia:} Si es estable, $H(\omega) = H(s)|_{s=j\omega}$. Si entra $x(t) = \cos(\omega_0 t)$, sale $y(t) = |H(j\omega_0)|\cos(\omega_0 t + \angle H(j\omega_0))$.
+	\end{enumerate}
+	
+\end{document}
