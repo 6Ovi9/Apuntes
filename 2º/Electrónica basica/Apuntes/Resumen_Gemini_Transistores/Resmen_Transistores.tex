@@ -1,0 +1,1853 @@
+% !TEX program = pdflatex
+\documentclass[11pt,a4paper]{article}
+
+%% ============================================================
+%%  CODIFICACIÓN, IDIOMA Y TIPOGRAFÍA
+%% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage{microtype}
+
+%% ============================================================
+%%  PÁGINA Y MATEMÁTICAS
+%% ============================================================
+\usepackage[a4paper, top=3cm, bottom=2.2cm, left=2cm, right=2cm, headheight=22pt]{geometry}
+\usepackage{amsmath, amssymb}
+
+%% ============================================================
+%%  COLOR, GRÁFICOS Y CIRCUITOS
+%% ============================================================
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{circuitikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+%% ============================================================
+%%  TABLAS, LISTAS, CAJAS Y ENCABEZADOS
+%% ============================================================
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+
+%% ---------- Colores ----------
+\definecolor{mainblue}{RGB}{24, 76, 120}
+\definecolor{accentred}{RGB}{180, 40, 40}
+\definecolor{darkgreen}{RGB}{30, 130, 60}
+\definecolor{lightgray}{RGB}{245, 247, 250}
+\definecolor{lightblue}{RGB}{232, 240, 248}
+\definecolor{lightyellow}{RGB}{255, 248, 225}
+\definecolor{goldline}{RGB}{214, 158, 30}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=mainblue,
+	urlcolor=mainblue,
+	pdftitle={Resumen Visual y Práctico: BJT y MOSFET},
+	pdfauthor={Electrónica Básica}
+}
+
+%% ---------- Estilo de secciones ----------
+\titleformat{\section}
+{\Large\bfseries\color{mainblue}}
+{\thesection.}{0.6em}{}
+[\vspace{0.1em}\color{mainblue}\titlerule]
+\titleformat{\subsection}
+{\large\bfseries\color{mainblue}}
+{\thesubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{1.6em}{0.9em}
+\titlespacing*{\subsection}{0pt}{1.2em}{0.5em}
+
+%% ---------- Encabezado y pie ----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{mainblue}\textsc{Resumen de BJT y MOSFET}}
+\fancyhead[R]{\small\color{gray}Electrónica Básica}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{mainblue}\leaders\hrule height \headrulewidth\hfill}}
+
+%% ---------- Listas ----------
+\setlist[itemize]{leftmargin=1.4em, itemsep=0.35em, topsep=0.4em}
+\setlist[enumerate]{leftmargin=1.8em, itemsep=0.6em, topsep=0.4em}
+
+%% ---------- Cajas ----------
+\tcbset{
+	notebox/.style={
+		enhanced, breakable, colback=lightblue, colframe=mainblue,
+		boxrule=0.6pt, arc=2pt, left=8pt, right=8pt, top=6pt, bottom=6pt,
+		fonttitle=\bfseries, coltitle=white, colbacktitle=mainblue,
+		attach boxed title to top left={yshift=-2mm, xshift=4mm},
+		boxed title style={arc=2pt, boxrule=0pt}
+	},
+	warnbox/.style={
+		enhanced, breakable, colback=lightyellow, colframe=goldline,
+		boxrule=0.6pt, arc=2pt, left=8pt, right=8pt, top=6pt, bottom=6pt,
+		fonttitle=\bfseries, coltitle=black, colbacktitle=goldline!70,
+		attach boxed title to top left={yshift=-2mm, xshift=4mm},
+		boxed title style={arc=2pt, boxrule=0pt}
+	}
+}
+
+%% ---------- Tablas ----------
+\renewcommand{\arraystretch}{1.5}
+\captionsetup{font=small}
+
+%% ---------- Gráficas ----------
+\pgfplotsset{
+	mosfetaxis/.style={
+		axis lines=left, grid=both,
+		grid style={line width=.1pt, draw=gray!30},
+		major grid style={line width=.2pt, draw=gray!50},
+		ticks=none, enlargelimits=false,
+		label style={font=\small}, every axis plot/.append style={line cap=round}
+	}
+}
+
+\tikzset{lbl/.style={fill=white, fill opacity=0.85, text opacity=1, inner sep=1.5pt}}
+
+%% ---------- Atajos de notación ----------
+\newcommand{\Vth}{V_{\mathrm{th}}}
+\newcommand{\Vov}{V_{\mathrm{ov}}}
+
+\begin{document}
+	
+	%% ============================================================
+	%%  PORTADA / TÍTULO
+	%% ============================================================
+	\begin{tcolorbox}[
+		enhanced, colback=mainblue, colframe=mainblue, arc=4pt,
+		left=14pt, right=14pt, top=14pt, bottom=14pt, boxrule=0pt,
+		borderline south={3pt}{0pt}{goldline}
+		]
+		\centering\color{white}
+		{\Huge\bfseries Resumen Visual y Práctico: BJT y MOSFET\par}
+		\vspace{0.5em}
+		{\Large Regiones de funcionamiento, curvas características y circuitos\par}
+		\vspace{0.7em}
+		{\normalsize Electrónica Básica \par}
+	\end{tcolorbox}
+	
+	\vspace{1.2em}
+	
+	%% ============================================================
+	%%  NOTACIÓN DE TENSIONES
+	%% ============================================================
+	\section{Cómo leer las tensiones: ¿de qué punto a qué punto?}
+	
+	Casi todos los datos de un problema ($V_{BE}$, $V_{CE}$, $V_{GS}$, $V_{DS}$\ldots) son tensiones \emph{entre dos terminales del propio transistor}. Se leen siempre igual:
+	
+	\begin{itemize}
+		\item \textbf{Dos subíndices:} $V_{XY} = V_X - V_Y$ es la tensión del punto $X$ \emph{medida respecto al punto $Y$}. El \textbf{primer subíndice es el $+$} (la punta de la flecha) y el \textbf{segundo es el $-$} (la referencia). Equivale a poner la punta roja del polímetro en $X$ y la negra en $Y$.
+		\item \textbf{Un solo subíndice:} $V_X$ es la tensión del nodo $X$ respecto a \textbf{masa} (0 V). Por eso $V_{XY} = V_X - V_Y$.
+		\item \textbf{Subíndice repetido} ($V_{CC}$, $V_{DD}$, $V_{EE}$): tensión de la alimentación respecto a masa.
+		\item \textbf{Cambiar el orden cambia el signo:} $V_{YX} = -V_{XY}$.
+	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}[scale=1.0]
+			\draw (0,0) node[npn] (Q) {};
+			\draw (Q.B) -- ++(-0.8,0) coordinate (b) node[left] {$B$};
+			\draw (Q.C) -- ++(0,0.8) coordinate (c) node[above] {$C$};
+			\draw (Q.E) -- ++(0,-0.8) coordinate (e) node[below] {$E$};
+			
+			% V_BE: del emisor (-) a la base (+)
+			\draw[dotted] (e) -- (e -| b);
+			\draw[->, thick, accentred] (e -| b) -- (b) node[midway, left] {$V_{BE}$};
+			
+			% V_CE: del emisor (-) al colector (+)
+			\coordinate (r) at (1.9,0);
+			\draw[dotted] (c) -- (c -| r);
+			\draw[dotted] (e) -- (e -| r);
+			\draw[->, thick, accentred] (e -| r) -- (c -| r) node[midway, right] {$V_{CE}$};
+		\end{circuitikz}
+		\caption{La flecha apunta al primer subíndice (el $+$). Aquí $V_{BE} = V_B - V_E$ y $V_{CE} = V_C - V_E$.}
+	\end{figure}
+	
+	\begin{table}[H]
+		\centering
+		\small
+		\rowcolors{2}{lightgray}{white}
+		\begin{tabular}{@{}lll@{}}
+			\toprule
+			\rowcolor{mainblue!15}
+			\textbf{Dato} & \textbf{Se calcula como} & \textbf{Valor típico / significado} \\
+			\midrule
+			$V_{BE}$ & $V_B - V_E$ & $\approx 0{,}7\,\text{V}$ en un NPN que conduce \\
+			$V_{CE}$ & $V_C - V_E$ & $> 0{,}2\,\text{V}$ en activa; $\approx 0{,}2\,\text{V}$ en saturación \\
+			$V_{BC}$ & $V_B - V_C = V_{BE} - V_{CE}$ & $<0$ en activa (BC inversa); $>0$ en saturación \\
+			$V_{EB},\,V_{EC}$ & $V_E - V_B,\; V_E - V_C$ & las del \textbf{PNP} (se escriben al revés para que salgan positivas) \\
+			\midrule
+			$V_{GS}$ & $V_G - V_S$ & compara con $\Vth$ para saber si hay canal \\
+			$V_{DS}$ & $V_D - V_S$ & compara con $V_{GS} - \Vth$ para triodo/saturación \\
+			$V_{GD}$ & $V_G - V_D = V_{GS} - V_{DS}$ & en saturación cumple $V_{GD} \le \Vth$ \\
+			\bottomrule
+		\end{tabular}
+		\caption{Tensiones habituales y cómo se obtienen a partir de las de los nodos.}
+	\end{table}
+	
+	\begin{tcolorbox}[notebox, title={Truco: encadenar subíndices}, top=12pt]
+		Las tensiones se pueden sumar si el segundo subíndice de una es el primero de la siguiente:
+		\[
+		V_{CE} = V_{CB} + V_{BE}, \qquad V_{DS} = V_{DG} + V_{GS}
+		\]
+		De ahí salen $V_{BC} = V_{BE} - V_{CE}$ y $V_{GD} = V_{GS} - V_{DS}$.
+		
+		\medskip
+		\textbf{Ejemplo 1:} te dan $V_{BE} = 0{,}7\,\text{V}$ y $V_{CE} = 5\,\text{V}$. Entonces $V_{BC} = 0{,}7 - 5 = -4{,}3\,\text{V}$: la unión BC está en inversa $\rightarrow$ \textbf{activa}.
+		
+		\textbf{Ejemplo 2:} $V_{BE} = 0{,}7\,\text{V}$ y $V_{CE} = 0{,}2\,\text{V}$. Entonces $V_{BC} = 0{,}5\,\text{V}$: la unión BC conduce $\rightarrow$ \textbf{saturación}.
+	\end{tcolorbox}
+	
+	%% ============================================================
+	%%  7. BJT: FÍSICA SIMPLIFICADA
+	%% ============================================================
+	\section{BJT: la física simplificada}
+	
+	El transistor bipolar de unión (BJT) se controla por \textbf{corriente de base} ($I_B$): una corriente pequeña en la base gobierna una corriente mucho mayor entre colector ($C$) y emisor ($E$). Tiene dos uniones PN: base--emisor (BE) y base--colector (BC), y su región de funcionamiento depende de cómo estén polarizadas.
+	
+	\begin{itemize}
+		\item \textbf{Relaciones de corriente:} $I_E = I_B + I_C$. En activa directa, $I_C = \beta I_B$ y por tanto $I_E = (\beta + 1)\,I_B$.
+		\item \textbf{Ganancia:} $\beta = h_{FE}$ (típicamente 50--300) y $\alpha = \dfrac{I_C}{I_E} = \dfrac{\beta}{\beta + 1} \approx 1$.
+		\item \textbf{Unión BE en conducción:} $V_{BE} \approx 0{,}7\,\text{V}$ (silicio), casi constante.
+		\item \textbf{Saturación:} $V_{CE,\mathrm{sat}} \approx 0{,}2\,\text{V}$.
+	\end{itemize}
+	
+	\begin{tcolorbox}[notebox, title={Diferencia clave con el MOSFET}]
+		El BJT \textbf{sí} consume corriente de control ($I_B \neq 0$) y su corriente depende \emph{exponencialmente} de $V_{BE}$: $I_C = I_S\, e^{V_{BE}/V_T}$, con $V_T \approx 25\,\text{mV}$ a temperatura ambiente. El MOSFET no consume corriente de puerta y su dependencia es cuadrática.
+	\end{tcolorbox}
+	
+	%% ============================================================
+	%%  8. SÍMBOLOS BJT
+	%% ============================================================
+	\section{Símbolos de los transistores BJT}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}[scale=1.1]
+			% NPN
+			\draw (0,0) node[npn] (npn) {};
+			\node[left]  at (npn.B) {$B$};
+			\node[above] at (npn.C) {$C$};
+			\node[below] at (npn.E) {$E$};
+			\node at (0,-1.8) {\textbf{NPN}};
+			
+			% PNP
+			\draw (6,0) node[pnp] (pnp) {};
+			\node[left]  at (pnp.B) {$B$};
+			\node[below] at (pnp.C) {$C$};
+			\node[above] at (pnp.E) {$E$};
+			\node at (6,-1.8) {\textbf{PNP}};
+		\end{circuitikz}
+		\caption{Símbolos del BJT. La flecha del emisor indica el sentido de la corriente convencional: sale en el NPN y entra en el PNP.}
+	\end{figure}
+	
+	%% ============================================================
+	%%  9. REGIONES DEL BJT
+	%% ============================================================
+	\section{Las 4 regiones del NPN a través de su gráfica}
+	
+	La curva característica de salida representa $I_C$ frente a $V_{CE}$ para distintos valores de $I_B$. A la izquierda de $V_{CE,\mathrm{sat}}$ está la saturación, y a la derecha la zona activa, donde las curvas son casi planas.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				mosfetaxis,
+				width=0.88\textwidth, height=7.6cm,
+				xlabel={$V_{CE}$}, ylabel={$I_C$},
+				xmin=0, xmax=6, ymin=0, ymax=8.5
+				]
+				% Corte
+				\addplot[very thick, black, domain=0:5.8] {0};
+				\node[black, anchor=south east, font=\small, lbl] at (axis cs:5.9,0.05) {$I_B = 0$ \textbf{(corte)}};
+				
+				% I_B1, I_B2, I_B3
+				\addplot[thick, mainblue, domain=0:5.8, samples=80] {1.5*(1-exp(-x/0.3))*(1+0.03*x)};
+				\addplot[thick, mainblue, domain=0:5.8, samples=80] {3.2*(1-exp(-x/0.3))*(1+0.03*x)};
+				\addplot[thick, mainblue, domain=0:5.8, samples=80] {5.0*(1-exp(-x/0.3))*(1+0.03*x)};
+				\node[mainblue, anchor=south west, font=\small, lbl] at (axis cs:4.4,1.8) {$I_{B1}$};
+				\node[mainblue, anchor=south west, font=\small, lbl] at (axis cs:4.4,3.9) {$I_{B2} > I_{B1}$};
+				\node[mainblue, anchor=south west, font=\small, lbl] at (axis cs:4.4,6.0) {$I_{B3} > I_{B2}$};
+				
+				% Límite de saturación
+				\draw[very thick, dashed, accentred] (axis cs:0.6,0) -- (axis cs:0.6,8.5);
+				\node[accentred, anchor=west, font=\small, lbl] at (axis cs:0.7,8.0) {$V_{CE,\mathrm{sat}} \approx 0{,}2\,\text{V}$};
+				\node[darkgreen, font=\small\bfseries, rotate=90, lbl] at (axis cs:0.3,4.3) {SATURACIÓN};
+				
+				% Zona activa
+				\node[mainblue, font=\bfseries, lbl] at (axis cs:3.0,7.4) {ACTIVA DIRECTA};
+				\node[mainblue, font=\small, lbl] at (axis cs:3.0,6.7) {$I_C \approx \beta I_B$ (fuente de corriente)};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Curvas características de salida $I_C$--$V_{CE}$ de un NPN (esquemáticas; la zona de saturación se ha ampliado para verla).}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				mosfetaxis,
+				width=0.6\textwidth, height=5.8cm,
+				xlabel={$V_{BE}$}, ylabel={$I_C$},
+				xmin=0, xmax=0.85, ymin=0, ymax=8
+				]
+				\addplot[very thick, mainblue, domain=0:0.77, samples=100] {0.003*exp(x/0.1)};
+				\draw[dotted, thick] (axis cs:0.7,0) -- (axis cs:0.7,8);
+				\node[lbl, below] at (axis cs:0.7,0) {$\approx 0{,}7\,\text{V}$};
+				\node[mainblue, anchor=east, font=\small, lbl] at (axis cs:0.6,6.0) {$I_C = I_S\, e^{V_{BE}/V_T}$};
+				\node[black, font=\small\bfseries, lbl] at (axis cs:0.25,1.0) {Corte};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Curva de transferencia exponencial $I_C$--$V_{BE}$.}
+	\end{figure}
+	
+	%% ============================================================
+	%%  10. RESUMEN DE ECUACIONES BJT
+	%% ============================================================
+	\section{Resumen de regiones y condiciones (NPN)}
+	
+	\begin{table}[H]
+		\centering
+		\small
+		\rowcolors{2}{lightgray}{white}
+		\begin{tabularx}{\textwidth}{@{}>{\bfseries}l >{\raggedright\arraybackslash}p{2.9cm} >{\raggedright\arraybackslash}p{3.6cm} X@{}}
+			\toprule
+			\rowcolor{mainblue!15}
+			\textbf{Región} & \textbf{Uniones (BE / BC)} & \textbf{Condición típica} & \textbf{Ecuaciones} \\
+			\midrule
+			Corte
+			& Inversa / inversa
+			& $V_{BE} < 0{,}7\,\text{V}$
+			& $I_B \approx 0,\quad I_C \approx 0,\quad I_E \approx 0$ \\[0.6em]
+			Activa directa
+			& Directa / inversa
+			& $V_{BE} \approx 0{,}7\,\text{V}$ \newline {\color{mainblue}$V_{CE} > V_{CE,\mathrm{sat}}$}
+			& $I_C = \beta I_B$ \newline $I_E = (\beta+1) I_B$ \\[0.9em]
+			Saturación
+			& Directa / directa
+			& $V_{BE} \approx 0{,}7\,\text{V}$ \newline {\color{mainblue}$V_{CE} = V_{CE,\mathrm{sat}} \approx 0{,}2\,\text{V}$}
+			& $I_C < \beta I_B$ \newline $I_C$ fijada por el circuito externo \\[0.9em]
+			Activa inversa
+			& Inversa / directa
+			& $V_{BC} \approx 0{,}7\,\text{V}$, $V_{BE} < 0$
+			& $\beta_R \ll \beta$ (rara vez se usa) \\
+			\bottomrule
+		\end{tabularx}
+		\caption{Resumen operativo del NPN con el modelo simplificado de tensiones constantes.}
+	\end{table}
+	
+	\begin{tcolorbox}[notebox, title={Efecto Early (opcional)}]
+		En activa las curvas no son perfectamente planas: $I_C = \beta I_B \left(1 + \dfrac{V_{CE}}{V_A}\right)$, con $V_A$ la tensión de Early. Muchos problemas lo desprecian ($V_A \to \infty$).
+	\end{tcolorbox}
+	
+	\subsection*{Regla mnemotécnica rápida}
+	
+	\begin{tcolorbox}[notebox, title={¿En qué región estoy?}, top=12pt]
+		\begin{itemize}
+			\item \textbf{¿Conduce la unión BE?} Si $V_{BE} < 0{,}7\,\text{V}$, estás en \textbf{corte}.
+			\item \textbf{Si conduce, supón activa} ($V_{BE} = 0{,}7\,\text{V}$, $I_C = \beta I_B$) y calcula $V_{CE}$.
+			\begin{itemize}
+				\item Si $V_{CE} > 0{,}2\,\text{V}$, la suposición era correcta $\rightarrow$ \textbf{activa}.
+				\item Si te sale $V_{CE} < 0{,}2\,\text{V}$, es imposible $\rightarrow$ \textbf{saturación} ($V_{CE} = 0{,}2\,\text{V}$) y se recalcula $I_C$.
+			\end{itemize}
+		\end{itemize}
+	\end{tcolorbox}
+	
+	%% ============================================================
+	%%  MODELO EQUIVALENTE BJT
+	%% ============================================================
+	\section{El BJT sustituido por pilas y fuentes}
+	
+	Para resolver circuitos se sustituye el transistor por un circuito equivalente sencillo, según su región:
+	
+	\begin{itemize}
+		\item \textbf{Unión BE conduciendo:} se cambia por una \textbf{pila de $0{,}7\,\text{V}$} con el $+$ en la base y el $-$ en el emisor (en un PNP, el $+$ va en el emisor).
+		\item \textbf{Activa directa:} pila de $0{,}7\,\text{V}$ entre $B$ y $E$, más una \textbf{fuente de corriente dependiente} $\beta I_B$ entre $C$ y $E$ (de $C$ a $E$ en el NPN).
+		\item \textbf{Saturación:} pila de $0{,}7\,\text{V}$ entre $B$ y $E$ y otra \textbf{pila de $0{,}2\,\text{V}$} entre $C$ y $E$ (con el $+$ en $C$). Aquí $I_C$ no es $\beta I_B$: la fija el resto del circuito.
+		\item \textbf{Corte:} \textbf{circuito abierto} en las tres patillas.
+	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[t]{0.31\textwidth}
+			\centering
+			\begin{circuitikz}[scale=0.8, transform shape]
+				\draw (-0.6,0) node[circ] {} node[left] {$B$};
+				\draw (1.6,3) node[circ] {} node[above] {$C$};
+				\draw (1.6,-1.8) node[circ] {} node[below] {$E$};
+				\node[font=\small\itshape, align=center] at (0.5,1.5) {circuito\\abierto};
+			\end{circuitikz}\\[0.3em]
+			\small\textbf{(a) Corte}
+		\end{minipage}\hfill
+		\begin{minipage}[t]{0.31\textwidth}
+			\centering
+			\begin{circuitikz}[scale=0.8, transform shape]
+				% Línea recta C --> fuente --> nudo --> E ; la pila de la base entra por el lado
+				\draw (1.6,3) node[circ] {} node[above] {$C$}
+				to[american controlled current source, l=$\beta I_B$] (1.6,0) node[circ] {}
+				to[short] (1.6,-1.8) node[circ] {} node[below] {$E$};
+				\draw (-0.6,0) node[left] {$B$} to[battery1, l=$0{,}7\,\text{V}$] (1.6,0);
+			\end{circuitikz}\\[0.3em]
+			\small\textbf{(b) Activa directa}
+		\end{minipage}\hfill
+		\begin{minipage}[t]{0.31\textwidth}
+			\centering
+			\begin{circuitikz}[scale=0.8, transform shape]
+				\draw (1.6,3) node[circ] {} node[above] {$C$}
+				to[battery1, l=$0{,}2\,\text{V}$] (1.6,0) node[circ] {}
+				to[short] (1.6,-1.8) node[circ] {} node[below] {$E$};
+				\draw (-0.6,0) node[left] {$B$} to[battery1, l=$0{,}7\,\text{V}$] (1.6,0);
+			\end{circuitikz}\\[0.3em]
+			\small\textbf{(c) Saturación}
+		\end{minipage}
+		\caption{Modelos equivalentes del NPN, dibujados como el propio símbolo: el camino $C \to E$ va en línea recta, y la pila de la unión BE entra por el lado de la base. En las pilas, la placa larga es el $+$.}
+	\end{figure}
+	
+	\begin{tcolorbox}[notebox, title={Si te dan $V_{BE}$ y $V_{CE}$: ¿qué región es?}, top=12pt]
+		\begin{itemize}
+			\item $V_{BE} = 0{,}7\,\text{V}$, $V_{CE} = 4\,\text{V}$ $\rightarrow$ BE conduce y $V_{CE} > 0{,}2\,\text{V}$: \textbf{activa}.
+			\item $V_{BE} = 0{,}7\,\text{V}$, $V_{CE} = 0{,}2\,\text{V}$ $\rightarrow$ \textbf{saturación}.
+			\item $V_{BE} = 0{,}3\,\text{V}$ (muy por debajo de $0{,}7\,\text{V}$) $\rightarrow$ \textbf{corte}, $I_B \approx I_C \approx 0$.
+		\end{itemize}
+		Con $V_{BE}$ y $V_{CE}$ no puedes saber $I_C$ sin más datos: en activa, $I_C = \beta I_B$ y $I_B$ sale de las resistencias de la malla de base.
+	\end{tcolorbox}
+	
+	%% ============================================================
+	%%  ECUACIONES TRAS SUSTITUIR EL MODELO
+	%% ============================================================
+	\section{Una vez sustituido el modelo: cómo plantear las ecuaciones}
+	
+	Con el transistor ya cambiado por pilas y fuentes, el circuito es de resistencias, pilas y fuentes, y se resuelve con la \textbf{ley de tensiones de Kirchhoff} (suma de tensiones en una malla $= 0$). No importa por qué punto empieces: se elige un punto de partida conocido (masa o la alimentación), se recorre la malla componente a componente \emph{sumando lo que subes y restando lo que bajas}, y se vuelve al punto de partida.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}[scale=0.9, transform shape]
+			% Rama de la base: Thévenin + pila BE
+			\draw (-2.4,0) to[battery1, l_=$V_{TH}$] (-2.4,-3.4) node[ground] {};
+			\draw (-2.4,0) to[R, l=$R_{TH}$] (0,0) node[circ] {} node[below left] {$B$}
+			to[battery1, l=$0{,}7\,\text{V}$] (3,0) node[circ] {};
+			
+			% Colector: alimentación, R_C y fuente de corriente (línea recta hacia E)
+			\draw (3,3.4) to[R, l=$R_C$] (3,5.4) to[short, -o] (3,5.8) node[above] {$V_{CC}$};
+			\draw (3,3.4) node[circ] {} node[right] {$C$}
+			to[american controlled current source, l=$\beta I_B$] (3,0);
+			
+			% Emisor y R_E
+			\draw (3,0) to[short] (3,-0.9) node[circ] {} node[right] {$E$}
+			to[R, l=$R_E$] (3,-3.4) node[ground] {};
+			
+			% Mallas
+			\node[accentred, align=center, font=\small] at (0.4,-1.7) {\Large$\circlearrowright$\\malla de\\entrada};
+			\node[accentred, align=left, font=\small, anchor=west] at (3.9,4.4) {malla de salida:\\$V_{CC} \to R_C \to$\\fuente $\to R_E \to$ masa};
+		\end{circuitikz}
+		\caption{Circuito de la sección de polarización ya con el BJT sustituido por su modelo en activa.}
+	\end{figure}
+	
+	\subsection*{Reglas de signos al recorrer una malla}
+	
+	\begin{itemize}
+		\item \textbf{Pila:} si la atraviesas de $-$ a $+$ \emph{subes}: $+V$. De $+$ a $-$ \emph{bajas}: $-V$.
+		\item \textbf{Resistencia:} si la atraviesas \emph{en el sentido de la corriente} bajas: $-IR$. En sentido contrario subes: $+IR$.
+		\item \textbf{Fuente de corriente:} no tiene una tensión conocida; su tensión es una incógnita (en el BJT es justamente $V_{CE}$). Se escribe como tal, o se elige una malla que no pase por ella.
+		\item Al volver al punto de partida, todo lo que has subido y bajado suma \textbf{cero}.
+	\end{itemize}
+	
+	\begin{tcolorbox}[notebox, title={Receta para el BJT en activa}]
+		\begin{enumerate}
+			\item \textbf{Malla de entrada} (sin pasar por la fuente $\beta I_B$): sale $I_B$.
+			\[
+			V_{TH} - I_B R_{TH} - 0{,}7 - I_E R_E = 0, \quad I_E = (\beta+1) I_B
+			\]
+			\item \textbf{Corrientes:} $I_C = \beta I_B$, $I_E = (\beta+1) I_B$.
+			\item \textbf{Malla de salida} (aquí $V_{CE}$ es la tensión de la fuente): sale $V_{CE}$.
+			\[
+			V_{CC} - I_C R_C - V_{CE} - I_E R_E = 0
+			\]
+			\item \textbf{Comprobar la región:} $V_{CE} > 0{,}2\,\text{V}$.
+		\end{enumerate}
+	\end{tcolorbox}
+	
+	\subsection*{Alternativa: tensiones de nodo, empezando por los extremos}
+	
+	Es otra forma de hacer lo mismo y suele ser más rápida. Se parte de un extremo que se conoce (masa o $V_{CC}$) y se avanza sumando o restando lo que cae en cada componente:
+	\[
+	\begin{aligned}
+		V_E &= I_E R_E          && (\text{desde masa hacia arriba}) \\
+		V_B &= V_E + 0{,}7      && (\text{sumando la pila de la unión BE}) \\
+		V_C &= V_{CC} - I_C R_C && (\text{desde } V_{CC} \text{ hacia abajo})
+	\end{aligned}
+	\]
+	y al final $V_{CE} = V_C - V_E$. Por ejemplo, si $I_E = 1\,\text{mA}$ y $R_E = 1\,\text{k}\Omega$, entonces $V_E = 1\,\text{V}$ y $V_B = 1{,}7\,\text{V}$.
+	
+	\begin{tcolorbox}[notebox, title={Lo mismo con el MOSFET}, top=12pt]
+		La puerta no deja pasar corriente, así que $V_G$ sale directamente del divisor. Después, en saturación:
+		\[
+		V_{GS} = V_G - I_D R_S, \qquad
+		V_{DD} - I_D R_D - V_{DS} - I_D R_S = 0
+		\]
+		La primera ecuación (con $I_D = K_n (V_{GS} - \Vth)^2$) da $I_D$ y la segunda da $V_{DS}$, que hay que comparar con $V_{GS} - \Vth$.
+	\end{tcolorbox}
+	
+	%% ============================================================
+	%%  11. POLARIZACIÓN BJT
+	%% ============================================================
+	\section{Análisis de un circuito típico de polarización (BJT)}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}[scale=1.0]
+			\draw (0,0) node[npn] (Q) {};
+			
+			% Base y divisor de tensión
+			\draw (Q.B) to[short, -*] ++(-1.6,0) coordinate (G);
+			
+			% Colector, R_C y alimentación
+			\draw ($(Q.C)+(0,2.6)$) coordinate (top) to[R, l=$R_C$, i_=$I_C$] (Q.C);
+			\draw (top) to[short, -o] ++(0,0.4) node[above] {$V_{CC}$};
+			
+			% Emisor, R_E y masa
+			\draw (Q.E) to[R, l=$R_E$, i_=$I_E$] ++(0,-2.6) coordinate (gnd) node[ground] {};
+			
+			% Divisor R_1 -- R_2
+			\draw (top) -- (G |- top) to[R, l_=$R_1$] (G)
+			to[R, l_=$R_2$] (G |- gnd) node[ground] {};
+			
+			% Etiquetas
+			\node[anchor=south east, font=\small] at ($(G)+(-0.05,0.1)$) {$V_B$};
+			\node[anchor=south west, font=\small] at ($(Q.C)+(0.25,0.15)$) {$V_C$};
+			\node[anchor=north west, font=\small] at ($(Q.E)+(0.25,-0.15)$) {$V_E$};
+		\end{circuitikz}
+		\caption{Polarización por divisor de tensión de un NPN.}
+	\end{figure}
+	
+	\subsection*{Pasos de resolución sistemáticos}
+	
+	\begin{enumerate}
+		\item \textbf{Equivalente Thévenin de la base.} El divisor $R_1$--$R_2$ se sustituye por
+		\[
+		V_{TH} = V_{CC}\,\frac{R_2}{R_1 + R_2}, \qquad R_{TH} = R_1 \parallel R_2 = \frac{R_1 R_2}{R_1 + R_2}
+		\]
+		\item \textbf{Malla base--emisor.} Suponiendo activa, con $I_E = (\beta+1) I_B$:
+		\[
+		V_{TH} = I_B R_{TH} + V_{BE} + I_E R_E
+		\quad\Longrightarrow\quad
+		I_B = \frac{V_{TH} - V_{BE}}{R_{TH} + (\beta+1) R_E}
+		\]
+		\item \textbf{Corrientes.} $I_C = \beta I_B$ \quad y \quad $I_E = (\beta+1) I_B$.
+		\item \textbf{Comprobar la hipótesis.} Calcula la malla colector--emisor:
+		\[
+		V_{CE} = V_{CC} - I_C R_C - I_E R_E \;\; > \;\; V_{CE,\mathrm{sat}} \approx 0{,}2\,\text{V}
+		\]
+		Si no se cumple, el transistor está en saturación: se toma $V_{CE} = 0{,}2\,\text{V}$ y se recalcula $I_C \approx \dfrac{V_{CC} - V_{CE,\mathrm{sat}}}{R_C + R_E}$ (con $I_E \approx I_C$), comprobando que $I_C < \beta I_B$.
+	\end{enumerate}
+	
+	\begin{tcolorbox}[warnbox, title={Polarización estable}]
+		Si $R_{TH} \ll (\beta+1) R_E$ (regla práctica: $R_{TH} \le 0{,}1\,(\beta+1) R_E$), entonces $I_C \approx \dfrac{V_{TH} - V_{BE}}{R_E}$, que apenas depende de $\beta$. Por eso se dimensiona así el divisor.
+	\end{tcolorbox}
+	
+	%% ============================================================
+	%%  12. NPN vs PNP
+	%% ============================================================
+	\newpage
+	\section{Equivalencias rápidas: NPN vs PNP}
+	
+	\begin{table}[H]
+		\centering
+		\small
+		\rowcolors{2}{lightgray}{white}
+		\begin{tabular}{@{}lll@{}}
+			\toprule
+			\rowcolor{mainblue!15}
+			\textbf{Parámetro / condición} & \textbf{NPN}                      & \textbf{PNP}                      \\
+			\midrule
+			Tensión de control             & $V_{BE} = V_B - V_E \approx 0{,}7$ & $V_{EB} = V_E - V_B \approx 0{,}7$ \\
+			Tensión entre terminales       & $V_{CE} = V_C - V_E$              & $V_{EC} = V_E - V_C$              \\
+			Condición de activa            & $V_{CE} > 0{,}2\,\text{V}$        & $V_{EC} > 0{,}2\,\text{V}$        \\
+			Sentido de $I_C$               & de $C$ a $E$                      & de $E$ a $C$                      \\
+			Corriente de base              & entra por $B$                     & sale por $B$                      \\
+			Relación en activa             & $I_C = \beta I_B$                 & $I_C = \beta I_B$                 \\
+			\bottomrule
+		\end{tabular}
+		\caption{Tabla rápida de traducción NPN $\leftrightarrow$ PNP.}
+	\end{table}
+	
+	%% ============================================================
+	%%  14. BJT PNP COMPLETO
+	%% ============================================================
+	\section{El PNP: puntos de referencia y signos}
+	
+	El PNP es el \emph{espejo} del NPN: todas las tensiones y corrientes cambian de signo. Para trabajar con números positivos, sus tensiones se escriben \textbf{empezando por el emisor} ($V_{EB}$, $V_{EC}$), y la corriente de potencia va de $E$ a $C$ (el emisor se conecta al potencial \emph{más alto}).
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}[scale=1.0]
+			\draw (0,0) node[pnp] (Q) {};
+			\draw (Q.B) -- ++(-0.8,0) coordinate (b) node[left] {$B$};
+			\draw (Q.C) -- ++(0,-0.8) coordinate (c) node[below] {$C$};
+			\draw (Q.E) -- ++(0,0.8) coordinate (e) node[above] {$E$};
+			
+			% V_EB: de la base (-) al emisor (+)
+			\draw[dotted] (e) -- (e -| b);
+			\draw[->, thick, accentred] (b) -- (e -| b) node[midway, left] {$V_{EB}$};
+			
+			% V_EC: del colector (-) al emisor (+)
+			\coordinate (r) at (1.9,0);
+			\draw[dotted] (c) -- (c -| r);
+			\draw[dotted] (e) -- (e -| r);
+			\draw[->, thick, accentred] (c -| r) -- (e -| r) node[midway, right] {$V_{EC}$};
+		\end{circuitikz}
+		\caption{Tensiones del PNP: la flecha apunta al primer subíndice (el $+$). Aquí $V_{EB} = V_E - V_B$ y $V_{EC} = V_E - V_C$.}
+	\end{figure}
+	
+	\begin{table}[H]
+		\centering
+		\small
+		\rowcolors{2}{lightgray}{white}
+		\begin{tabular}{@{}lll@{}}
+			\toprule
+			\rowcolor{mainblue!15}
+			\textbf{Dato (PNP)} & \textbf{Se calcula como} & \textbf{Valor típico / significado} \\
+			\midrule
+			$V_{EB}$ & $V_E - V_B$ & $\approx 0{,}7\,\text{V}$ en un PNP que conduce \\
+			$V_{EC}$ & $V_E - V_C$ & $> 0{,}2\,\text{V}$ en activa; $\approx 0{,}2\,\text{V}$ en saturación \\
+			$V_{CB}$ & $V_C - V_B = V_{EB} - V_{EC}$ & $<0$ en activa (CB inversa); $>0$ en saturación \\
+			\bottomrule
+		\end{tabular}
+		\caption{Tensiones habituales del PNP.}
+	\end{table}
+	
+	\begin{tcolorbox}[notebox, title={Ejemplos con el PNP}, top=12pt]
+		Se encadenan igual que en el NPN: $V_{EC} = V_{EB} + V_{BC}$, de donde $V_{CB} = V_{EB} - V_{EC}$.
+		
+		\medskip
+		\textbf{Ejemplo 1:} $V_{EB} = 0{,}7\,\text{V}$ y $V_{EC} = 5\,\text{V}$. Entonces $V_{CB} = 0{,}7 - 5 = -4{,}3\,\text{V}$: la unión CB está en inversa $\rightarrow$ \textbf{activa}.
+		
+		\textbf{Ejemplo 2:} $V_{EB} = 0{,}7\,\text{V}$ y $V_{EC} = 0{,}2\,\text{V}$. Entonces $V_{CB} = 0{,}5\,\text{V}$: la unión CB conduce $\rightarrow$ \textbf{saturación}.
+	\end{tcolorbox}
+	
+	%% ============================================================
+	%%  PNP: REGIONES A TRAVÉS DE LA GRÁFICA
+	%% ============================================================
+	\section{Las 4 regiones del PNP a través de su gráfica}
+	
+	La curva de salida representa $I_C$ frente a $V_{EC}$ para distintos valores de $I_B$ (la corriente de base \emph{sale} por la patilla $B$). Es idéntica a la del NPN cambiando $V_{CE} \to V_{EC}$: a la izquierda de $V_{EC,\mathrm{sat}}$ está la saturación y a la derecha la zona activa.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				mosfetaxis,
+				width=0.88\textwidth, height=7.6cm,
+				xlabel={$V_{EC}$}, ylabel={$I_C$ (de $E$ a $C$)},
+				xmin=0, xmax=6, ymin=0, ymax=8.5
+				]
+				% Corte
+				\addplot[very thick, black, domain=0:5.8] {0};
+				\node[black, anchor=south east, font=\small, lbl] at (axis cs:5.9,0.05) {$I_B = 0$ \textbf{(corte)}};
+				
+				% I_B1, I_B2, I_B3
+				\addplot[thick, mainblue, domain=0:5.8, samples=80] {1.5*(1-exp(-x/0.3))*(1+0.03*x)};
+				\addplot[thick, mainblue, domain=0:5.8, samples=80] {3.2*(1-exp(-x/0.3))*(1+0.03*x)};
+				\addplot[thick, mainblue, domain=0:5.8, samples=80] {5.0*(1-exp(-x/0.3))*(1+0.03*x)};
+				\node[mainblue, anchor=south west, font=\small, lbl] at (axis cs:4.4,1.8) {$I_{B1}$};
+				\node[mainblue, anchor=south west, font=\small, lbl] at (axis cs:4.4,3.9) {$I_{B2} > I_{B1}$};
+				\node[mainblue, anchor=south west, font=\small, lbl] at (axis cs:4.4,6.0) {$I_{B3} > I_{B2}$};
+				
+				% Límite de saturación
+				\draw[very thick, dashed, accentred] (axis cs:0.6,0) -- (axis cs:0.6,8.5);
+				\node[accentred, anchor=west, font=\small, lbl] at (axis cs:0.7,8.0) {$V_{EC,\mathrm{sat}} \approx 0{,}2\,\text{V}$};
+				\node[darkgreen, font=\small\bfseries, rotate=90, lbl] at (axis cs:0.3,4.3) {SATURACIÓN};
+				
+				% Zona activa
+				\node[mainblue, font=\bfseries, lbl] at (axis cs:3.0,7.4) {ACTIVA DIRECTA};
+				\node[mainblue, font=\small, lbl] at (axis cs:3.0,6.7) {$I_C \approx \beta I_B$ (fuente de corriente)};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Curvas características de salida $I_C$--$V_{EC}$ de un PNP (esquemáticas; la zona de saturación se ha ampliado para verla).}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				mosfetaxis,
+				width=0.6\textwidth, height=5.8cm,
+				xlabel={$V_{EB}$}, ylabel={$I_C$},
+				xmin=0, xmax=0.85, ymin=0, ymax=8
+				]
+				\addplot[very thick, mainblue, domain=0:0.77, samples=100] {0.003*exp(x/0.1)};
+				\draw[dotted, thick] (axis cs:0.7,0) -- (axis cs:0.7,8);
+				\node[lbl, below] at (axis cs:0.7,0) {$\approx 0{,}7\,\text{V}$};
+				\node[mainblue, anchor=east, font=\small, lbl] at (axis cs:0.6,6.0) {$I_C = I_S\, e^{V_{EB}/V_T}$};
+				\node[black, font=\small\bfseries, lbl] at (axis cs:0.25,1.0) {Corte};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Curva de transferencia exponencial $I_C$--$V_{EB}$ del PNP.}
+	\end{figure}
+	
+	\section{Resumen de regiones y condiciones (PNP)}
+	
+	\begin{table}[H]
+		\centering
+		\small
+		\rowcolors{2}{lightgray}{white}
+		\begin{tabularx}{\textwidth}{@{}>{\bfseries}l >{\raggedright\arraybackslash}p{2.9cm} >{\raggedright\arraybackslash}p{3.6cm} X@{}}
+			\toprule
+			\rowcolor{mainblue!15}
+			\textbf{Región} & \textbf{Uniones (EB / CB)} & \textbf{Condición típica} & \textbf{Ecuaciones} \\
+			\midrule
+			Corte
+			& Inversa / inversa
+			& $V_{EB} < 0{,}7\,\text{V}$
+			& $I_B \approx 0,\quad I_C \approx 0,\quad I_E \approx 0$ \\[0.6em]
+			Activa directa
+			& Directa / inversa
+			& $V_{EB} \approx 0{,}7\,\text{V}$ \newline {\color{mainblue}$V_{EC} > V_{EC,\mathrm{sat}}$}
+			& $I_C = \beta I_B$ \newline $I_E = (\beta+1) I_B$ \\[0.9em]
+			Saturación
+			& Directa / directa
+			& $V_{EB} \approx 0{,}7\,\text{V}$ \newline {\color{mainblue}$V_{EC} = V_{EC,\mathrm{sat}} \approx 0{,}2\,\text{V}$}
+			& $I_C < \beta I_B$ \newline $I_C$ fijada por el circuito externo \\[0.9em]
+			Activa inversa
+			& Inversa / directa
+			& $V_{CB} \approx 0{,}7\,\text{V}$, $V_{EB} < 0$
+			& $\beta_R \ll \beta$ (rara vez se usa) \\
+			\bottomrule
+		\end{tabularx}
+		\caption{Resumen operativo del PNP con el modelo simplificado de tensiones constantes.}
+	\end{table}
+	
+	\begin{tcolorbox}[notebox, title={¿En qué región estoy? (PNP)}, top=12pt]
+		\begin{itemize}
+			\item \textbf{¿Conduce la unión EB?} Si $V_{EB} < 0{,}7\,\text{V}$, estás en \textbf{corte}.
+			\item \textbf{Si conduce, supón activa} ($V_{EB} = 0{,}7\,\text{V}$, $I_C = \beta I_B$) y calcula $V_{EC}$.
+			\begin{itemize}
+				\item Si $V_{EC} > 0{,}2\,\text{V}$, la suposición era correcta $\rightarrow$ \textbf{activa}.
+				\item Si te sale $V_{EC} < 0{,}2\,\text{V}$, es imposible $\rightarrow$ \textbf{saturación} ($V_{EC} = 0{,}2\,\text{V}$) y se recalcula $I_C$.
+			\end{itemize}
+		\end{itemize}
+	\end{tcolorbox}
+	
+	%% ============================================================
+	%%  PNP: MODELO EQUIVALENTE
+	%% ============================================================
+	\section{El PNP sustituido por pilas y fuentes}
+	
+	Es el mismo esquema que el NPN con el emisor arriba y las polaridades invertidas:
+	
+	\begin{itemize}
+		\item \textbf{Unión EB conduciendo:} \textbf{pila de $0{,}7\,\text{V}$} con el $+$ en el \emph{emisor} y el $-$ en la base.
+		\item \textbf{Activa directa:} pila de $0{,}7\,\text{V}$ entre $E$ y $B$, más una \textbf{fuente de corriente dependiente} $\beta I_B$ de $E$ a $C$.
+		\item \textbf{Saturación:} pila de $0{,}7\,\text{V}$ entre $E$ y $B$ y otra \textbf{pila de $0{,}2\,\text{V}$} entre $E$ y $C$ (con el $+$ en $E$). $I_C$ no es $\beta I_B$: la fija el resto del circuito.
+		\item \textbf{Corte:} \textbf{circuito abierto} en las tres patillas.
+	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[t]{0.31\textwidth}
+			\centering
+			\begin{circuitikz}[scale=0.8, transform shape]
+				\draw (-0.6,0) node[circ] {} node[left] {$B$};
+				\draw (1.6,3) node[circ] {} node[above] {$E$};
+				\draw (1.6,-1.8) node[circ] {} node[below] {$C$};
+				\node[font=\small\itshape, align=center] at (0.5,1.5) {circuito\\abierto};
+			\end{circuitikz}\\[0.3em]
+			\small\textbf{(a) Corte}
+		\end{minipage}\hfill
+		\begin{minipage}[t]{0.31\textwidth}
+			\centering
+			\begin{circuitikz}[scale=0.8, transform shape]
+				% Línea recta E --> fuente --> nudo --> C ; la pila de la base entra por el lado
+				\draw (1.6,3) node[circ] {} node[above] {$E$}
+				to[american controlled current source, l=$\beta I_B$] (1.6,0) node[circ] {}
+				to[short] (1.6,-1.8) node[circ] {} node[below] {$C$};
+				\draw (1.6,0) to[battery1, l_=$0{,}7\,\text{V}$] (-0.6,0) node[left] {$B$};
+			\end{circuitikz}\\[0.3em]
+			\small\textbf{(b) Activa directa}
+		\end{minipage}\hfill
+		\begin{minipage}[t]{0.31\textwidth}
+			\centering
+			\begin{circuitikz}[scale=0.8, transform shape]
+				\draw (1.6,3) node[circ] {} node[above] {$E$}
+				to[battery1, l=$0{,}2\,\text{V}$] (1.6,0) node[circ] {}
+				to[short] (1.6,-1.8) node[circ] {} node[below] {$C$};
+				\draw (1.6,0) to[battery1, l_=$0{,}7\,\text{V}$] (-0.6,0) node[left] {$B$};
+			\end{circuitikz}\\[0.3em]
+			\small\textbf{(c) Saturación}
+		\end{minipage}
+		\caption{Modelos equivalentes del PNP, con el camino $E \to C$ en línea recta. A diferencia del NPN, el $+$ de la pila de la unión EB está en el lado del emisor. En las pilas, la placa larga es el $+$.}
+	\end{figure}
+	
+	\begin{tcolorbox}[notebox, title={Si te dan $V_{EB}$ y $V_{EC}$: ¿qué región es?}, top=12pt]
+		\begin{itemize}
+			\item $V_{EB} = 0{,}7\,\text{V}$, $V_{EC} = 4\,\text{V}$ $\rightarrow$ EB conduce y $V_{EC} > 0{,}2\,\text{V}$: \textbf{activa}.
+			\item $V_{EB} = 0{,}7\,\text{V}$, $V_{EC} = 0{,}2\,\text{V}$ $\rightarrow$ \textbf{saturación}.
+			\item $V_{EB} = 0{,}3\,\text{V}$ $\rightarrow$ \textbf{corte}, $I_B \approx I_C \approx 0$.
+		\end{itemize}
+		Si te dan las tensiones de los nodos del PNP, calcula primero $V_{EB} = V_E - V_B$ (con el orden correcto) y después decide.
+	\end{tcolorbox}
+	
+	%% ============================================================
+	%%  PNP: POLARIZACIÓN
+	%% ============================================================
+	\section{Análisis de un circuito típico de polarización (PNP)}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}[scale=1.0]
+			\draw (0,0) node[pnp] (Q) {};
+			
+			% Base y divisor de tensión
+			\draw (Q.B) to[short, -*] ++(-1.6,0) coordinate (G);
+			
+			% Emisor, R_E y alimentación (arriba)
+			\draw ($(Q.E)+(0,2.6)$) coordinate (top) to[R, l=$R_E$, i_=$I_E$] (Q.E);
+			\draw (top) to[short, -o] ++(0,0.4) node[above] {$V_{CC}$};
+			
+			% Colector, R_C y masa (abajo)
+			\draw (Q.C) to[R, l=$R_C$, i_=$I_C$] ++(0,-2.6) coordinate (gnd) node[ground] {};
+			
+			% Divisor R_1 -- R_2
+			\draw (top) -- (G |- top) to[R, l_=$R_1$] (G)
+			to[R, l_=$R_2$] (G |- gnd) node[ground] {};
+			
+			% Etiquetas
+			\node[anchor=south east, font=\small] at ($(G)+(-0.05,0.1)$) {$V_B$};
+			\node[anchor=south west, font=\small] at ($(Q.E)+(0.25,0.15)$) {$V_E$};
+			\node[anchor=north west, font=\small] at ($(Q.C)+(0.25,-0.15)$) {$V_C$};
+		\end{circuitikz}
+		\caption{Polarización por divisor de tensión de un PNP: el emisor va hacia $V_{CC}$ y el colector hacia masa.}
+	\end{figure}
+	
+	\subsection*{Pasos de resolución sistemáticos}
+	
+	\begin{enumerate}
+		\item \textbf{Equivalente Thévenin de la base.} El divisor $R_1$--$R_2$ se sustituye por
+		\[
+		V_{TH} = V_{CC}\,\frac{R_2}{R_1 + R_2}, \qquad R_{TH} = R_1 \parallel R_2 = \frac{R_1 R_2}{R_1 + R_2}
+		\]
+		\item \textbf{Malla emisor--base.} La corriente de base \emph{sale} del transistor hacia el divisor, de modo que $V_B = V_{TH} + I_B R_{TH}$. Suponiendo activa, con $I_E = (\beta+1) I_B$:
+		\[
+		V_{CC} = I_E R_E + V_{EB} + I_B R_{TH} + V_{TH}
+		\quad\Longrightarrow\quad
+		I_B = \frac{V_{CC} - V_{TH} - V_{EB}}{R_{TH} + (\beta+1) R_E}
+		\]
+		\item \textbf{Corrientes.} $I_C = \beta I_B$ \quad y \quad $I_E = (\beta+1) I_B$.
+		\item \textbf{Comprobar la hipótesis.} Con $V_E = V_{CC} - I_E R_E$ y $V_C = I_C R_C$:
+		\[
+		V_{EC} = V_E - V_C = V_{CC} - I_E R_E - I_C R_C \;\; > \;\; V_{EC,\mathrm{sat}} \approx 0{,}2\,\text{V}
+		\]
+		Si no se cumple, está en saturación: se toma $V_{EC} = 0{,}2\,\text{V}$ y se recalcula $I_C \approx \dfrac{V_{CC} - V_{EC,\mathrm{sat}}}{R_E + R_C}$ (con $I_E \approx I_C$), comprobando que $I_C < \beta I_B$.
+	\end{enumerate}
+	
+	\begin{tcolorbox}[notebox, title={Alternativa: tensiones de nodo (PNP)}, top=12pt]
+		Se parte de la alimentación y se \emph{baja}: $V_E = V_{CC} - I_E R_E$ y $V_B = V_E - 0{,}7$ (en el PNP la base está $0{,}7\,\text{V}$ \emph{por debajo} del emisor), mientras que $V_C = I_C R_C$ sube desde masa. Al final $V_{EC} = V_E - V_C$.
+	\end{tcolorbox}
+	
+	\begin{tcolorbox}[warnbox, title={Polarización estable}]
+		Si $R_{TH} \ll (\beta+1) R_E$ (regla práctica: $R_{TH} \le 0{,}1\,(\beta+1) R_E$), entonces $I_C \approx \dfrac{V_{CC} - V_{TH} - V_{EB}}{R_E}$, que apenas depende de $\beta$.
+	\end{tcolorbox}
+	
+	%% ============================================================
+	%%  1. FÍSICA SIMPLIFICADA
+	%% ============================================================
+	\section{La física simplificada del MOSFET}
+	
+	A diferencia del BJT, que se controla por corriente de base $I_B$, el MOSFET se controla \textbf{por tensión de puerta} ($V_{GS}$).
+	
+	\begin{itemize}
+		\item \textbf{Puerta ($G$):} aislada galvánicamente por una capa de óxido, de modo que $I_G = 0\,\text{A}$ en continua.
+		\item \textbf{Tensión umbral ($\Vth$, también llamada $V_{TN}$ en el NMOS):} valor mínimo de $V_{GS}$ necesario para crear el canal de conducción entre drenador ($D$) y surtidor ($S$).
+		\item \textbf{Estrangulamiento del canal (\emph{pinch-off}):} ocurre en el extremo del drenador cuando la diferencia de potencial entre puerta y drenador cae hasta la tensión umbral o por debajo de ella: $V_{GD} \le \Vth$.
+	\end{itemize}
+	
+	\begin{tcolorbox}[notebox, title={Tensión de sobrecarga}]
+		Se define la \textbf{tensión de sobrecarga} (\emph{overdrive}) como $\Vov = V_{GS} - \Vth$. Con ella, el límite entre triodo y saturación se escribe de forma compacta: $V_{DS} = \Vov$.
+	\end{tcolorbox}
+	
+	%% ============================================================
+	%%  2. SÍMBOLOS
+	%% ============================================================
+	\section{Símbolos de los transistores FET}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}[scale=1.1]
+			% NMOS de enriquecimiento
+			\draw (0,0) node[nmos] (nmos) {};
+			\node[left]  at (nmos.G) {$G$};
+			\node[above] at (nmos.D) {$D$};
+			\node[below] at (nmos.S) {$S$};
+			\node at (0,-1.8) {\textbf{NMOS} (enriquecimiento)};
+			
+			% PMOS de enriquecimiento
+			\draw (6,0) node[pmos] (pmos) {};
+			\node[left]  at (pmos.G) {$G$};
+			\node[below] at (pmos.D) {$D$};
+			\node[above] at (pmos.S) {$S$};
+			\node at (6,-1.8) {\textbf{PMOS} (enriquecimiento)};
+		\end{circuitikz}
+		\caption{Símbolos de los transistores MOSFET de enriquecimiento.}
+	\end{figure}
+	
+	%% ============================================================
+	%%  3. REGIONES A TRAVÉS DE LA GRÁFICA
+	%% ============================================================
+	\section{Las 3 regiones del NMOS a través de su gráfica}
+	
+	La forma más rápida de no liarse con los condicionales es entender la \textbf{curva característica} $I_D$ frente a $V_{DS}$. La línea punteada roja es la parábola que separa triodo y saturación: $V_{DS,\mathrm{sat}} = V_{GS} - \Vth$.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				mosfetaxis,
+				width=0.88\textwidth, height=7.6cm,
+				xlabel={$V_{DS}$}, ylabel={$I_D$},
+				xmin=0, xmax=6, ymin=0, ymax=9
+				]
+				
+				% Parábola límite de saturación: I_D = K_n * V_DS^2
+				\addplot[very thick, dashed, accentred, domain=0:2.8, samples=100] {1.1*x^2};
+				\node[accentred, lbl, anchor=west, font=\small] at (axis cs:2.95,8.4)
+				{\textbf{Límite:} $V_{DS} = V_{GS} - \Vth$};
+				
+				% Corte
+				\addplot[very thick, black, domain=0:5.8] {0};
+				\node[black, lbl, anchor=south east, font=\small] at (axis cs:5.9,0.05)
+				{$V_{GS} \le \Vth$ \textbf{(corte)}};
+				
+				% V_GS1  (V_ov = 1.0)
+				\addplot[thick, mainblue, domain=0:1.0, samples=50] {1.1*(2*1.0*x - x^2)};
+				\addplot[thick, mainblue, domain=1.0:5.8] {1.1*(1.0^2)};
+				\node[mainblue, lbl, anchor=south west, font=\small] at (axis cs:4.4,1.15) {$V_{GS1} > \Vth$};
+				
+				% V_GS2  (V_ov = 1.8)
+				\addplot[thick, mainblue, domain=0:1.8, samples=50] {1.1*(2*1.8*x - x^2)};
+				\addplot[thick, mainblue, domain=1.8:5.8] {1.1*(1.8^2)};
+				\node[mainblue, lbl, anchor=south west, font=\small] at (axis cs:4.4,3.7) {$V_{GS2} > V_{GS1}$};
+				
+				% V_GS3  (V_ov = 2.5)
+				\addplot[thick, mainblue, domain=0:2.5, samples=50] {1.1*(2*2.5*x - x^2)};
+				\addplot[thick, mainblue, domain=2.5:5.8] {1.1*(2.5^2)};
+				\node[mainblue, lbl, anchor=south west, font=\small] at (axis cs:4.4,7.0) {$V_{GS3} > V_{GS2}$};
+				
+				% Anotaciones de regiones
+				\node[darkgreen, lbl, font=\bfseries] at (axis cs:1.0,8.6) {TRIODO / ÓHMICA};
+				\node[darkgreen, lbl, font=\small] at (axis cs:1.0,7.9) {($V_{DS} < V_{GS} - \Vth$)};
+				\node[darkgreen, lbl, font=\small] at (axis cs:1.0,7.2) {Funciona como resistencia};
+				
+				\node[mainblue, lbl, font=\bfseries] at (axis cs:3.6,6.3) {SATURACIÓN};
+				\node[mainblue, lbl, font=\small] at (axis cs:3.6,5.65) {($V_{DS} \ge V_{GS} - \Vth$)};
+				\node[mainblue, lbl, font=\small] at (axis cs:3.6,5.0) {Fuente de corriente $I_D(V_{GS})$};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Curvas características de salida $I_D$--$V_{DS}$ de un NMOS (esquemáticas, sin escala numérica).}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				mosfetaxis,
+				width=0.6\textwidth, height=5.8cm,
+				xlabel={$V_{GS}$}, ylabel={$I_D$},
+				xmin=0, xmax=4, ymin=0, ymax=5
+				]
+				\addplot[very thick, black, domain=0:1] {0};
+				\addplot[very thick, mainblue, domain=1:3.2, samples=100] {0.9*(x - 1)^2};
+				
+				\draw[dotted, thick] (axis cs:1,0) -- (axis cs:1,5);
+				\node[lbl, below] at (axis cs:1,0) {$\Vth$};
+				\node[mainblue, lbl, anchor=east, font=\small] at (axis cs:2.9,4.3) {$I_D = K_n (V_{GS} - \Vth)^2$};
+				
+				\node[black, lbl, font=\small\bfseries] at (axis cs:0.5,0.7) {Corte};
+				\node[mainblue, lbl, font=\small\bfseries] at (axis cs:1.9,3.2) {Saturación};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Curva de transferencia $I_D$--$V_{GS}$ en región de saturación.}
+	\end{figure}
+	
+	%% ============================================================
+	%%  4. RESUMEN DE ECUACIONES
+	%% ============================================================
+	\section{Resumen de ecuaciones y condiciones (NMOS)}
+	
+	Para resolver cualquier problema, sigue este algoritmo de comprobación:
+	
+	\begin{table}[H]
+		\centering
+		\small
+		\rowcolors{2}{lightgray}{white}
+		\begin{tabularx}{\textwidth}{@{}>{\bfseries}l >{\raggedright\arraybackslash}p{3.6cm} X@{}}
+			\toprule
+			\rowcolor{mainblue!15}
+			\textbf{Región} & \textbf{Condición de tensión} & \textbf{Ecuación de corriente ($I_D$)} \\
+			\midrule
+			Corte
+			& $V_{GS} \le \Vth$
+			& $I_D = 0$ \\[0.6em]
+			Triodo / óhmica
+			& $V_{GS} > \Vth$ \newline {\color{mainblue}$V_{DS} < V_{GS} - \Vth$}
+			& $I_D = K_n \left[ 2(V_{GS} - \Vth)V_{DS} - V_{DS}^2 \right]$ \newline
+			\textit{o bien} \newline
+			$I_D = k_n' \dfrac{W}{L} \left[ (V_{GS} - \Vth)V_{DS} - \dfrac{1}{2}V_{DS}^2 \right]$ \\[1.4em]
+			Saturación
+			& $V_{GS} > \Vth$ \newline {\color{mainblue}$V_{DS} \ge V_{GS} - \Vth$}
+			& $I_D = K_n (V_{GS} - \Vth)^2$ \newline
+			\textit{o bien} \newline
+			$I_D = \dfrac{1}{2} k_n' \dfrac{W}{L} (V_{GS} - \Vth)^2$ \\
+			\bottomrule
+		\end{tabularx}
+		\caption{Resumen operativo para canal N (NMOS de enriquecimiento), donde $K_n = \tfrac{1}{2}\, k_n' \dfrac{W}{L}$.}
+	\end{table}
+	
+	\subsection*{Regla mnemotécnica rápida}
+	
+	\begin{tcolorbox}[notebox, title={¿En qué región estoy?}, top=12pt]
+		\begin{itemize}
+			\item \textbf{¿Hay canal?} Comprueba si $V_{GS} > \Vth$. Si no, estás en \textbf{corte}.
+			\item \textbf{¿Tensión de drenador baja o alta?}
+			\begin{itemize}
+				\item Si $V_{DS}$ es pequeño ($V_{DS} < V_{GS} - \Vth$), el drenador no llega a estrangular el canal $\rightarrow$ \textbf{triodo}.
+				\item Si $V_{DS}$ es suficientemente grande ($V_{DS} \ge V_{GS} - \Vth$), el canal se estrangula junto al drenador $\rightarrow$ \textbf{saturación} (la corriente se estabiliza).
+			\end{itemize}
+		\end{itemize}
+	\end{tcolorbox}
+	
+	%% ============================================================
+	%%  MODELO EQUIVALENTE MOSFET
+	%% ============================================================
+	\section{El MOSFET sustituido por fuentes y resistencias}
+	
+	A diferencia del BJT, \textbf{la puerta no tiene pila}: es un circuito abierto ($I_G = 0$). Además, $\Vth$ es un \emph{umbral} y no una pila de entrada. Lo único que se sustituye es el camino drenador--surtidor:
+	
+	\begin{itemize}
+		\item \textbf{Corte} ($V_{GS} \le \Vth$): \textbf{circuito abierto} entre $D$ y $S$.
+		\item \textbf{Saturación:} una \textbf{fuente de corriente} de valor $I_D = K_n (V_{GS} - \Vth)^2$ que va de $D$ a $S$.
+		\item \textbf{Triodo:} una \textbf{resistencia} entre $D$ y $S$. Para $V_{DS}$ pequeño, $R_{on} \approx \dfrac{1}{2K_n (V_{GS} - \Vth)}$.
+	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[t]{0.31\textwidth}
+			\centering
+			\begin{circuitikz}[scale=0.85, transform shape]
+				\draw (0,0) node[circ] {} node[left] {$G$};
+				\draw (2,2) node[circ] {} node[above] {$D$};
+				\draw (2,-2) node[circ] {} node[below] {$S$};
+			\end{circuitikz}\\[0.3em]
+			\small\textbf{(a) Corte}
+		\end{minipage}\hfill
+		\begin{minipage}[t]{0.31\textwidth}
+			\centering
+			\begin{circuitikz}[scale=0.85, transform shape]
+				\draw (0,0) node[circ] {} node[left] {$G$};
+				\draw (2,2) node[circ] {} node[above] {$D$} to[american current source, l=$I_D(V_{GS})$] (2,-2) node[circ] {} node[below] {$S$};
+			\end{circuitikz}\\[0.3em]
+			\small\textbf{(b) Saturación}
+		\end{minipage}\hfill
+		\begin{minipage}[t]{0.31\textwidth}
+			\centering
+			\begin{circuitikz}[scale=0.85, transform shape]
+				\draw (0,0) node[circ] {} node[left] {$G$};
+				\draw (2,2) node[circ] {} node[above] {$D$} to[R, l=$R_{on}$] (2,-2) node[circ] {} node[below] {$S$};
+			\end{circuitikz}\\[0.3em]
+			\small\textbf{(c) Triodo}
+		\end{minipage}
+		\caption{Modelos equivalentes del NMOS.}
+	\end{figure}
+	
+	\begin{tcolorbox}[notebox, title={Si te dan $V_{GS}$ y $V_{DS}$: ¿qué región es?}, top=12pt]
+		Con $\Vth = 1\,\text{V}$:
+		\begin{itemize}
+			\item $V_{GS} = 0{,}5\,\text{V}$ $\rightarrow$ $V_{GS} < \Vth$: \textbf{corte}.
+			\item $V_{GS} = 3\,\text{V}$, $V_{DS} = 1\,\text{V}$ $\rightarrow$ $V_{DS} < V_{GS} - \Vth = 2\,\text{V}$: \textbf{triodo}.
+			\item $V_{GS} = 3\,\text{V}$, $V_{DS} = 5\,\text{V}$ $\rightarrow$ $V_{DS} \ge 2\,\text{V}$: \textbf{saturación}.
+		\end{itemize}
+	\end{tcolorbox}
+	
+	%% ============================================================
+	%%  5. CIRCUITO DE POLARIZACIÓN
+	%% ============================================================
+	\newpage
+	\section{Análisis de un circuito típico de polarización}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}[scale=1.0]
+			% Transistor
+			\draw (0,0) node[nmos] (M) {};
+			
+			% Puerta y divisor de tensión
+			\draw (M.G) to[short, -*] ++(-1.6,0) coordinate (G);
+			
+			% Drenador, resistencia R_D y alimentación
+			\draw ($(M.D)+(0,2.6)$) coordinate (top) to[R, l=$R_D$, i_=$I_D$] (M.D);
+			\draw (top) to[short, -o] ++(0,0.4) node[above] {$V_{DD}$};
+			
+			% Surtidor, resistencia R_S y masa
+			\draw (M.S) to[R, l=$R_S$] ++(0,-2.6) coordinate (gnd) node[ground] {};
+			
+			% Divisor R_1 -- R_2
+			\draw (top) -- (G |- top) to[R, l_=$R_1$] (G)
+			to[R, l_=$R_2$] (G |- gnd) node[ground] {};
+			
+			% Etiquetas de tensiones nodales
+			\node[anchor=south west, font=\small] at ($(M.D)+(0.25,0.15)$) {$V_D$};
+			\node[anchor=north west, font=\small] at ($(M.S)+(0.1,-0.1)$) {$V_S$};
+			\node[anchor=south east, font=\small] at ($(G)+(-0.05,0.1)$) {$V_G$};
+		\end{circuitikz}
+		\caption{Polarización por divisor de tensión de un NMOS.}
+	\end{figure}
+	
+	\subsection*{Pasos de resolución sistemáticos}
+	
+	\begin{enumerate}
+		\item \textbf{Calcular la tensión de puerta ($V_G$).} Como $I_G = 0$, el divisor de tensión no está cargado:
+		\[
+		V_G = V_{DD} \cdot \frac{R_2}{R_1 + R_2}
+		\]
+		\item \textbf{Expresar $V_{GS}$ en función de $I_D$.}
+		\[
+		V_S = I_D R_S \quad\Longrightarrow\quad V_{GS} = V_G - I_D R_S
+		\]
+		\item \textbf{Suponer región de SATURACIÓN.}
+		\[
+		I_D = K_n (V_{GS} - \Vth)^2
+		\]
+		Sustituyendo $V_{GS}$ se obtiene una ecuación de 2.º grado en $I_D$:
+		\[
+		K_n R_S^2\, I_D^2 - \bigl[\,2K_n R_S (V_G - \Vth) + 1\,\bigr] I_D + K_n (V_G - \Vth)^2 = 0
+		\]
+		Se descarta la raíz que da $V_{GS} \le \Vth$ (la solución válida cumple $I_D < (V_G - \Vth)/R_S$).
+		\item \textbf{Comprobar la hipótesis.} Calcula $V_D = V_{DD} - I_D R_D$ y verifica que
+		\[
+		V_{DS} = V_D - V_S \ge V_{GS} - \Vth .
+		\]
+		Si no se cumple, el transistor está en triodo y hay que repetir el cálculo con la ecuación de triodo.
+	\end{enumerate}
+	
+	\begin{tcolorbox}[warnbox, title={Ojo con las unidades}]
+		Si $K_n$ está en $\mathrm{mA/V^2}$ y las resistencias en $\mathrm{k\Omega}$, la corriente sale directamente en $\mathrm{mA}$ y las tensiones en $\mathrm{V}$.
+	\end{tcolorbox}
+	
+	%% ============================================================
+	%%  6. NMOS vs PMOS
+	%% ============================================================
+	\section{Equivalencias rápidas: NMOS vs PMOS}
+	
+	En los transistores PMOS las tensiones y las corrientes cambian de signo o de sentido para mantener la coherencia física: el PMOS conduce cuando la puerta está \emph{por debajo} del surtidor, y la corriente fluye de $S$ a $D$.
+	
+	\begin{table}[H]
+		\centering
+		\small
+		\rowcolors{2}{lightgray}{white}
+		\begin{tabular}{@{}lll@{}}
+			\toprule
+			\rowcolor{mainblue!15}
+			\textbf{Parámetro / condición}          & \textbf{NMOS}                          & \textbf{PMOS}                                \\
+			\midrule
+			Tensión de control                      & $V_{GS} = V_G - V_S$                   & $V_{SG} = V_S - V_G$                         \\
+			Tensión umbral                          & $\Vth > 0$                             & $V_{\mathrm{th}} < 0$ (se usa $|\Vth|$)      \\
+			Condición de conducción                 & $V_{GS} > \Vth$                        & $V_{SG} > |\Vth|$                            \\
+			Tensión drenador--surtidor              & $V_{DS} = V_D - V_S$                   & $V_{SD} = V_S - V_D$                         \\
+			Límite triodo / saturación              & $V_{DS} = V_{GS} - \Vth$               & $V_{SD} = V_{SG} - |\Vth|$                   \\
+			Condición de saturación                 & $V_{DS} \ge V_{GS} - \Vth$             & $V_{SD} \ge V_{SG} - |\Vth|$                 \\
+			Ecuación en saturación                  & $I_D = K_n (V_{GS} - \Vth)^2$          & $I_D = K_p (V_{SG} - |\Vth|)^2$              \\
+			Ecuación en triodo                      & $I_D = K_n [2(V_{GS}-\Vth)V_{DS}-V_{DS}^2]$ & $I_D = K_p [2(V_{SG}-|\Vth|)V_{SD}-V_{SD}^2]$ \\
+			\bottomrule
+		\end{tabular}
+		\caption{Tabla rápida de traducción NMOS $\leftrightarrow$ PMOS.}
+	\end{table}
+	
+	%% ============================================================
+	%%  PMOS DE ACUMULACIÓN COMPLETO
+	%% ============================================================
+	\section{Las 3 regiones del PMOS a través de su gráfica}
+	
+	Es la curva del NMOS con las variables \emph{al revés}: se usa $V_{SG}$ para controlar y $V_{SD}$ como tensión de salida, y la corriente fluye de $S$ a $D$. La línea punteada roja separa triodo y saturación: $V_{SD,\mathrm{sat}} = V_{SG} - |\Vth|$.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				mosfetaxis,
+				width=0.88\textwidth, height=7.6cm,
+				xlabel={$V_{SD}$}, ylabel={$I_D$ (de $S$ a $D$)},
+				xmin=0, xmax=6, ymin=0, ymax=9
+				]
+				
+				% Parábola límite de saturación: I_D = K_p * V_SD^2
+				\addplot[very thick, dashed, accentred, domain=0:2.8, samples=100] {1.1*x^2};
+				\node[accentred, lbl, anchor=west, font=\small] at (axis cs:2.95,8.4)
+				{\textbf{Límite:} $V_{SD} = V_{SG} - |\Vth|$};
+				
+				% Corte
+				\addplot[very thick, black, domain=0:5.8] {0};
+				\node[black, lbl, anchor=south east, font=\small] at (axis cs:5.9,0.05)
+				{$V_{SG} \le |\Vth|$ \textbf{(corte)}};
+				
+				% V_SG1  (V_ov = 1.0)
+				\addplot[thick, mainblue, domain=0:1.0, samples=50] {1.1*(2*1.0*x - x^2)};
+				\addplot[thick, mainblue, domain=1.0:5.8] {1.1*(1.0^2)};
+				\node[mainblue, lbl, anchor=south west, font=\small] at (axis cs:4.4,1.15) {$V_{SG1} > |\Vth|$};
+				
+				% V_SG2  (V_ov = 1.8)
+				\addplot[thick, mainblue, domain=0:1.8, samples=50] {1.1*(2*1.8*x - x^2)};
+				\addplot[thick, mainblue, domain=1.8:5.8] {1.1*(1.8^2)};
+				\node[mainblue, lbl, anchor=south west, font=\small] at (axis cs:4.4,3.7) {$V_{SG2} > V_{SG1}$};
+				
+				% V_SG3  (V_ov = 2.5)
+				\addplot[thick, mainblue, domain=0:2.5, samples=50] {1.1*(2*2.5*x - x^2)};
+				\addplot[thick, mainblue, domain=2.5:5.8] {1.1*(2.5^2)};
+				\node[mainblue, lbl, anchor=south west, font=\small] at (axis cs:4.4,7.0) {$V_{SG3} > V_{SG2}$};
+				
+				% Anotaciones de regiones
+				\node[darkgreen, lbl, font=\bfseries] at (axis cs:1.0,8.6) {TRIODO / ÓHMICA};
+				\node[darkgreen, lbl, font=\small] at (axis cs:1.0,7.9) {($V_{SD} < V_{SG} - |\Vth|$)};
+				\node[darkgreen, lbl, font=\small] at (axis cs:1.0,7.2) {Funciona como resistencia};
+				
+				\node[mainblue, lbl, font=\bfseries] at (axis cs:3.6,6.3) {SATURACIÓN};
+				\node[mainblue, lbl, font=\small] at (axis cs:3.6,5.65) {($V_{SD} \ge V_{SG} - |\Vth|$)};
+				\node[mainblue, lbl, font=\small] at (axis cs:3.6,5.0) {Fuente de corriente $I_D(V_{SG})$};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Curvas características de salida $I_D$--$V_{SD}$ de un PMOS de enriquecimiento (esquemáticas, sin escala numérica).}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				mosfetaxis,
+				width=0.6\textwidth, height=5.8cm,
+				xlabel={$V_{SG}$}, ylabel={$I_D$},
+				xmin=0, xmax=4, ymin=0, ymax=5
+				]
+				\addplot[very thick, black, domain=0:1] {0};
+				\addplot[very thick, mainblue, domain=1:3.2, samples=100] {0.9*(x - 1)^2};
+				
+				\draw[dotted, thick] (axis cs:1,0) -- (axis cs:1,5);
+				\node[lbl, below] at (axis cs:1,0) {$|\Vth|$};
+				\node[mainblue, lbl, anchor=east, font=\small] at (axis cs:2.9,4.3) {$I_D = K_p (V_{SG} - |\Vth|)^2$};
+				
+				\node[black, lbl, font=\small\bfseries] at (axis cs:0.5,0.7) {Corte};
+				\node[mainblue, lbl, font=\small\bfseries] at (axis cs:1.9,3.2) {Saturación};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Curva de transferencia $I_D$--$V_{SG}$ del PMOS en región de saturación.}
+	\end{figure}
+	
+	\section{Resumen de ecuaciones y condiciones (PMOS)}
+	
+	\begin{table}[H]
+		\centering
+		\small
+		\rowcolors{2}{lightgray}{white}
+		\begin{tabularx}{\textwidth}{@{}>{\bfseries}l >{\raggedright\arraybackslash}p{3.8cm} X@{}}
+			\toprule
+			\rowcolor{mainblue!15}
+			\textbf{Región} & \textbf{Condición de tensión} & \textbf{Ecuación de corriente ($I_D$, de $S$ a $D$)} \\
+			\midrule
+			Corte
+			& $V_{SG} \le |\Vth|$
+			& $I_D = 0$ \\[0.6em]
+			Triodo / óhmica
+			& $V_{SG} > |\Vth|$ \newline {\color{mainblue}$V_{SD} < V_{SG} - |\Vth|$}
+			& $I_D = K_p \left[ 2(V_{SG} - |\Vth|)V_{SD} - V_{SD}^2 \right]$ \newline
+			\textit{o bien} \newline
+			$I_D = k_p' \dfrac{W}{L} \left[ (V_{SG} - |\Vth|)V_{SD} - \dfrac{1}{2}V_{SD}^2 \right]$ \\[1.4em]
+			Saturación
+			& $V_{SG} > |\Vth|$ \newline {\color{mainblue}$V_{SD} \ge V_{SG} - |\Vth|$}
+			& $I_D = K_p (V_{SG} - |\Vth|)^2$ \newline
+			\textit{o bien} \newline
+			$I_D = \dfrac{1}{2} k_p' \dfrac{W}{L} (V_{SG} - |\Vth|)^2$ \\
+			\bottomrule
+		\end{tabularx}
+		\caption{Resumen operativo para canal P (PMOS de enriquecimiento), donde $K_p = \tfrac{1}{2}\, k_p' \dfrac{W}{L}$.}
+	\end{table}
+	
+	\begin{tcolorbox}[notebox, title={¿En qué región estoy? (PMOS)}, top=12pt]
+		\begin{itemize}
+			\item \textbf{¿Hay canal?} Comprueba si $V_{SG} > |\Vth|$ (la puerta debe estar $|\Vth|$ por \emph{debajo} del surtidor). Si no, \textbf{corte}.
+			\item \textbf{¿Tensión surtidor--drenador baja o alta?}
+			\begin{itemize}
+				\item Si $V_{SD} < V_{SG} - |\Vth|$ $\rightarrow$ \textbf{triodo}.
+				\item Si $V_{SD} \ge V_{SG} - |\Vth|$ $\rightarrow$ \textbf{saturación}.
+			\end{itemize}
+		\end{itemize}
+	\end{tcolorbox}
+	
+	%% ============================================================
+	%%  PMOS: MODELO EQUIVALENTE
+	%% ============================================================
+	\section{El PMOS sustituido por fuentes y resistencias}
+	
+	Igual que en el NMOS, \textbf{la puerta es un circuito abierto} ($I_G = 0$) y $|\Vth|$ es un umbral, no una pila. Solo se sustituye el camino surtidor--drenador, con el surtidor arriba:
+	
+	\begin{itemize}
+		\item \textbf{Corte} ($V_{SG} \le |\Vth|$): \textbf{circuito abierto} entre $S$ y $D$.
+		\item \textbf{Saturación:} una \textbf{fuente de corriente} $I_D = K_p (V_{SG} - |\Vth|)^2$ que va de $S$ a $D$.
+		\item \textbf{Triodo:} una \textbf{resistencia} entre $S$ y $D$. Para $V_{SD}$ pequeño, $R_{on} \approx \dfrac{1}{2K_p (V_{SG} - |\Vth|)}$.
+	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[t]{0.31\textwidth}
+			\centering
+			\begin{circuitikz}[scale=0.85, transform shape]
+				\draw (0,0) node[circ] {} node[left] {$G$};
+				\draw (2,2) node[circ] {} node[above] {$S$};
+				\draw (2,-2) node[circ] {} node[below] {$D$};
+			\end{circuitikz}\\[0.3em]
+			\small\textbf{(a) Corte}
+		\end{minipage}\hfill
+		\begin{minipage}[t]{0.31\textwidth}
+			\centering
+			\begin{circuitikz}[scale=0.85, transform shape]
+				\draw (0,0) node[circ] {} node[left] {$G$};
+				\draw (2,2) node[circ] {} node[above] {$S$} to[american current source, l=$I_D(V_{SG})$] (2,-2) node[circ] {} node[below] {$D$};
+			\end{circuitikz}\\[0.3em]
+			\small\textbf{(b) Saturación}
+		\end{minipage}\hfill
+		\begin{minipage}[t]{0.31\textwidth}
+			\centering
+			\begin{circuitikz}[scale=0.85, transform shape]
+				\draw (0,0) node[circ] {} node[left] {$G$};
+				\draw (2,2) node[circ] {} node[above] {$S$} to[R, l=$R_{on}$] (2,-2) node[circ] {} node[below] {$D$};
+			\end{circuitikz}\\[0.3em]
+			\small\textbf{(c) Triodo}
+		\end{minipage}
+		\caption{Modelos equivalentes del PMOS de enriquecimiento (la corriente va de $S$ a $D$).}
+	\end{figure}
+	
+	\begin{tcolorbox}[notebox, title={Si te dan $V_{SG}$ y $V_{SD}$: ¿qué región es?}, top=12pt]
+		Con $|\Vth| = 1\,\text{V}$:
+		\begin{itemize}
+			\item $V_{SG} = 0{,}5\,\text{V}$ $\rightarrow$ $V_{SG} < |\Vth|$: \textbf{corte}.
+			\item $V_{SG} = 3\,\text{V}$, $V_{SD} = 1\,\text{V}$ $\rightarrow$ $V_{SD} < V_{SG} - |\Vth| = 2\,\text{V}$: \textbf{triodo}.
+			\item $V_{SG} = 3\,\text{V}$, $V_{SD} = 5\,\text{V}$ $\rightarrow$ $V_{SD} \ge 2\,\text{V}$: \textbf{saturación}.
+		\end{itemize}
+	\end{tcolorbox}
+	
+	%% ============================================================
+	%%  PMOS: POLARIZACIÓN
+	%% ============================================================
+	\section{Análisis de un circuito típico de polarización (PMOS)}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}[scale=1.0]
+			\draw (0,0) node[pmos] (M) {};
+			
+			% Puerta y divisor de tensión
+			\draw (M.G) to[short, -*] ++(-1.6,0) coordinate (G);
+			
+			% Surtidor, R_S y alimentación (arriba)
+			\draw ($(M.S)+(0,2.6)$) coordinate (top) to[R, l=$R_S$, i_=$I_D$] (M.S);
+			\draw (top) to[short, -o] ++(0,0.4) node[above] {$V_{DD}$};
+			
+			% Drenador, R_D y masa (abajo)
+			\draw (M.D) to[R, l=$R_D$] ++(0,-2.6) coordinate (gnd) node[ground] {};
+			
+			% Divisor R_1 -- R_2
+			\draw (top) -- (G |- top) to[R, l_=$R_1$] (G)
+			to[R, l_=$R_2$] (G |- gnd) node[ground] {};
+			
+			% Etiquetas de tensiones nodales
+			\node[anchor=south west, font=\small] at ($(M.S)+(0.25,0.15)$) {$V_S$};
+			\node[anchor=north west, font=\small] at ($(M.D)+(0.25,-0.15)$) {$V_D$};
+			\node[anchor=south east, font=\small] at ($(G)+(-0.05,0.1)$) {$V_G$};
+		\end{circuitikz}
+		\caption{Polarización por divisor de tensión de un PMOS: el surtidor va hacia $V_{DD}$ y el drenador hacia masa.}
+	\end{figure}
+	
+	\subsection*{Pasos de resolución sistemáticos}
+	
+	\begin{enumerate}
+		\item \textbf{Calcular la tensión de puerta ($V_G$).} Como $I_G = 0$:
+		\[
+		V_G = V_{DD} \cdot \frac{R_2}{R_1 + R_2}
+		\]
+		\item \textbf{Expresar $V_{SG}$ en función de $I_D$.} Con $V_S = V_{DD} - I_D R_S$:
+		\[
+		V_{SG} = V_S - V_G = V_1 - I_D R_S, \qquad V_1 = V_{DD} - V_G = V_{DD}\,\frac{R_1}{R_1 + R_2}
+		\]
+		\item \textbf{Suponer región de SATURACIÓN.}
+		\[
+		I_D = K_p (V_{SG} - |\Vth|)^2
+		\]
+		Sustituyendo $V_{SG}$ se obtiene una ecuación de 2.º grado en $I_D$:
+		\[
+		K_p R_S^2\, I_D^2 - \bigl[\,2K_p R_S (V_1 - |\Vth|) + 1\,\bigr] I_D + K_p (V_1 - |\Vth|)^2 = 0
+		\]
+		Se descarta la raíz que da $V_{SG} \le |\Vth|$ (la solución válida cumple $I_D < (V_1 - |\Vth|)/R_S$).
+		\item \textbf{Comprobar la hipótesis.} Con $V_D = I_D R_D$ se tiene $V_{SD} = V_{DD} - I_D (R_S + R_D)$, y debe cumplirse
+		\[
+		V_{SD} \ge V_{SG} - |\Vth| .
+		\]
+		Si no, está en triodo y hay que repetir con la ecuación de triodo.
+	\end{enumerate}
+	
+	\begin{tcolorbox}[warnbox, title={Idea clave}]
+		Es el problema del NMOS con el \emph{espejo vertical}: $V_G \to V_1 = V_{DD} - V_G$ y $\Vth \to |\Vth|$. Si sabes resolver el NMOS, el PMOS es el mismo cálculo con estas dos sustituciones.
+	\end{tcolorbox}
+	
+	%% ============================================================
+	%%  MOSFET DE DEPLEXIÓN: FÍSICA
+	%% ============================================================
+	\section{MOSFET de deplexión: la física simplificada}
+	
+	En el MOSFET de deplexión el canal \textbf{ya existe de fábrica} (se fabrica implantado), de modo que conduce con $V_{GS} = 0$. La puerta puede \emph{vaciar} el canal (reduce la corriente) o \emph{enriquecerlo} (la aumenta):
+	
+	\begin{itemize}
+		\item \textbf{Canal N:} con $V_{GS} < 0$ se vacía el canal; con $V_{GS} = V_{TN} < 0$ desaparece y pasa a corte. Con $V_{GS} > 0$ se enriquece.
+		\item \textbf{Canal P:} con $V_{SG} < 0$ ($V_{GS} > 0$) se vacía el canal; con $V_{SG} = -V_{TP}$ (con $V_{TP} > 0$) desaparece. Con $V_{SG} > 0$ se enriquece.
+		\item \textbf{Misma física que el de acumulación:} $I_G = 0$, mismas regiones (corte, triodo, saturación) y mismas ecuaciones. \textbf{Solo cambia el signo del umbral.}
+		\item \textbf{$I_{DSS}$:} corriente de drenador en saturación con $V_{GS} = 0$. Es el dato típico de catálogo: $I_{DSS} = K_n V_{TN}^2$ (NMOS), $I_{DSS} = K_p V_{TP}^2$ (PMOS).
+	\end{itemize}
+	
+	\begin{tcolorbox}[notebox, title={Notación con signo (para no liarse con $|\Vth|$)}]
+		Para unificar los cuatro tipos se escribe el umbral \textbf{con su signo}: $V_{TN}$ (canal N) y $V_{TP}$ (canal P), con $V_{TN} \equiv \Vth$ en el NMOS de acumulación. Las expresiones generales son $V_{GS} - V_{TN}$ (NMOS) y $V_{SG} + V_{TP}$ (PMOS). Así, en el PMOS de acumulación $V_{TP} = -|\Vth| < 0$ y se recupera $V_{SG} - |\Vth|$.
+		\begin{center}
+			\small
+			\begin{tabular}{@{}lcc@{}}
+				\toprule
+				& \textbf{Acumulación} & \textbf{Deplexión} \\
+				\midrule
+				Canal N & $V_{TN} > 0$ & $V_{TN} < 0$ \\
+				Canal P & $V_{TP} < 0$ & $V_{TP} > 0$ \\
+				\bottomrule
+			\end{tabular}
+		\end{center}
+	\end{tcolorbox}
+	
+	%% ============================================================
+	%%  MOSFET DE DEPLEXIÓN: SÍMBOLOS
+	%% ============================================================
+	\section{Símbolos de los MOSFET de deplexión}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}[scale=1.1]
+			% NMOS de deplexión
+			\draw (0,0) node[nigfetd] (nd) {};
+			\node[left]  at (nd.G) {$G$};
+			\node[above] at (nd.D) {$D$};
+			\node[below] at (nd.S) {$S$};
+			\node at (0,-1.8) {\textbf{NMOS} (deplexión)};
+			
+			% PMOS de deplexión
+			\draw (6,0) node[pigfetd] (pd) {};
+			\node[left]  at (pd.G) {$G$};
+			\node[below] at (pd.D) {$D$};
+			\node[above] at (pd.S) {$S$};
+			\node at (6,-1.8) {\textbf{PMOS} (deplexión)};
+		\end{circuitikz}
+		\caption{Símbolos de los MOSFET de deplexión. A diferencia del de acumulación (canal discontinuo), el canal se dibuja con \textbf{línea continua} porque ya existe sin polarizar.}
+	\end{figure}
+	
+	%% ============================================================
+	%%  MOSFET DE DEPLEXIÓN: GRÁFICAS
+	%% ============================================================
+	\section{Las 3 regiones del NMOS de deplexión a través de su gráfica}
+	
+	La curva de salida tiene la misma forma que la del NMOS de acumulación, pero ahora \textbf{hay corriente con $V_{GS} = 0$}: esa curva (en verde) satura en $I_{DSS}$. Las curvas con $V_{GS} < 0$ están por debajo (deplexión) y las de $V_{GS} > 0$ por encima (acumulación). El límite entre triodo y saturación es $V_{DS} = V_{GS} - V_{TN}$.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				mosfetaxis,
+				width=0.88\textwidth, height=7.6cm,
+				xlabel={$V_{DS}$}, ylabel={$I_D$},
+				xmin=0, xmax=6, ymin=0, ymax=7.2
+				]
+				
+				% Parábola límite: I_D = K_n * V_DS^2   (K_n = 0.6)
+				\addplot[very thick, dashed, accentred, domain=0:3.2, samples=100] {0.6*x^2};
+				\node[accentred, lbl, anchor=west, font=\small] at (axis cs:3.3,6.6)
+				{\textbf{Límite:} $V_{DS} = V_{GS} - V_{TN}$};
+				
+				% Corte
+				\addplot[very thick, black, domain=0:5.8] {0};
+				\node[black, lbl, anchor=south east, font=\small] at (axis cs:5.9,0.05)
+				{$V_{GS} \le V_{TN}$ \textbf{(corte)}};
+				
+				% V_GS < 0  (V_ov = 1)  -> deplexión
+				\addplot[thick, mainblue, domain=0:1.0, samples=50] {0.6*(2*1.0*x - x^2)};
+				\addplot[thick, mainblue, domain=1.0:5.8] {0.6*(1.0^2)};
+				\node[mainblue, lbl, anchor=south west, font=\small] at (axis cs:3.9,0.7) {$V_{TN} < V_{GS} < 0$};
+				
+				% V_GS = 0  (V_ov = 2) -> I_DSS
+				\addplot[very thick, darkgreen, domain=0:2.0, samples=50] {0.6*(2*2.0*x - x^2)};
+				\addplot[very thick, darkgreen, domain=2.0:5.8] {0.6*(2.0^2)};
+				\node[darkgreen, lbl, anchor=south west, font=\small\bfseries] at (axis cs:3.9,2.55) {$V_{GS} = 0$: \; $I_D = I_{DSS}$};
+				
+				% V_GS > 0  (V_ov = 3) -> acumulación
+				\addplot[thick, mainblue, domain=0:3.0, samples=50] {0.6*(2*3.0*x - x^2)};
+				\addplot[thick, mainblue, domain=3.0:5.8] {0.6*(3.0^2)};
+				\node[mainblue, lbl, anchor=south west, font=\small] at (axis cs:3.9,5.55) {$V_{GS} > 0$};
+				
+				% Anotaciones de regiones
+				\node[darkgreen, lbl, font=\bfseries] at (axis cs:0.9,6.7) {TRIODO};
+				\node[darkgreen, lbl, font=\small] at (axis cs:0.9,6.05) {($V_{DS} < V_{GS} - V_{TN}$)};
+				
+				\node[mainblue, lbl, font=\bfseries] at (axis cs:4.9,4.4) {SATURACIÓN};
+				\node[mainblue, lbl, font=\small] at (axis cs:4.9,3.85) {($V_{DS} \ge V_{GS} - V_{TN}$)};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Curvas de salida $I_D$--$V_{DS}$ de un NMOS de deplexión (esquemáticas; ejemplo con $V_{TN} = -2\,\text{V}$). El PMOS de deplexión es igual cambiando $V_{DS} \to V_{SD}$ y $V_{GS} \to V_{SG}$.}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[t]{0.49\textwidth}
+			\centering
+			\begin{tikzpicture}
+				\begin{axis}[
+					mosfetaxis,
+					width=\textwidth, height=5.6cm,
+					xlabel={$V_{GS}$}, ylabel={$I_D$},
+					xmin=-3, xmax=2, ymin=0, ymax=10.5
+					]
+					\addplot[very thick, black, domain=-3:-2] {0};
+					\addplot[very thick, mainblue, domain=-2:2, samples=100] {0.6*(x + 2)^2};
+					
+					\draw[dotted, thick] (axis cs:-2,0) -- (axis cs:-2,10.5);
+					\node[lbl, below, font=\small] at (axis cs:-2,0) {$V_{TN}$};
+					\draw[dotted, thick] (axis cs:0,0) -- (axis cs:0,10.5);
+					\node[lbl, below, font=\small] at (axis cs:0,0) {$0$};
+					\draw[dotted, thick] (axis cs:-3,2.4) -- (axis cs:0,2.4);
+					\node[darkgreen, lbl, anchor=south west, font=\small\bfseries] at (axis cs:-3,2.45) {$I_{DSS}$};
+					\fill[darkgreen] (axis cs:0,2.4) circle (2pt);
+					
+					\node[black, lbl, font=\scriptsize\bfseries] at (axis cs:-2.5,0.9) {Corte};
+					\node[mainblue, lbl, font=\scriptsize\bfseries] at (axis cs:-1,8.8) {Deplexión};
+					\node[mainblue, lbl, font=\scriptsize\bfseries] at (axis cs:1,8.8) {Acumulación};
+				\end{axis}
+			\end{tikzpicture}\\[0.3em]
+			\small\textbf{(a) NMOS de deplexión}
+		\end{minipage}\hfill
+		\begin{minipage}[t]{0.49\textwidth}
+			\centering
+			\begin{tikzpicture}
+				\begin{axis}[
+					mosfetaxis,
+					width=\textwidth, height=5.6cm,
+					xlabel={$V_{SG}$}, ylabel={$I_D$},
+					xmin=-3, xmax=2, ymin=0, ymax=10.5
+					]
+					\addplot[very thick, black, domain=-3:-2] {0};
+					\addplot[very thick, mainblue, domain=-2:2, samples=100] {0.6*(x + 2)^2};
+					
+					\draw[dotted, thick] (axis cs:-2,0) -- (axis cs:-2,10.5);
+					\node[lbl, below, font=\small] at (axis cs:-2,0) {$-V_{TP}$};
+					\draw[dotted, thick] (axis cs:0,0) -- (axis cs:0,10.5);
+					\node[lbl, below, font=\small] at (axis cs:0,0) {$0$};
+					\draw[dotted, thick] (axis cs:-3,2.4) -- (axis cs:0,2.4);
+					\node[darkgreen, lbl, anchor=south west, font=\small\bfseries] at (axis cs:-3,2.45) {$I_{DSS}$};
+					\fill[darkgreen] (axis cs:0,2.4) circle (2pt);
+					
+					\node[black, lbl, font=\scriptsize\bfseries] at (axis cs:-2.5,0.9) {Corte};
+					\node[mainblue, lbl, font=\scriptsize\bfseries] at (axis cs:-1,8.8) {Deplexión};
+					\node[mainblue, lbl, font=\scriptsize\bfseries] at (axis cs:1,8.8) {Acumulación};
+				\end{axis}
+			\end{tikzpicture}\\[0.3em]
+			\small\textbf{(b) PMOS de deplexión}
+		\end{minipage}
+		\caption{Curvas de transferencia en saturación. Para el PMOS se representa frente a $V_{SG}$: la forma es la del NMOS y el umbral está en $V_{SG} = -V_{TP}$ (con $V_{TP} > 0$).}
+	\end{figure}
+	
+	%% ============================================================
+	%%  MOSFET DE DEPLEXIÓN: ECUACIONES
+	%% ============================================================
+	\section{Resumen de ecuaciones y condiciones (deplexión)}
+	
+	\begin{table}[H]
+		\centering
+		\small
+		\rowcolors{2}{lightgray}{white}
+		\begin{tabularx}{\textwidth}{@{}>{\bfseries}l X X@{}}
+			\toprule
+			\rowcolor{mainblue!15}
+			\textbf{Región} & \textbf{NMOS de deplexión} ($V_{TN} < 0$) & \textbf{PMOS de deplexión} ($V_{TP} > 0$) \\
+			\midrule
+			Corte
+			& $V_{GS} \le V_{TN}$ \newline $I_D = 0$
+			& $V_{SG} \le -V_{TP}$ \newline $I_D = 0$ \\[0.9em]
+			Triodo
+			& $V_{GS} > V_{TN}$ \newline {\color{mainblue}$V_{DS} < V_{GS} - V_{TN}$} \newline
+			$I_D = K_n\!\left[2(V_{GS}-V_{TN})V_{DS} - V_{DS}^2\right]$
+			& $V_{SG} > -V_{TP}$ \newline {\color{mainblue}$V_{SD} < V_{SG} + V_{TP}$} \newline
+			$I_D = K_p\!\left[2(V_{SG}+V_{TP})V_{SD} - V_{SD}^2\right]$ \\[1.6em]
+			Saturación
+			& $V_{GS} > V_{TN}$ \newline {\color{mainblue}$V_{DS} \ge V_{GS} - V_{TN}$} \newline
+			$I_D = K_n (V_{GS}-V_{TN})^2$ \newline
+			$\;\;= I_{DSS}\left(1 - \dfrac{V_{GS}}{V_{TN}}\right)^2$
+			& $V_{SG} > -V_{TP}$ \newline {\color{mainblue}$V_{SD} \ge V_{SG} + V_{TP}$} \newline
+			$I_D = K_p (V_{SG}+V_{TP})^2$ \newline
+			$\;\;= I_{DSS}\left(1 + \dfrac{V_{SG}}{V_{TP}}\right)^2$ \\[1.6em]
+			Dato de catálogo
+			& $I_{DSS} = K_n V_{TN}^2$
+			& $I_{DSS} = K_p V_{TP}^2$ \\
+			\bottomrule
+		\end{tabularx}
+		\caption{Resumen operativo de los MOSFET de deplexión. Con $V_{GS} = 0$ (o $V_{SG} = 0$) en saturación se obtiene $I_D = I_{DSS}$.}
+	\end{table}
+	
+	\begin{tcolorbox}[notebox, title={¿En qué región estoy? (deplexión)}, top=12pt]
+		\begin{itemize}
+			\item \textbf{¿Hay canal?} Compara $V_{GS}$ con $V_{TN}$, \textbf{que es negativo}: con $V_{GS} = 0$ ya hay canal. Solo estás en corte si $V_{GS} \le V_{TN}$.
+			\item \textbf{Triodo o saturación:} igual que siempre, comparando $V_{DS}$ con $V_{GS} - V_{TN}$.
+		\end{itemize}
+		\medskip
+		Con $V_{TN} = -2\,\text{V}$:
+		\begin{itemize}
+			\item $V_{GS} = -3\,\text{V}$ $\rightarrow$ $V_{GS} < V_{TN}$: \textbf{corte}.
+			\item $V_{GS} = 0$, $V_{DS} = 1\,\text{V}$ $\rightarrow$ $V_{DS} < V_{GS} - V_{TN} = 2\,\text{V}$: \textbf{triodo}.
+			\item $V_{GS} = 0$, $V_{DS} = 5\,\text{V}$ $\rightarrow$ $V_{DS} \ge 2\,\text{V}$: \textbf{saturación}, con $I_D = I_{DSS}$.
+		\end{itemize}
+	\end{tcolorbox}
+	
+	%% ============================================================
+	%%  MOSFET DE DEPLEXIÓN: MODELOS EQUIVALENTES
+	%% ============================================================
+	\section{Los MOSFET de deplexión sustituidos por fuentes y resistencias}
+	
+	Los modelos son \textbf{los mismos que en acumulación} (puerta en circuito abierto, y camino drenador--surtidor según la región); solo cambian las expresiones que los gobiernan:
+	
+	\begin{itemize}
+		\item \textbf{Corte:} circuito abierto ($V_{GS} \le V_{TN}$ en el NMOS; $V_{SG} \le -V_{TP}$ en el PMOS).
+		\item \textbf{Saturación:} fuente de corriente $I_D = K (V_{\text{ctrl}} - V_T)^2$, que equivale a $I_{DSS}(1 - V_{GS}/V_{TN})^2$ en el NMOS.
+		\item \textbf{Triodo:} resistencia $R_{on} \approx \dfrac{1}{2K_n (V_{GS} - V_{TN})}$ en el NMOS y $R_{on} \approx \dfrac{1}{2K_p (V_{SG} + V_{TP})}$ en el PMOS.
+	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[t]{0.31\textwidth}
+			\centering
+			\begin{circuitikz}[scale=0.75, transform shape]
+				\draw (0,0) node[circ] {} node[left] {$G$};
+				\draw (2,2) node[circ] {} node[above] {$D$};
+				\draw (2,-2) node[circ] {} node[below] {$S$};
+			\end{circuitikz}\\[0.3em]
+			\small\textbf{(a) Corte}
+		\end{minipage}\hfill
+		\begin{minipage}[t]{0.31\textwidth}
+			\centering
+			\begin{circuitikz}[scale=0.75, transform shape]
+				\draw (0,0) node[circ] {} node[left] {$G$};
+				\draw (2,2) node[circ] {} node[above] {$D$} to[american current source, l=$I_D(V_{GS})$] (2,-2) node[circ] {} node[below] {$S$};
+			\end{circuitikz}\\[0.3em]
+			\small\textbf{(b) Saturación}
+		\end{minipage}\hfill
+		\begin{minipage}[t]{0.31\textwidth}
+			\centering
+			\begin{circuitikz}[scale=0.75, transform shape]
+				\draw (0,0) node[circ] {} node[left] {$G$};
+				\draw (2,2) node[circ] {} node[above] {$D$} to[R, l=$R_{on}$] (2,-2) node[circ] {} node[below] {$S$};
+			\end{circuitikz}\\[0.3em]
+			\small\textbf{(c) Triodo}
+		\end{minipage}
+		
+		\vspace{0.8em}
+		
+		\begin{minipage}[t]{0.31\textwidth}
+			\centering
+			\begin{circuitikz}[scale=0.75, transform shape]
+				\draw (0,0) node[circ] {} node[left] {$G$};
+				\draw (2,2) node[circ] {} node[above] {$S$};
+				\draw (2,-2) node[circ] {} node[below] {$D$};
+			\end{circuitikz}\\[0.3em]
+			\small\textbf{(d) Corte}
+		\end{minipage}\hfill
+		\begin{minipage}[t]{0.31\textwidth}
+			\centering
+			\begin{circuitikz}[scale=0.75, transform shape]
+				\draw (0,0) node[circ] {} node[left] {$G$};
+				\draw (2,2) node[circ] {} node[above] {$S$} to[american current source, l=$I_D(V_{SG})$] (2,-2) node[circ] {} node[below] {$D$};
+			\end{circuitikz}\\[0.3em]
+			\small\textbf{(e) Saturación}
+		\end{minipage}\hfill
+		\begin{minipage}[t]{0.31\textwidth}
+			\centering
+			\begin{circuitikz}[scale=0.75, transform shape]
+				\draw (0,0) node[circ] {} node[left] {$G$};
+				\draw (2,2) node[circ] {} node[above] {$S$} to[R, l=$R_{on}$] (2,-2) node[circ] {} node[below] {$D$};
+			\end{circuitikz}\\[0.3em]
+			\small\textbf{(f) Triodo}
+		\end{minipage}
+		\caption{Modelos equivalentes del NMOS de deplexión (a--c, corriente de $D$ a $S$) y del PMOS de deplexión (d--f, corriente de $S$ a $D$).}
+	\end{figure}
+	
+	%% ============================================================
+	%%  MOSFET DE DEPLEXIÓN: POLARIZACIÓN
+	%% ============================================================
+	\section{Análisis de un circuito típico de polarización (deplexión): autopolarización}
+	
+	Como el canal ya existe, el de deplexión se puede polarizar \textbf{sin divisor}, con la puerta a masa a través de $R_G$. Como $I_G = 0$, no hay caída en $R_G$ y $V_G = 0$; la tensión de control la crea la propia corriente en $R_S$. Con un MOSFET de acumulación esto no funciona: con $V_{GS} = 0$ estaría en corte.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\begin{circuitikz}[scale=0.85, transform shape]
+				\draw (0,0) node[nigfetd] (M) {};
+				
+				% Puerta con R_G a masa
+				\draw (M.G) to[short, -*] ++(-1.2,0) coordinate (G);
+				\draw (G) to[R, l_=$R_G$] ++(0,-2.4) node[ground] {};
+				
+				% Drenador, R_D y alimentación
+				\draw ($(M.D)+(0,2.4)$) coordinate (top) to[R, l=$R_D$, i_=$I_D$] (M.D);
+				\draw (top) to[short, -o] ++(0,0.4) node[above] {$V_{DD}$};
+				
+				% Surtidor, R_S y masa
+				\draw (M.S) to[R, l=$R_S$] ++(0,-2.4) node[ground] {};
+			\end{circuitikz}\\[0.3em]
+			\small\textbf{(a) NMOS de deplexión}
+		\end{minipage}\hfill
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\begin{circuitikz}[scale=0.85, transform shape]
+				\draw (0,0) node[pigfetd] (M) {};
+				
+				% Puerta con R_G a V_DD
+				\draw (M.G) to[short, -*] ++(-1.2,0) coordinate (G);
+				\draw ($(M.S)+(0,2.4)$) coordinate (top) to[R, l=$R_S$, i_=$I_D$] (M.S);
+				\draw (top) to[short, -o] ++(0,0.4) node[above] {$V_{DD}$};
+				\draw (G) to[R, l_=$R_G$] (G |- top) -- (top);
+				
+				% Drenador, R_D y masa
+				\draw (M.D) to[R, l=$R_D$] ++(0,-2.4) node[ground] {};
+			\end{circuitikz}\\[0.3em]
+			\small\textbf{(b) PMOS de deplexión}
+		\end{minipage}
+		\caption{Autopolarización de los MOSFET de deplexión. En el PMOS, la puerta se conecta a $V_{DD}$ a través de $R_G$ (es el espejo del NMOS).}
+	\end{figure}
+	
+	\subsection*{Pasos de resolución sistemáticos (NMOS de deplexión)}
+	
+	\begin{enumerate}
+		\item \textbf{Tensión de puerta.} $I_G = 0 \Rightarrow V_G = 0$.
+		\item \textbf{Expresar $V_{GS}$ en función de $I_D$.}
+		\[
+		V_S = I_D R_S \quad\Longrightarrow\quad V_{GS} = -I_D R_S \;(<0)
+		\]
+		\item \textbf{Suponer saturación.} $I_D = K_n (V_{GS} - V_{TN})^2 = K_n (I_D R_S + V_{TN})^2$, que da una ecuación de 2.º grado:
+		\[
+		K_n R_S^2\, I_D^2 + \bigl(\,2K_n R_S V_{TN} - 1\,\bigr) I_D + K_n V_{TN}^2 = 0
+		\]
+		Se descarta la raíz que da $V_{GS} \le V_{TN}$: la solución válida cumple $I_D < |V_{TN}|/R_S$ (y además $I_D \le I_{DSS}$).
+		\item \textbf{Comprobar la hipótesis.} $V_{DS} = V_{DD} - I_D (R_D + R_S)$ y
+		\[
+		V_{DS} \ge V_{GS} - V_{TN} .
+		\]
+		Si no se cumple, está en triodo y hay que repetir con la ecuación de triodo.
+	\end{enumerate}
+	
+	\begin{tcolorbox}[notebox, title={Ejemplo numérico}, top=12pt]
+		$V_{DD} = 12\,\text{V}$, $V_{TN} = -2\,\text{V}$, $K_n = 0{,}6\,\text{mA/V}^2$ (luego $I_{DSS} = K_n V_{TN}^2 = 2{,}4\,\text{mA}$), $R_S = 1\,\text{k}\Omega$, $R_D = 2\,\text{k}\Omega$. La ecuación queda
+		\[
+		0{,}6\, I_D^2 - 3{,}4\, I_D + 2{,}4 = 0 \;\Rightarrow\; I_D \in \{0{,}826,\; 4{,}84\}\,\text{mA}.
+		\]
+		La segunda raíz incumple $I_D < |V_{TN}|/R_S = 2\,\text{mA}$. Con $I_D = 0{,}826\,\text{mA}$: $V_{GS} = -0{,}826\,\text{V}$ y $V_{DS} = 12 - 0{,}826\cdot 3 = 9{,}52\,\text{V} \ge V_{GS} - V_{TN} = 1{,}17\,\text{V}$, así que \textbf{está en saturación}.
+	\end{tcolorbox}
+	
+	\begin{tcolorbox}[notebox, title={PMOS de deplexión (autopolarización)}, top=12pt]
+		Es el espejo: $V_G = V_{DD}$ (sin caída en $R_G$) y $V_S = V_{DD} - I_D R_S$, luego $V_{SG} = -I_D R_S < 0$. En saturación $I_D = K_p (V_{SG} + V_{TP})^2 = K_p (V_{TP} - I_D R_S)^2$, es decir
+		\[
+		K_p R_S^2\, I_D^2 - \bigl(\,2K_p R_S V_{TP} + 1\,\bigr) I_D + K_p V_{TP}^2 = 0,
+		\]
+		con raíz válida $I_D < V_{TP}/R_S$. Se comprueba que $V_{SD} = V_{DD} - I_D(R_S + R_D) \ge V_{SG} + V_{TP}$.
+	\end{tcolorbox}
+	
+	\begin{tcolorbox}[warnbox, title={Si usas divisor de tensión}]
+		Con el circuito de divisor de las secciones anteriores, el procedimiento es \emph{exactamente el mismo} que en acumulación: se calcula $V_G$ (o $V_1$ en el PMOS) y se sustituye $\Vth \to V_{TN}$ (o $|\Vth| \to -V_{TP}$) \textbf{respetando el signo}. La única diferencia es que ahora $V_{TN} < 0$ y $V_{TP} > 0$.
+	\end{tcolorbox}
+	
+	%% ============================================================
+	%%  RESUMEN DE LOS CUATRO MOSFET
+	%% ============================================================
+	\newpage
+	\section{Resumen comparativo de los cuatro MOSFET}
+	
+	\begin{table}[H]
+		\centering
+		\footnotesize
+		\rowcolors{2}{lightgray}{white}
+		\begin{tabularx}{\textwidth}{@{}>{\bfseries\raggedright\arraybackslash}p{2.5cm} X X X X@{}}
+			\toprule
+			\rowcolor{mainblue!15}
+			& \textbf{NMOS acumulación} & \textbf{PMOS acumulación} & \textbf{NMOS deplexión} & \textbf{PMOS deplexión} \\
+			\midrule
+			Umbral
+			& $V_{TN} > 0$ & $V_{TP} < 0$ & $V_{TN} < 0$ & $V_{TP} > 0$ \\
+			¿Canal con $V_{GS} = 0$?
+			& No (corte) & No (corte) & Sí ($I_D = I_{DSS}$) & Sí ($I_D = I_{DSS}$) \\
+			Tensión de control
+			& $V_{GS}$ & $V_{SG}$ & $V_{GS}$ & $V_{SG}$ \\
+			Hay canal si\ldots
+			& $V_{GS} > V_{TN}$ & $V_{SG} > -V_{TP}$ \newline ($=|V_{TP}|$) & $V_{GS} > V_{TN}$ & $V_{SG} > -V_{TP}$ \\
+			Sentido de $I_D$
+			& $D \to S$ & $S \to D$ & $D \to S$ & $S \to D$ \\
+			Límite triodo / saturación
+			& $V_{DS} = V_{GS} - V_{TN}$ & $V_{SD} = V_{SG} + V_{TP}$ & $V_{DS} = V_{GS} - V_{TN}$ & $V_{SD} = V_{SG} + V_{TP}$ \\
+			Saturación
+			& $K_n (V_{GS} - V_{TN})^2$ & $K_p (V_{SG} + V_{TP})^2$ & $K_n (V_{GS} - V_{TN})^2$ \newline $= I_{DSS}\!\left(1 - \frac{V_{GS}}{V_{TN}}\right)^2$ & $K_p (V_{SG} + V_{TP})^2$ \newline $= I_{DSS}\!\left(1 + \frac{V_{SG}}{V_{TP}}\right)^2$ \\
+			Símbolo (canal)
+			& Discontinuo & Discontinuo & Continuo & Continuo \\
+			\bottomrule
+		\end{tabularx}
+		\caption{Comparativa de los cuatro tipos de MOSFET con la notación con signo ($V_{TN}$, $V_{TP}$). Para el PMOS de acumulación, $V_{TP} = -|\Vth|$.}
+	\end{table}
+	
+	%% ============================================================
+	%%  13. BJT vs MOSFET
+	%% ============================================================
+	\newpage
+	\section{Comparativa final: BJT vs MOSFET}
+	
+	\begin{tcolorbox}[warnbox, title={¡Cuidado con los nombres!}]
+		La palabra \textbf{saturación} significa cosas \emph{opuestas}: en el BJT es la zona de interruptor cerrado (no amplifica), mientras que en el MOSFET es la zona donde se comporta como fuente de corriente (sí amplifica). El equivalente de la zona activa del BJT es la \textbf{saturación} del MOSFET, y el de la saturación del BJT es el \textbf{triodo} del MOSFET.
+	\end{tcolorbox}
+	
+	\begin{table}[H]
+		\centering
+		\small
+		\rowcolors{2}{lightgray}{white}
+		\begin{tabularx}{\textwidth}{@{}>{\bfseries}l X X@{}}
+			\toprule
+			\rowcolor{mainblue!15}
+			\textbf{Característica} & \textbf{BJT (NPN)} & \textbf{MOSFET (NMOS)} \\
+			\midrule
+			Terminales              & $B$, $C$, $E$ & $G$, $D$, $S$ \\
+			Variable de control     & Corriente $I_B$ ($V_{BE} \approx 0{,}7\,\text{V}$) & Tensión $V_{GS}$ \\
+			Corriente de entrada    & $I_B \neq 0$ & $I_G = 0$ \\
+			Interruptor abierto     & Corte & Corte \\
+			Interruptor cerrado     & Saturación & Triodo \\
+			Zona de amplificador    & Activa directa & Saturación \\
+			Ecuación de amplificación & $I_C = \beta I_B$ & $I_D = K_n (V_{GS}-\Vth)^2$ \\
+			Dependencia con la tensión & Exponencial & Cuadrática \\
+			Transconductancia $g_m$ & $\dfrac{I_C}{V_T}$ & $2K_n\,(V_{GS}-\Vth)$ \\
+			Impedancia de entrada   & Baja (moderada) & Muy alta \\
+			\bottomrule
+		\end{tabularx}
+		\caption{Comparativa de BJT y MOSFET.}
+	\end{table}
+	
+\end{document}

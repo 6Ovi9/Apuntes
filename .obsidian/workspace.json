@@ -4,23 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "82c96705c8bbfb23",
+        "id": "d5b7644151233ef9",
         "type": "tabs",
         "children": [
           {
-            "id": "689efcfde98d77b1",
+            "id": "595474ee4ea14566",
             "type": "leaf",
             "state": {
               "type": "pdf",
               "state": {
-                "file": "2º/Señales y sistemas/Resumen/Resumen_Gemini/Resumen_PEI_1_V3.pdf",
-                "page": 1,
-                "left": -21,
-                "top": 845,
-                "zoom": 0.710594749326363
+                "file": "2º/Electrónica basica/Lab/P4/Docs/Practica_4_TRTs_Unipolares.pdf",
+                "page": 12,
+                "left": -8,
+                "top": 633,
+                "zoom": 1.8676470588235294
               },
               "icon": "lucide-file-text",
-              "title": "Resumen_PEI_1_V3"
+              "title": "Practica_4_TRTs_Unipolares"
+            }
+          },
+          {
+            "id": "416f83d83e59f63c",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "2º/Electrónica basica/Lab/P4/Docs/NDS7002A-D.pdf",
+                "page": 1,
+                "left": -8,
+                "top": 727,
+                "zoom": 1.8676470588235294
+              },
+              "icon": "lucide-file-text",
+              "title": "NDS7002A-D"
             }
           }
         ]
@@ -197,19 +213,19 @@
       "xournalpp:Create new Xournal++ note": false
     }
   },
-  "active": "689efcfde98d77b1",
+  "active": "595474ee4ea14566",
   "lastOpenFiles": [
-    "2º/Electrónica basica/Apuntes/EB_T2_Teoría_curso_2526.pdf",
-    "2º/Señales y sistemas/Resumen/Resumen_Gemini/Resumen_PEI_1_V3.tex",
-    "2º/Señales y sistemas/Resumen/Resumen_Gemini/Resumen_PEI_1_V3.pdf",
-    "2º/Señales y sistemas/Resumen/Resumen_Gemini",
-    "2º/Señales y sistemas/XPP/Teoria/PEI1/Resumen_PEI_1.pdf.tmp",
-    "2º/Señales y sistemas/XPP/Teoria/PEI1/Resumen_PEI_1.xopp~",
-    "2º/Señales y sistemas/XPP/Teoria/PEI1/Resumen_PEI_1.pdf",
-    "2º/Señales y sistemas/XPP/Teoria/PEI1/Resumen_PEI_1.xopp",
-    "2º/Señales y sistemas/XPP/Teoria/PEI1",
-    "2º/Electrónica basica/Apuntes/EB_T1_Teoría_curso_25-26.pdf",
-    "2º/Electrónica basica/Examenes/PEI_2526_solución-3.pdf",
+    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.synctex(busy)",
+    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.synctex.gz",
+    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.pdf",
+    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.out",
+    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.aux",
+    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.log",
+    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.tex",
+    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/document.tex",
+    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores",
+    "2º/Electrónica basica/Lab/P4/Docs/NDS7002A-D.pdf",
+    "2º/Electrónica basica/Lab/P4/Docs/Practica_4_TRTs_Unipolares.pdf",
     "2026-11-11.md",
     "2º/Estadistica/Teoria/Alibaba.md",
     "2º/Arquitectura de redes 1/todo/Wireshark-DNS-CNAME.png",
