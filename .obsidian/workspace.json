@@ -13,33 +13,50 @@
             "state": {
               "type": "pdf",
               "state": {
-                "file": "2º/Electrónica basica/Lab/P4/Docs/Practica_4_TRTs_Unipolares.pdf",
-                "page": 12,
+                "file": "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.pdf",
+                "page": 17,
                 "left": -8,
-                "top": 633,
-                "zoom": 1.8676470588235294
+                "top": 738,
+                "zoom": 1.920117726903151
               },
               "icon": "lucide-file-text",
-              "title": "Practica_4_TRTs_Unipolares"
+              "title": "Resmen_Transistores"
             }
           },
           {
-            "id": "416f83d83e59f63c",
+            "id": "63500d9d48ad9ab5",
             "type": "leaf",
             "state": {
               "type": "pdf",
               "state": {
-                "file": "2º/Electrónica basica/Lab/P4/Docs/NDS7002A-D.pdf",
-                "page": 1,
+                "file": "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.pdf",
+                "page": 2,
                 "left": -8,
-                "top": 727,
-                "zoom": 1.8676470588235294
+                "top": 680,
+                "zoom": 1.920117726903151
               },
               "icon": "lucide-file-text",
-              "title": "NDS7002A-D"
+              "title": "Resmen_Transistores"
+            }
+          },
+          {
+            "id": "7a1dc0ef201bf201",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "2º/Electrónica basica/Examenes/PC_febrero-2021-solución_.pdf",
+                "page": 1,
+                "left": -8,
+                "top": 846,
+                "zoom": 1.920298377070663
+              },
+              "icon": "lucide-file-text",
+              "title": "PC_febrero-2021-solución_"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -213,19 +230,20 @@
       "xournalpp:Create new Xournal++ note": false
     }
   },
-  "active": "595474ee4ea14566",
+  "active": "7a1dc0ef201bf201",
   "lastOpenFiles": [
-    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.synctex(busy)",
-    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.synctex.gz",
     "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.pdf",
+    "2º/Electrónica basica/Apuntes/EB_T1_Teoría_curso_25-26.pdf",
+    "2º/Electrónica basica/Examenes/PC_febrero-2021-solución_.pdf",
+    "2º/Electrónica basica/Examenes/Solucion_PC_extra_2024(1).pdf",
+    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.synctex.gz",
+    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.synctex(busy)",
+    "2º/Electrónica basica/Examenes/PEI-2023-solución(1).pdf",
+    "2º/Electrónica basica/Examenes/PEI2425_solución.pdf",
+    "Febrero 2021.md",
+    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.toc",
     "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.out",
     "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.aux",
-    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.log",
-    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.tex",
-    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/document.tex",
-    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores",
-    "2º/Electrónica basica/Lab/P4/Docs/NDS7002A-D.pdf",
-    "2º/Electrónica basica/Lab/P4/Docs/Practica_4_TRTs_Unipolares.pdf",
     "2026-11-11.md",
     "2º/Estadistica/Teoria/Alibaba.md",
     "2º/Arquitectura de redes 1/todo/Wireshark-DNS-CNAME.png",
@@ -266,7 +284,6 @@
     "2º/Arquitectura de redes 1/todo/Política de generación de ACKs en TCP.md",
     "2º/Arquitectura de redes 1/todo/PSH (TCP flag).md",
     "2º/Arquitectura de redes 1/todo/Número de secuencia de TCP.md",
-    "2º/Arquitectura de redes 1/todo/Número de asentimiento de TCP.md",
     "Untitled.canvas",
     "2º/Arquitectura de redes 1/Apuntes/02-Canvas/TCP.canvas",
     "2º/Arquitectura de redes 1/Apuntes/02-Canvas/Principal.canvas",

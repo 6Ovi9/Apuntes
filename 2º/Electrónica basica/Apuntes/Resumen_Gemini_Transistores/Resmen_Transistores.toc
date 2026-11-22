@@ -1,0 +1,16 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Notación, tipos y símbolos}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Convenio de subíndices de tensiones y corrientes}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}BJT: NPN y PNP (patillas, flecha del emisor y sentidos)}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}MOSFET: los cuatro tipos y su convenio de signos}{5}{subsection.1.3}%
+\contentsline {section}{\numberline {2}Gráficas características y puntos frontera}{6}{section.2}%
+\contentsline {subsection}{\numberline {2.1}BJT (NPN y PNP): curvas de salida y transferencia}{6}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}MOSFET de acumulación (NMOS y PMOS): curvas y fronteras}{8}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}MOSFET de deplexión (NMOS y PMOS): curvas y fronteras}{9}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Modelos equivalentes en continua (DC)}{11}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Modelos equivalentes DC del BJT (NPN y PNP)}{11}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Modelos equivalentes DC del MOSFET (acumulación y deplexión)}{13}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Modelos equivalentes en pequeña señal (AC — frecuencias medias)}{14}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Reglas visuales de paso al circuito incremental (frecuencias medias)}{14}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Modelo híbrido-$\pi $ del BJT (frecuencias medias)}{16}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Modelo incremental del MOSFET (frecuencias medias)}{17}{subsection.4.3}%
