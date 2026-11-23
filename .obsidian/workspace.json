@@ -13,14 +13,12 @@
             "state": {
               "type": "pdf",
               "state": {
-                "file": "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.pdf",
-                "page": 17,
-                "left": -8,
-                "top": 738,
-                "zoom": 1.920117726903151
+                "file": "2º/Electrónica basica/Apuntes/EB_T8-Teoría_curso_2526.pdf",
+                "page": 1,
+                "zoom": 1
               },
               "icon": "lucide-file-text",
-              "title": "Resmen_Transistores"
+              "title": "EB_T8-Teoría_curso_2526"
             }
           },
           {
@@ -54,9 +52,72 @@
               "icon": "lucide-file-text",
               "title": "PC_febrero-2021-solución_"
             }
+          },
+          {
+            "id": "f010821567a2726d",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "2º/Electrónica basica/Apuntes/EB_T4_teoría_Transistores bipolares(1).pdf",
+                "page": 15,
+                "left": -10,
+                "top": 514,
+                "zoom": 1.5875
+              },
+              "icon": "lucide-file-text",
+              "title": "EB_T4_teoría_Transistores bipolares(1)"
+            }
+          },
+          {
+            "id": "255704071842a0a9",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "2º/Electrónica basica/Lab/P4/Docs/Practica_4_TRTs_Unipolares.pdf",
+                "page": 12,
+                "left": -8,
+                "top": 357,
+                "zoom": 1.8676470588235294
+              },
+              "icon": "lucide-file-text",
+              "title": "Practica_4_TRTs_Unipolares"
+            }
+          },
+          {
+            "id": "c67538921517b6ce",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "2º/Electrónica basica/Lab/P4/Docs/Practica_4_TRTs_Unipolares.pdf",
+                "page": 12,
+                "left": 173,
+                "top": 549,
+                "zoom": 3.68
+              },
+              "icon": "lucide-file-text",
+              "title": "Practica_4_TRTs_Unipolares"
+            }
+          },
+          {
+            "id": "672d9b264a0579eb",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "2º/Electrónica basica/Lab/P4/Docs/NDS7002A-D.pdf",
+                "page": 1,
+                "left": -8,
+                "top": 682,
+                "zoom": 1.8676470588235294
+              },
+              "icon": "lucide-file-text",
+              "title": "NDS7002A-D"
+            }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -134,7 +195,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2º/Electrónica basica/Problemas/evaluacion-intermedia-2015-preguntas-y-respuestas-en-electronica-basica.pdf",
+                "file": "2º/Electrónica basica/Apuntes/EB_T8-Teoría_curso_2526.pdf",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -144,7 +205,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for evaluacion-intermedia-2015-preguntas-y-respuestas-en-electronica-basica"
+              "title": "Backlinks"
             }
           },
           {
@@ -196,7 +257,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "2º/Electrónica basica/Examenes/PEI_2526_solución-3.pdf",
+                "file": "2º/Electrónica basica/Apuntes/EB_T8-Teoría_curso_2526.pdf",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -219,6 +280,7 @@
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
+      "workspaces:Manage workspace layouts": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
@@ -230,20 +292,22 @@
       "xournalpp:Create new Xournal++ note": false
     }
   },
-  "active": "7a1dc0ef201bf201",
+  "active": "595474ee4ea14566",
   "lastOpenFiles": [
+    "2º/Electrónica basica/XPP/Tema 8/Tema_8.pdf",
+    "2º/Electrónica basica/XPP/Tema 8/Tema_8.pdf.tmp",
+    "2º/Electrónica basica/XPP/Tema 8/Tema_8.xopp",
+    "2º/Electrónica basica/XPP/Tema 8",
+    "2º/Electrónica basica/Apuntes/EB_T7_Teoría_curso_25-26.pdf",
     "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.pdf",
-    "2º/Electrónica basica/Apuntes/EB_T1_Teoría_curso_25-26.pdf",
-    "2º/Electrónica basica/Examenes/PC_febrero-2021-solución_.pdf",
-    "2º/Electrónica basica/Examenes/Solucion_PC_extra_2024(1).pdf",
-    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.synctex.gz",
-    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.synctex(busy)",
-    "2º/Electrónica basica/Examenes/PEI-2023-solución(1).pdf",
-    "2º/Electrónica basica/Examenes/PEI2425_solución.pdf",
+    "2º/Electrónica basica/Lab/P4/Docs/NDS7002A-D.pdf",
+    "2º/Electrónica basica/Lab/P4/Docs/Practica_4_TRTs_Unipolares.pdf",
+    "2º/Electrónica basica/XPP/Tema 7/Tema 7.pdf",
+    "2º/Electrónica basica/XPP/Tema 7/Tema 7.pdf.tmp",
+    "2º/Electrónica basica/XPP/Tema 7/Tema 7.xopp",
+    "Untitled 1.md",
+    "Untitled.md",
     "Febrero 2021.md",
-    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.toc",
-    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.out",
-    "2º/Electrónica basica/Apuntes/Resumen_Gemini_Transistores/Resmen_Transistores.aux",
     "2026-11-11.md",
     "2º/Estadistica/Teoria/Alibaba.md",
     "2º/Arquitectura de redes 1/todo/Wireshark-DNS-CNAME.png",
@@ -282,8 +346,6 @@
     "2º/Arquitectura de redes 1/todo/Reconocimientos acumulativos.md",
     "2º/Arquitectura de redes 1/todo/Procesamiento de ACKs.md",
     "2º/Arquitectura de redes 1/todo/Política de generación de ACKs en TCP.md",
-    "2º/Arquitectura de redes 1/todo/PSH (TCP flag).md",
-    "2º/Arquitectura de redes 1/todo/Número de secuencia de TCP.md",
     "Untitled.canvas",
     "2º/Arquitectura de redes 1/Apuntes/02-Canvas/TCP.canvas",
     "2º/Arquitectura de redes 1/Apuntes/02-Canvas/Principal.canvas",
