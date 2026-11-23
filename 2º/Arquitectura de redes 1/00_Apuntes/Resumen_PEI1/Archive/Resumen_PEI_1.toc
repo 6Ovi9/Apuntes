@@ -1,0 +1,44 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Tema 1: Arquitecturas de red}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Elementos de una red}{3}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Tecnologías de acceso}{3}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.2}Medios físicos}{4}{subsubsection.1.1.2}%
+\contentsline {subsubsection}{\numberline {1.1.3}Clasificación de las redes}{4}{subsubsection.1.1.3}%
+\contentsline {subsection}{\numberline {1.2}Conmutación en el núcleo: circuitos frente a paquetes}{4}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Multiplexación en circuitos}{5}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}Almacenamiento y reenvío}{5}{subsubsection.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.2.3}Ventaja de la multiplexación estadística}{5}{subsubsection.1.2.3}%
+\contentsline {subsection}{\numberline {1.3}Estructura de Internet y normalización}{5}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Estructura de Internet}{5}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}Organismos de normalización}{6}{subsubsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.4}Retardos, pérdidas y tasa de transferencia}{6}{subsection.1.4}%
+\contentsline {subsubsection}{\numberline {1.4.1}Retardo nodal}{6}{subsubsection.1.4.1}%
+\contentsline {subsubsection}{\numberline {1.4.2}Retardo de cola e intensidad de tráfico}{7}{subsubsection.1.4.2}%
+\contentsline {subsubsection}{\numberline {1.4.3}Retardo extremo a extremo}{7}{subsubsection.1.4.3}%
+\contentsline {subsubsection}{\numberline {1.4.4}Tasa de transferencia (\emph {throughput})}{7}{subsubsection.1.4.4}%
+\contentsline {subsubsection}{\numberline {1.4.5}Producto ancho de banda-retardo}{7}{subsubsection.1.4.5}%
+\contentsline {subsection}{\numberline {1.5}Protocolos y arquitectura en capas}{8}{subsection.1.5}%
+\contentsline {subsubsection}{\numberline {1.5.1}Modelo OSI y pila TCP/IP}{8}{subsubsection.1.5.1}%
+\contentsline {subsubsection}{\numberline {1.5.2}Encapsulamiento}{9}{subsubsection.1.5.2}%
+\contentsline {section}{\numberline {2}Tema 2: Protocolos de la capa de aplicación}{10}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Principios de las aplicaciones de red}{10}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Procesos, sockets y direccionamiento}{10}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Qué necesita una aplicación del transporte}{11}{subsubsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.2}Servicios de transporte: TCP frente a UDP}{11}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}La web y HTTP}{12}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Formato de los mensajes}{12}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Métodos}{13}{subsubsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.3}Códigos de estado}{13}{subsubsection.2.3.3}%
+\contentsline {subsubsection}{\numberline {2.3.4}Conexiones no persistentes y persistentes}{13}{subsubsection.2.3.4}%
+\contentsline {subsubsection}{\numberline {2.3.5}Cookies}{14}{subsubsection.2.3.5}%
+\contentsline {subsubsection}{\numberline {2.3.6}Caché web (servidor proxy)}{14}{subsubsection.2.3.6}%
+\contentsline {subsection}{\numberline {2.4}DNS \emph {(Domain Name System)}}{14}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Jerarquía}{15}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Consultas iterativas y recursivas}{15}{subsubsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.3}Registros de recursos y mensajes DNS}{16}{subsubsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.5}Programación con sockets}{16}{subsection.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.1}UDP (sin conexión)}{16}{subsubsection.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.5.2}TCP (orientado a conexión)}{17}{subsubsection.2.5.2}%
+\contentsline {section}{\numberline {3}Ejercicios resueltos tipo PEI}{19}{section.3}%
+\contentsline {section}{\numberline {4}Hoja de fórmulas}{21}{section.4}%
+\contentsline {section}{\numberline {5}Correcciones respecto al resumen original}{21}{section.5}%

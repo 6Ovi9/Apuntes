@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+
+\begin{document}
+	
+	\section{Cuestión 2}
+	\begin{center}
+		$G_v = \frac{V_{R_L}}{V_g}$; $R_1 = 1\text{ k}\Omega$, sobre una resistencia de carga $R_L = 10\text{ k}\Omega$.
+	\end{center}
+	
+	
+	\[
+	\left.
+	\begin{aligned}
+		v^+ &= v^- \\
+		v^+ &= 0 \\
+		\frac{V_e - v^-}{R_1} &= \frac{v^- - v_s}{R_2}
+	\end{aligned}
+	\right\}
+	\implies \frac{V_e}{R_1} = -\frac{v_s}{R_2} \implies G_v = -\frac{R_2}{R_1}
+	\]
+	
+	\begin{center}
+		\text{Luego}
+	\end{center}		
+	\[ 	
+	 \quad R_2 = -G_v \cdot R_1\implies R_2 = 10 \cdot 1000 \implies R_2 = 10k\Omega
+	\]
+	
+\end{document}
