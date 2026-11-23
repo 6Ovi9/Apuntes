@@ -1,0 +1,19 @@
+
+# Obsidian local UI state
+.obsidian/workspace.json
+.obsidian/workspaces.json
+
+# Xournal++ autosaves
+*.autosave.xopp
+
+# LTspice simulation outputs
+*.raw
+*.op.raw
+*.log
+*.net
+
+# LaTeX build artifacts
+*.aux
+*.synctex*
+*.fls
+*.fdb_latexmk
